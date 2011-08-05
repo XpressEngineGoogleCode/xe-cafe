@@ -15,7 +15,6 @@
          **/
         function procHomepageAdminInsertConfig() {
             global $lang;
-
             $oModuleController = &getController('module');
             $oLayoutAdminController = &getAdminController('layout');
             $oLayoutModel = &getModel('layout');
@@ -23,10 +22,9 @@
             $oHomepageModel = &getModel('homepage');
 
             $vars = Context::getRequestVars();
-            unset($vars->module);
+			unset($vars->module);
             unset($vars->act);
             unset($vars->body);
-
             $args->default_layout = $vars->default_layout;
             $args->enable_change_layout = $vars->enable_change_layout;
             $args->use_rss = $vars->use_rss;
@@ -34,7 +32,6 @@
                 if(strpos($key,'allow_service_')===false) continue;
                 $args->allow_service[substr($key, strlen('allow_service_'))] = $val;
             }
-
             // 개별 카페 인 경우
             $site_srl = $vars->site_srl;
             if($site_srl) {
@@ -49,7 +46,6 @@
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
                 $layout_srl = $homepage_info->layout_srl;
                 $layout_info = $oLayoutModel->getLayout($layout_srl);
-
                 if(!$layout_info || $layout_info->layout != $layout) {
                     if($layout_info->layout_srl) if($layout_srl && $layout_info) $oLayoutAdminController->deleteLayout($layout_info->layout_srl);
 
@@ -63,11 +59,18 @@
                     $layout_args->site_srl = $site_srl;
                     $layout_args->layout = $layout;
                     $layout_args->title = $homepage_info->title;
+                    
+					$oModuleModel = &getModel('module');
+					$config = $oModuleModel->getModuleConfig('homepage');
+					if (($config && $config->top_menu)|| $config->top_menu == '0'){
+						$extra_vars->top_menu = $config->top_menu;
+					}
                     $layout_args->extra_vars = serialize($extra_vars);
-                    $oLayoutAdminController->insertLayout($layout_args);
-                    $oLayoutAdminController->updateLayout($layout_args);
 
-                    $home_args->title = $homepage_info->title;
+					$output = $oLayoutAdminController->insertLayout($layout_args);
+                    if(!$output->toBool())$oLayoutAdminController->updateLayout($layout_args);
+                    
+					$home_args->title = $homepage_info->title;
                     $home_args->layout_srl = $layout_args->layout_srl;
                     $home_args->site_srl = $site_srl;
                     $output = executeQuery('homepage.updateHomepage', $home_args);
@@ -88,11 +91,11 @@
                 if(!$args->cafe_main_mid) return new Object(-1,sprintf($lang->filter->isnull,$lang->cafe_main_mid));
                 $args->skin = $vars->skin;
                 if(!$args->skin) $args->skin = 'xe_default';
-
+				
                 $homepage_config = $oHomepageModel->getConfig(0);
                 $mid = $homepage_config->cafe_main_mid;
                 $module_info = $oModuleModel->getModuleInfoByMid($mid, 0);
-                if(!$module_info->module_srl) {
+				if(!$module_info->module_srl) {
                     $module_args->site_srl = 0;
                     $module_args->mid = $args->cafe_main_mid;
                     $module_args->skin = $args->skin;
@@ -117,6 +120,7 @@
                 $args->module_srl = $module_info->module_srl;
                 $args->creation_group = implode(',',explode('|@|',$vars->creation_group));
                 $args->layout_srl = $vars->layout_srl;
+				$args->top_menu = $vars->top_menu; // 11.08.02
                 $oModuleController->insertModuleConfig('homepage', $args);
             }
         }
@@ -217,8 +221,14 @@
             if(isSiteID($domain)) $layout->index_url = getFullSiteUrl($domain, '');
             else $layout->index_url = 'http://'.$domain; 
             $layout->main_menu = $info->menu_srl;
-            $layout_args->extra_vars = serialize($layout);
 
+			//Homepage의 Config를 extra_vars로 등록 (top_menu)
+			$oModuleModel = &getModel('module');
+			$config = $oModuleModel->getModuleConfig('homepage');
+			if ($config && $config->top_menu || $config->top_menu == '0'){
+				$layout->top_menu = $config->top_menu;
+			}
+            $layout_args->extra_vars = serialize($layout);
             $oLayoutController->updateLayout($layout_args);
 
             // 생성된 게시판/ 페이지들의 레이아웃 변경
@@ -351,7 +361,6 @@
             $oLayoutAdminController = &getAdminController('layout');
             $output = $oLayoutAdminController->insertLayout($args);
             if(!$output->toBool()) return $output;
-
             return $args->layout_srl;
         }
 
