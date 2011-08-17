@@ -25,7 +25,7 @@
     <tbody>
         <!--@foreach($component_list as $component_name => $xml_info)-->
         <tr class="row2">
-            <th colspan="2" scope="row"><div><a href="{getUrl('module','editor','act','dispEditorComponentInfo','component_name',$component_name)}" onclick="popopen(this.href);return false;"><strong>{htmlspecialchars($xml_info->title)}</strong></a> ({htmlspecialchars($component_name)})</div></th>
+            <th colspan="2" scope="row"><div><a href="{getUrl('module','editor','act','dispEditorComponentInfo','component_name',$component_name)}" onclick="popopen(this.href);return false;"><strong>{$xml_info->title}</strong></a> ({$component_name})</div></th>
             <th><a href="#" onclick="doSetupComponent('{$component_name}'); return false;" title="{htmlspecialchars($lang->cmd_setup)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></th>
             <th>
                 <!--@if($xml_info->enabled=='Y')-->
