@@ -7,7 +7,7 @@
         <img src="{$val->cafe_banner}" width="40" height="40" align="left" class="thumbnail" />
         <!--@end-->
         <a href="{getSiteUrl($val->domain,'smartphone','true')}">
-            <span class="title">{$val->cafe_title}</span>
+            <span class="title">{htmlspecialchars($val->cafe_title)}</span>
             <span class="info">
                 {preg_replace('/<([^>]+)>/i','',$val->cafe_description)}
             </span>
