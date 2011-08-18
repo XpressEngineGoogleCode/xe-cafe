@@ -37,10 +37,10 @@
             <th><a href="#" onclick="doMoveListOrder('{$component_name}','up');return false;" title="{htmlspecialchars($lang->cmd_move_up)}" class="buttonSet buttonUp"><span>{$lang->cmd_move_up}</span></a><a href="#" onclick="doMoveListOrder('{$component_name}','down');return false;" title="{htmlspecialchars($lang->cmd_move_down)}" class="buttonSet buttonDown"><span>{$lang->cmd_move_down}</span></a></th>
         </tr>
         <tr>
-            <td>{nl2br(htmlspecialchars($xml_info->description))}</td>
+            <td>{nl2br($xml_info->description)}</td>
             <td class="nowrap">
                 <!--@foreach($xml_info->author as $author)-->
-                <a href="{$author->homepage}" onclick="window.open(this.href);return false;">{htmlspecialchars($author->name)}</a>
+                <a href="{$author->homepage}" onclick="window.open(this.href);return false;">{$author->name}</a>
                 <!--@endforeach-->
             </td>
             <td colspan="2">{$xml_info->version}</td>
