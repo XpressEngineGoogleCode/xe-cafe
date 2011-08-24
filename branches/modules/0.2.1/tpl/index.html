@@ -15,7 +15,7 @@
     <!--@foreach($homepage_list as $no => $val)-->
     <tr class="row{$cycle_idx}">
         <td>{$no}</td>
-        <td><a href="{getFullSiteUrl($val->domain,'module','','act','dispHomepageManage','site_srl',$val->site_srl)}">{htmlspecialchars($val->cafe_title)}</a></td>
+        <td><a href="{getFullSiteUrl($val->domain,'module','','act','dispHomepageManage','site_srl',$val->site_srl)}">{$val->cafe_title}</a></td>
         <td><a href="{getFullSiteUrl($val->domain)}" onclick="window.open(this.href);return false;">{$val->domain}</a></td>
         <td>{zdate($val->regdate,"Y-m-d")}</td>
         <td><a href="{getUrl('act','dispHomepageAdminSetup','site_srl',$val->site_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></td>
