@@ -24,7 +24,11 @@
             Context::set('page', $output->page);
             Context::set('homepage_list', $output->data);
             Context::set('page_navigation', $output->page_navigation);
-
+			
+			//Security
+			$security = new Security();
+			$security->encodeHTML('homepage_list..cafe_title','homepage_list..domain');
+			
             $this->setTemplateFile('index');
         }
 
@@ -66,7 +70,15 @@
 
             // 카페 메인 스킨 설정 
             Context::set('skins', $oModuleModel->getSkins($this->module_path));
-
+			
+			//Security
+			$security = new Security();
+			$security->encodeHTML('homepage_config.');	
+			$security->encodeHTML('groups..title');	
+			$security->encodeHTML('main_layout_list..title','main_layout_list..layout');	
+			$security->encodeHTML('skins..title');	
+			
+			//main_layout_list skins 
             $this->setTemplateFile('manage');
 
         }
@@ -101,6 +113,13 @@
             $admin_list = $oModuleModel->getSiteAdmin($site_srl);
             Context::set('admin_list', $admin_list);
 
+			//Security
+			$security = new Security();
+			$security->encodeHTML('homepage_info.title','homepage_info.domain');			
+			$security->encodeHTML('homepage_config.default_layout','homepage_config.allow_service.'); 
+			$security->encodeHTML('layout_list..title','layout_list..layout');
+			$security->encodeHTML('service_modules....');			
+			
             $this->setTemplateFile('setup');
         }
 
@@ -113,6 +132,10 @@
             $oModuleModel = &getModel('module');
             $admin_list = $oModuleModel->getSiteAdmin($site_srl);
             Context::set('admin_list', $admin_list);
+			
+			//Security
+			$security = new Security();
+			$security->encodeHTML('homepage_info.title','homepage_info.domain');
 
             $this->setTemplateFile('delete');
         }
