@@ -43,7 +43,6 @@
             // cafe 전체 설정을 구함
             $homepage_config = $oHomepageModel->getConfig();
             Context::set('homepage_config', $homepage_config);
-			debugPrint($homepage_config);
 
             // 레이아웃 목록을 구함
             $layout_list = $oLayoutModel->getDownloadedLayoutList();
