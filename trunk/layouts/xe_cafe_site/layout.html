@@ -159,11 +159,11 @@
 					 {@ $group_count = count($logged_info->group_list);}
 					 <!--@if($logged_info)-->
 						 <!--@if(!$group_count)-->
-							<div class="btn_out_site_info"><input type="button" onclick="doSiteSignUp(); return false;"  value="{$lang->cmd_site_signup}" ></div>
+							<div class="btn_out_site_info" style="display:none"><input type="button" onclick="doSiteSignUp(); return false;"  value="{$lang->cmd_site_signup}" ></div>
 						 <!--@else-->
-							<div class="btn_out_site_info"><input type="button" onclick="doSiteLeave('{$lang->confirm_leave}'); return false;" value="{$lang->cmd_leave}"></div>
+							<div class="btn_out_site_info" style="display:none"><input type="button" onclick="doSiteLeave('{$lang->confirm_leave}'); return false;" value="{$lang->cmd_leave}"></div>
 						 <!--@end-->
-						<div class="btn_out"><input type="button" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>	
+						<div class="btn_out" style="display:none"><input type="button" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>	
 					 <!--@end-->	
 					<!--@if($site_module_info->site_srl>0)-->
 					<div class="cafeMenu">
