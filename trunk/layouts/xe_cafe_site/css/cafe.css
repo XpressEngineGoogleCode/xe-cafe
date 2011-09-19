@@ -26,7 +26,23 @@ a:focus{ text-decoration:underline;}
 .extension.e1{ margin-bottom:30px;}
 .extension.e2{ display:block !important; clear:both;}
 
+/* body style override fw.css 2011/09/16 */
+#body{background:url(../img/bg_body.gif) repeat-y; padding:25px 22px 93px 23px; margin-top:20px; overflow:hidden}
+.fixed #container{width:968px !important}
+#body .top{ background: url(../img/bg_body_top.gif) no-repeat; overflow:hidden; height:5px; width:968px; position:absolute; left:0; top:0;}
+#body .btm{ background: url(../img/bg_body_btm.gif) no-repeat; overflow:hidden; height:5px; width:968px; position:absolute; left:0; bottom:0;}
+
+.fixed #body .ow_e1{ width:209px !important;}
+
+.fixed #body #content{ width:679px !important;}
+
+.fixed #body .ow_e1{background:url(../img/bg_extension_cen.gif) repeat-y; padding: 13px 9px 11px 9px; position: relative; margin-top:-8px}
+#body .ow_e1 .top{ background:url(../img/bg_extension_top.gif) no-repeat; position:absolute; left:0; top:0; overflow:hidden; height:13px; width:227px;}
+#body .ow_e1 .btm{ background:url(../img/bg_extension_btm.gif) no-repeat; position:absolute; left:0; bottom:0; overflow:hidden; height:11px; width:227px;}
+.member,.c11n{ width:100%; overflow:hidden}
+.iSearch{ width:100%!important}
 /* Header */
+#header{z-index:100;}
 #header,
 #header .header{}
 #header .logo{ float:left; margin-right:10px}
@@ -120,6 +136,8 @@ a:focus{ text-decoration:underline;}
 .extension .info .memberInfo p input{ width:13px; height:13px; margin:0 3px 0 0; vertical-align:middle;}
 .extension .btn_out{ margin:6px 0; background:#ffffff; border:1px solid #e6e6e6; border-radius:5px ;}
 .extension .btn_out input{ width:159px; height:32px; margin:7px 0 7px 24px; background:url(../img/btn_out_bg.gif) no-repeat; border:0; color:#fff; font-weight:bold; cursor:pointer}
+.extension .btn_out_site_info{ margin:6px 0; background:#ffffff; border:1px solid #e6e6e6; border-radius:5px ;}
+.extension .btn_out_site_info input{ width:159px; height:32px; margin:7px 0 7px 24px; background:url(../img/btn_out_bg.gif) no-repeat; border:0; color:#fff; font-weight:bold; cursor:pointer}
 .extension .info .memberInfo p label{ font:11px Dotum, 돋움;}
 .extension .info .memberInfo .help{ margin:10px 0 0 0; padding:0; list-style:none;}
 .extension .info .memberInfo .help li{ background:url(../img/ico_spr.gif) no-repeat 0 -70px; padding:0 0 0 9px}
@@ -147,7 +165,7 @@ a:focus{ text-decoration:underline;}
 .cafeMenu ul{ margin:0; padding:0; list-style:none;}
 .cafeMenu ul li{ margin:0 0 5px 0; padding:0;}
 .cafeMenu ul li ul{ padding:3px 0 0 0;}
-.cafeMenu ul li li{ background:url(../img/lineSub.gif) no-repeat 5px 2px;}
+.cafeMenu ul li li{ background:url(../img/lineSub.gif) no-repeat 5px 2px;padding-left:16px;}
 .cafeMenu ul li button{ display:none;}
 .cafeMenu ul li a{ color:#3a3a3a;}
 .cafeMenu ul li a.selected{ font-weight:bold;}
@@ -156,8 +174,8 @@ a:focus{ text-decoration:underline;}
 .visitorStat{ position:relative; padding:10px 15px; *zoom:1;}
 .visitorStat h2{ position:absolute; left:-1000%; width:1px; height:1px; overflow:hidden; font-size:0; line-height:0;}
 .visitorStat dl{ margin:0; color:#767676;}
-.visitorStat dt{ float:left; height:18px; color:#797979; font-weight:bold; margin-right:16px;}
-.visitorStat dd{ color:#0078cb; height:18px; float:left; margin:0 23px 0 0; padding:0; font-weight:bold}
+.visitorStat dt{ clear:left;float:left; height:18px; color:#797979; font-weight:bold; margin-right:11px;}
+.visitorStat dd{ color:#0078cb; height:18px; float:left; margin:0; padding:0; font-weight:bold}
 .visitorStat dd.total{ margin:0; padding:0}
 
 /* Extension E2 */
@@ -375,3 +393,5 @@ dl.widgetDivider dd{ display:none; margin:0;}
 .widgetContainer.black .widgetZineA li .date{ color:#999;}
 .widgetContainer.black .widgetZineA li .hour{ color:#888;}
 .widgetContainer.black .widgetZineA li .text{ color:#888;}
+
+.cafeMenu ul li li {background: url("../img/lineSub.gif") no-repeat scroll 5px 2px transparent;}
