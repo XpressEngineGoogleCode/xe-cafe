@@ -1,6 +1,7 @@
 <!--%import("./lang")-->
-<!--%import("css/framework.css")-->
-<!--%import("css/cafe.css")-->
+<!--%import("./js/layout.js")-->
+<!--%import("./css/framework.css")-->
+<!--%import("./css/cafe.css")-->
 <!--%import("../../widgets/content/skins/default/css/widget.css")-->
 
 <!--// 모양 설정 > 본문 위치 -->
@@ -89,7 +90,7 @@
                 </div>
                 <hr class="hr" />
 
-                <div class="extension e1">
+                <div class="extension e1 ow_e1">
 					<!--@if(!$logged_info)-->
 						<div id="info" class="info cafe">
 						<!--// Site Status -->			
@@ -129,8 +130,7 @@
 						 <li><span>Cafe Admin</span><b>{$siteAminInfo[0]->user_id}</b></li>
 						 <li><span>Article</span><em>{$articleCount}</em></li>
 						 <li><span>Create&nbsp;Date</span>{zdate($homepageInfo->regdate,'Y.m.d')}</li>
-						 </ul>		
-						 
+						 </ul>
 						<!--calculate comment and reply count -->
 						{@ $arg->search_target = 'member_srl';
 						   $arg->search_keyword = $logged_info->member_srl;
@@ -155,7 +155,14 @@
 						 <li><span>Join&nbsp;Date</span>{zdate($logged_info->regdate,'Y.m.d')}</li>
 						 </ul>	
 					 <!--@end-->
+					
+					 {@ $group_count = count($logged_info->group_list);}
 					 <!--@if($logged_info)-->
+						 <!--@if(!$group_count)-->
+							<div class="btn_out_site_info"><input type="button" onclick="doSiteSignUp(); return false;"  value="{$lang->cmd_site_signup}" ></div>
+						 <!--@else-->
+							<div class="btn_out_site_info"><input type="button" onclick="doSiteLeave('{$lang->confirm_leave}'); return false;" value="{$lang->cmd_leave}"></div>
+						 <!--@end-->
 						<div class="btn_out"><input type="button" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>	
 					 <!--@end-->	
 					<!--@if($site_module_info->site_srl>0)-->
@@ -220,12 +227,21 @@
 			else
 			    $(this).attr('class','sub');
 		});
+		if($('ul#cafe_info_area').show()){
+			$('div.btn_out_site_info').show();
+			$('div.btn_out').hide();
+		}else{
+			$('div.btn_out_site_info').hide();
+			$('div.btn_out').show();
+		}
 
 		$('#cafe_info').click(function(){
 			$(this).attr('class','on');
 			$('#member_info').attr('class','');
 			$('ul#cafe_info_area').show();
 			$('ul#member_info_area').hide();
+			$('div.btn_out_site_info').show();
+			$('div.btn_out').hide();
 		});
 
 		$('#member_info').click(function(){
@@ -233,6 +249,8 @@
 			$('#cafe_info').attr('class','');
 			$('ul#member_info_area').show();
 			$('ul#cafe_info_area').hide();
+			$('div.btn_out_site_info').hide();
+			$('div.btn_out').show();
 		});
 	});
 </script>
