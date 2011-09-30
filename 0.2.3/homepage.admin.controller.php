@@ -334,6 +334,7 @@
             $args->is_default = 'N';
             $args->layout_srl = $layout_srl;
             $args->content = $content;
+			$args->page_type = 'WIDGET';
 
             $oModuleController = &getController('module');
             $output = $oModuleController->insertModule($args);

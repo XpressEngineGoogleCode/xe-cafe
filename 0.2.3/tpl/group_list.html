@@ -54,7 +54,7 @@
 <!--@if($selected_group->group_srl && $selected_group->is_default == 'Y')-->
 <input type="hidden" name="is_default" value="Y" />
 <!--@end-->
-
+	<div class="table">
     <table cellspacing="0" class="rowTable">
     <tr>
         <th scope="row"><div>{$lang->group_title}</div></th>
@@ -73,17 +73,16 @@
         <th scope="row"><div>{$lang->description}</div></th>
         <td><textarea name="description" class="inputTypeTextArea w400">{$selected_group->description}</textarea></td>
     </tr>
-    <tr class="row2">
-        <th colspan="2" class="button">
-            <!--@if($selected_group->group_srl)-->
-            <span class="button black strong"><input type="submit" value="{$lang->cmd_modify}" accesskey="s" /></span>
-            <span class="button"><input type="button" value="{$lang->cmd_cancel}" onclick="location.href=current_url.setQuery('group_srl','');return false;"/></span>
-            <!--@else-->
-            <span class="button black strong"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
-            <!--@end-->
-        </th>
-    </tr>
     </table>
+	</div>
+	<div class="btnArea">
+        <!--@if($selected_group->group_srl)-->
+        <span class="btn"><input type="submit" value="{$lang->cmd_modify}" accesskey="s" /></span>
+        <span class="btn"><input type="button" value="{$lang->cmd_cancel}" onclick="location.href=current_url.setQuery('group_srl','');return false;"/></span>
+        <!--@else-->
+        <span class="btn"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+        <!--@end-->
+	</div>
 
 
 </form>
