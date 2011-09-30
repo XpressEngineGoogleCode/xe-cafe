@@ -8,7 +8,8 @@
 <form action="./" method="post" onsubmit="return doUpdateHomepage(this, update_homepage)" id="cafeFo">
 <input type="hidden" name="site_srl" value="{$homepage_info->site_srl}" />
 <input type="hidden" name="homepage_admin" value="<!--@foreach($admin_list as $key=>$val)-->{$val->member_srl},<!--@end-->" />
-    <table cellspacing="0" class="crossTable">
+    <div class="table">
+	<table cellspacing="0" border="1">
     <thead>
         <tr>
             <th colspan="3"><div>{$lang->cmd_cafe_setup} &gt; {$homepage_info->title}</div></th>
@@ -86,12 +87,11 @@
         </tr>
             <!--@end-->
         <!--@end-->
-        <tr class="row2">
-            <th colspan="3" class="button">
-                <span class="button black strong"><input type="submit" value="{$lang->cmd_save}" accesskey="s" /></span>
-                <span class="button"><input type="button" value="{$lang->cmd_back}" onclick="location.href=location.href.setQuery('act','dispHomepageAdminContent').setQuery('site_srl','');return false;" /></span>
-            </th>
-        </tr>
     </tbody>
     </table>
+	</div>
+	<div class="btnArea">
+	    <span class="btn"><input type="submit" value="{$lang->cmd_save}" accesskey="s" /></span>
+    	<span class="btn"><input type="button" value="{$lang->cmd_back}" onclick="location.href=location.href.setQuery('act','dispHomepageAdminContent').setQuery('site_srl','');return false;" /></span>
+	</div>
 </form>
