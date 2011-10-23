@@ -1,3 +1,15 @@
+jQuery(function($){
+		$('.onOneObj').click(function(){
+			$('#xeAdmin').find('.onOneObj').each(function(){
+				$('#'+$(this).attr('hrefs')).css('display','none');
+				$(this).parent().removeClass('on');
+			});
+			$('#'+$(this).attr('hrefs')).css('display','');
+			$(this).parent().addClass('on');
+
+	});
+});
+
 function completeInsertHomepage(ret_obj) {
     var site_srl = ret_obj['site_srl'];
     location.href = current_url.setQuery('site_srl',site_srl).setQuery('act','dispHomepageAdminSetup');

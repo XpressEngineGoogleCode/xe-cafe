@@ -5,79 +5,101 @@
 <!--%import("../../admin/tpl/js/admin.js")-->
 
 <h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-<p class="summary">{$lang->about_cafe_act[$act]}</p>
 
 <ul class="localNavigation">
-    <li class="on" id="moduleOn"><a href="#" onclick="toggleModuleAddon('module');return false;">{$lang->editor}</a></li>
-    <li id="addonOn"><a href="#" onclick="toggleModuleAddon('addon');return false;">{$lang->addon}</a></li>
+    <li class="on"><a hrefs="components" class="onOneObj">{$lang->editor}</a></li>
+    <li><a hrefs="addons" class="onOneObj">{$lang->addon}</a></li>
 </ul>
-
-<div id="xeModules">
-    <table cellspacing="0" class="crossTable">
-    <thead>
-        <tr>
-            <th scope="col" class="half_wide"><div>{$lang->description}</div></th>
-            <th scope="col" class="half_wide"><div>{$lang->component_author}</div></th>
-            <th scope="col" colspan="2"><div>{$lang->component_version}</div></th>
-            <th scope="col"><div>{$lang->component_date}</div></th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--@foreach($component_list as $component_name => $xml_info)-->
-        <tr class="row2">
-            <th colspan="2" scope="row"><div><a href="{getUrl('module','editor','act','dispEditorComponentInfo','component_name',$component_name)}" onclick="popopen(this.href);return false;"><strong>{$xml_info->title}</strong></a> ({$component_name})</div></th>
-            <th><a href="#" onclick="doSetupComponent('{$component_name}'); return false;" title="{htmlspecialchars($lang->cmd_setup)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></th>
-            <th>
-                <!--@if($xml_info->enabled=='Y')-->
-                    <a href="#" onclick="doDisableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_enable)}" class="buttonSet buttonActive"><span>{$lang->cmd_enable}</span></a>
-                <!--@else-->
-                    <a href="#" onclick="doEnableComponent('{$component_name}');return false;" title="{htmlspecialchars($lang->cmd_disable)}" class="buttonSet buttonDisable"><span>{$lang->cmd_disable}</span></a>
-                <!--@end-->
-            </th>
-            <th><a href="#" onclick="doMoveListOrder('{$component_name}','up');return false;" title="{htmlspecialchars($lang->cmd_move_up)}" class="buttonSet buttonUp"><span>{$lang->cmd_move_up}</span></a><a href="#" onclick="doMoveListOrder('{$component_name}','down');return false;" title="{htmlspecialchars($lang->cmd_move_down)}" class="buttonSet buttonDown"><span>{$lang->cmd_move_down}</span></a></th>
-        </tr>
-        <tr>
-            <td>{nl2br($xml_info->description)}</td>
-            <td class="nowrap">
-                <!--@foreach($xml_info->author as $author)-->
-                <a href="{$author->homepage}" onclick="window.open(this.href);return false;">{$author->name}</a>
-                <!--@endforeach-->
-            </td>
-            <td colspan="2">{$xml_info->version}</td>
-            <td>{zdate($xml_info->date, 'Y-m-d')}</td>
-        </tr>
-        <!--@end-->
-    </tbody>
-    </table>
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>
-<div id="xeAddons" style="display:none;">
-    <form id="fo_addon" action="./" method="get">
-        <input type="hidden" name="addon" value="" />
-    </form>
-    <table cellspacing="0" class="rowTable">
-    <thead>
-        <tr>
-            <th><div>{$lang->addon}</div></th>
-            <th><div>{$lang->cmd_setup}</div></th>
-            <th><div>{$lang->status}</div></th>
-        </tr>
-    </thead>
-    <tbody>
-    <!--@foreach($addon_list as $key => $val)-->
-    <tr>
-        <td class="wide"><a href="{getUrl('','module','addon','act','dispAddonAdminInfo','selected_addon',$val->addon)}" onclick="popopen(this.href,'addon_info');return false">{$val->title}</a></td>
-        <td><a href="{getUrl('','module','addon','act','dispAddonAdminSetup','selected_addon',$val->addon)}" onclick="popopen(this.href,'addon_info');return false" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></td>
-        <td>
-            <!--@if($val->activated)-->
-            <a href="#" onclick="doToggleAddonInAdmin(this, '{$val->addon}');return false;" title="{htmlspecialchars($lang->use)}" class="buttonSet buttonActive"><span>{$lang->use}</span></a>
-            <!--@else-->
-            <a href="#" onclick="doToggleAddonInAdmin(this, '{$val->addon}');return false;" title="{htmlspecialchars($lang->notuse)}" class="buttonSet buttonDisable"><span>{$lang->notuse}</span></a>
-            <!--@end-->
-        </td>
-    </tr>
-    <!--@end-->
-    </tbody>
-    </table>
+
+<div id="components">
+<p class="summary">{$lang->about_cafe_act[$act]}</p>
+<form action="./" method="post" class="form" ruleset="componentOrderAndUse">
+	<input type="hidden" name="act" value="procEditorAdminCheckUseListOrder" />
+	<fieldset class="section">
+		<div class="table even easyList">
+			<table id="sortable_table" class="sortable"width="100%" border="1" cellspacing="0">
+				<caption>
+				All({$component_count})
+				</caption>
+				<thead>
+					<tr>
+						<th scope="col">{$lang->cmd_move}</th>
+						<th scope="col" class="title">{$lang->component_name}</th>
+						<th scope="col">{$lang->author}</th>
+						<th scope="col">{$lang->use}</th>
+					</tr>
+				</thead>
+				<tbody class="uDrag">
+					<!--@foreach($component_list as $component_name => $xml_info)-->
+					<tr>
+						<td><div class="wrap" style="height:80px"><button type="button" class="dragBtn">Move to</button></div></td>
+						<td class="title">
+							<input type="hidden" name="component_names[]" value="{$xml_info->component_name}" />
+							<p><b>{$xml_info->title} {$xml_info->version}</b></p>
+							<p>{nl2br($xml_info->description)}</p>
+						</td>
+						<td>
+						   <!--@foreach($xml_info->author as $author)-->
+							<a href="{$author->homepage}" target="_blank">{$author->name}</a>
+							<!--@endforeach-->
+						</td>
+						<td><input type="checkbox" name="enables[]" id="enable" value="{$xml_info->component_name}" title="Use this component " <!--@if($xml_info->enabled=='Y')--> checked="checked"<!--@end--> /></td>
+					</tr>
+					<!--@end-->
+				</tbody>
+			</table>
+		</div>
+		<div class="btnArea">
+			<span class="btn"><input type="submit" value="{$lang->cmd_save}" /></span>
+		</div>
+	</fieldset>
+</form>
+</div>
+<div id="addons" style="display:none;">
+<!-- test -->
+<form action="./" method="post">
+	<input type="hidden" name="module" value="addon" />
+	<input type="hidden" name="act" value="procAddonAdminToggleActivate" />
+
+	<p>{$lang->about_installed_addon}</p>
+	<div class="table even easyList">
+		<table width="100%" border="1" cellspacing="0">
+			<caption>All({$addon_count})</caption>
+			<thead>
+				<tr>
+					<th scope="col" class="title">{$lang->addon_name}</th>
+					<th scope="col">{$lang->author}</th>
+					<th scope="col">{$lang->cmd_setup}</th>
+					<th scope="col">PC</th>
+					<th scope="col">Mobile</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr loop="$addon_list => $addon">
+					<td class="title">
+						<p><strong>{$addon->title} {$addon->version}</strong></p>
+						<p>{$addon->description}</p>
+					</td>
+					<td>
+						<block loop="$addon->author => $author">
+							<a cond="$author->homepage" href="{$author->homepage}" target="_blank">{$author->name}</a>
+							<block cond="!$author->homepage">{$author->name}</block>
+						</block>
+					</td>
+					<td><a href="{getUrl('act', 'dispAddonAdminSetup', 'selected_addon', $addon->addon)}">{$lang->cmd_setup}</a></td>
+					<td><input type="checkbox" name="pc[]" title="PC" value="{htmlspecialchars($addon->addon_name)}" checked="checked"|cond="$addon->activated" /></td>
+					<td><input type="checkbox" name="mobile[]" title="Mobile" value="{htmlspecialchars($addon->addon_name)}" checked="checked"|cond="$addon->mactivated" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="btnArea">
+		<span class="btn medium"><input type="submit" value="{$lang->cmd_save}" /></span>
+	</div>
+</form>
 </div>
 
 <!--#include("_footer.html")-->
