@@ -82,6 +82,10 @@
             $oModuleModel = &getModel('module');
             $oHomepageModel = &getModel('homepage');
 
+			$oMemberModel = &getModel('member');
+			$member_config = $oMemberModel->getMemberConfig();
+			Context::set('member_config', $member_config);
+			
             $site_srl = Context::get('site_srl');
             $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
             Context::set('homepage_info', $homepage_info);
