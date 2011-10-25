@@ -5,7 +5,7 @@
      * @brief  homepage 모듈의 admin controller class
      **/
 
-    class homepageAdminController extends homepage {
+     class homepageAdminController extends homepage {
 
         function init() {
         }
@@ -20,7 +20,6 @@
             $oLayoutModel = &getModel('layout');
             $oModuleModel = &getModel('module');
             $oHomepageModel = &getModel('homepage');
-
             $vars = Context::getRequestVars();
 			unset($vars->module);
             unset($vars->act);
@@ -396,7 +395,7 @@
             $oModuleController = &getController('module');
 
             // 카페이름, 접속방법, 카페관리자 지정
-            $args = Context::gets('site_srl','title','homepage_admin');
+            $args = Context::gets('site_srl','title','homepage_admin','layout_srl');
             if(!$args->site_srl) return new Object(-1,'msg_invalid_request');
 
             if(Context::get('access_type')=='domain') $args->domain = Context::get('domain');
@@ -404,7 +403,7 @@
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
             $homepage_info = $oHomepageModel->getHomepageInfo($args->site_srl);
-            if(!$homepage_info->site_srl) return new Object(-1,'msg_invalid_request');
+			if(!$homepage_info->site_srl) return new Object(-1,'msg_invalid_request');
 
             // 관리자 지정
             $admin_list = explode(',',$args->homepage_admin);
@@ -413,7 +412,7 @@
 
             // 카페이름 변경
             $output = executeQuery('homepage.updateHomepage', $args);
-            if(!$output->toBool()) return false;
+			if(!$output->toBool()) return false;
 
             // 도메인 변경
             $output = $oModuleController->updateSite($args);
@@ -421,8 +420,8 @@
 
             // 기본 레이아웃, 레이아웃 변경, 허용 서비스 변경
             $this->procHomepageAdminInsertConfig();
-
-            $this->setMessage('success_updated');
+            
+			$this->setMessage('success_updated');
         }
 
         function procHomepageAdminDeleteHomepage() {

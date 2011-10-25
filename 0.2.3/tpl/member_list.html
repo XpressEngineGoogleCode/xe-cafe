@@ -44,7 +44,6 @@
     </thead>
     <tbody>
         <!--@foreach($member_list as $no => $val)-->
-        {@ $val->group_list = implode(', ', $val->group_list)}
         <tr class="row{$cycle_idx}">
             <td class="center number"><input type="checkbox" name="cart" value="{$val->member_srl}" /> {$no}</td>
             <td class="nowrap"><span class="member_{$val->member_srl}">{htmlspecialchars($val->nick_name)}</span></td>
