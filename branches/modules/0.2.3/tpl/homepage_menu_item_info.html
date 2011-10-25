@@ -10,7 +10,6 @@
 <div class="layer" style="display:block;">
 
     <h4 class="xeAdmin">{$lang->menu}</h4>
-    <button class="xButton" type="button" onclick="closeTreeMenuInfo();return false" ><span>{$lang->cmd_close}</span></button>
 
     <div class="layerBody">
 
@@ -102,14 +101,12 @@
             <td colspan="2">{$lang->about_menu_image_button}</td>
         </tr>
         </table>
-
-        <table cellspacing="0" class="rowTable">
-        <tr>
-            <th scope="row" class="button"><div>
-                <span class="button black strong"><input type="submit" value="{$lang->cmd_save}" /></span>
-            </div></th>
-        </tr>
-        </table>
+			<div class="btnArea">
+				<span class="btn">
+                <input type="submit" value="{$lang->cmd_save}" />
+    			<button class="xButton" type="button" onclick="closeTreeMenuInfo();return false" >{$lang->cmd_close}</button>
+				</span>
+			</div>				
 
         <script type="text/javascript">
 

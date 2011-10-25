@@ -4,9 +4,9 @@
 <h3 class="xeAdmin">{$lang->cafe} <span class="gray">{$lang->cmd_management}</span></h3>
 
 <div class="infoText">{nl2br($lang->about_cafe)}</div>
-
 <form action="./" method="post" onsubmit="return doUpdateHomepage(this, update_homepage)" id="cafeFo">
 <input type="hidden" name="site_srl" value="{$homepage_info->site_srl}" />
+<input type="hidden" name="layout_srl" value="{$homepage_info->layout_srl}" />
 <input type="hidden" name="homepage_admin" value="<!--@foreach($admin_list as $key=>$val)-->{$val->member_srl},<!--@end-->" />
     <div class="table">
 	<table cellspacing="0" border="1">
