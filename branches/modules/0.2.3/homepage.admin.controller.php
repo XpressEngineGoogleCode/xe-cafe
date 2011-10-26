@@ -58,18 +58,12 @@
                     $layout_args->site_srl = $site_srl;
                     $layout_args->layout = $layout;
                     $layout_args->title = $homepage_info->title;
-                    
-					$oModuleModel = &getModel('module');
-					$config = $oModuleModel->getModuleConfig('homepage');
-                   
-					if (($config && $config->top_menu)|| $config->top_menu == '0'){
-						$extra_vars->top_menu = $config->top_menu;
-					}
+
 					$layout_args->extra_vars = serialize($extra_vars);
 
 					$output = $oLayoutAdminController->insertLayout($layout_args);
                     if(!$output->toBool())$oLayoutAdminController->updateLayout($layout_args);
-                    
+
 					$home_args->title = $homepage_info->title;
                     $home_args->layout_srl = $layout_args->layout_srl;
                     $home_args->site_srl = $site_srl;
@@ -91,7 +85,7 @@
                 if(!$args->cafe_main_mid) return new Object(-1,sprintf($lang->filter->isnull,$lang->cafe_main_mid));
                 $args->skin = $vars->skin;
                 if(!$args->skin) $args->skin = 'xe_default';
-				
+
                 $homepage_config = $oHomepageModel->getConfig(0);
                 $mid = $homepage_config->cafe_main_mid;
                 $module_info = $oModuleModel->getModuleInfoByMid($mid, 0);
@@ -193,7 +187,7 @@
             $oModuleAdminController->makeCacheDefinedLangCode($info->site_srl);
 
             $homepage_config = $oHomepageModel->getConfig(0);
-            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe';
+            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe_site';
 
             // 레이아웃 생성
             $info->layout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_layout);
@@ -219,15 +213,8 @@
 
             // vid 형식일 경우
             if(isSiteID($domain)) $layout->index_url = getFullSiteUrl($domain, '');
-            else $layout->index_url = 'http://'.$domain; 
+            else $layout->index_url = 'http://'.$domain;
             $layout->main_menu = $info->menu_srl;
-
-			//Homepage의 Config를 extra_vars로 등록 (top_menu)
-			$oModuleModel = &getModel('module');
-			$config = $oModuleModel->getModuleConfig('homepage');
-			if ($config && $config->top_menu || $config->top_menu == '0'){
-				$layout->top_menu = $config->top_menu;
-			}
 
             $layout_args->extra_vars = serialize($layout);
             $oLayoutController->updateLayout($layout_args);
@@ -385,7 +372,7 @@
         }
 
         function getHomeContent() {
-            return 
+            return
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="document" list_type="normal" tab_type="none" option_view="title,regdate,nickname" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="2" duration_new="24" widgetstyle="simple" list_count="7" ws_colorset="layout" ws_title="$user_lang->view_total" ws_more_url="" ws_more_text="" style="float:left;width:100%"/>'.
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="comment" list_type="normal" tab_type="none" option_view="title,regdate,nickname" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="2" duration_new="24" widgetstyle="simple" list_count="7" ws_colorset="layout" ws_title="$user_lang->view_comment" ws_more_url="" ws_more_text="" style="float:left;width:100%" />'.
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="image" list_type="gallery" tab_type="none" option_view="title,regdate,nickname,thumbnail" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" thumbnail_width="100" thumbnail_height="75" list_count="10" page_count="1" cols_list_count="5" duration_new="24" content_cut_size="20" widgetstyle="simple" ws_colorset="layout" ws_title="$user_lang->cafe_album" ws_more_url="" ws_more_text="" style="float:left;width:100%"/>'.
@@ -422,7 +409,7 @@
 
             // 기본 레이아웃, 레이아웃 변경, 허용 서비스 변경
             $this->procHomepageAdminInsertConfig();
-            
+
 			$this->setMessage('success_updated');
         }
 
@@ -493,7 +480,7 @@
 
             $this->setMessage('success_deleted');
         }
-        
+
         /**
          * @brief 다른 가상 사이트에서 모듈을 이동
          **/

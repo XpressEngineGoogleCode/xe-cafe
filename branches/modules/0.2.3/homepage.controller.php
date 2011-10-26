@@ -40,7 +40,7 @@
         }
 
         function procHomepageCafeCreation() {
-            global $lang; 
+            global $lang;
             $oHomepageAdminController = &getAdminController('homepage');
             $oHomepageModel = &getModel('homepage');
             $oModuleModel = &getModel('module');
@@ -164,7 +164,7 @@
 
             // homepage config 구함
             $homepage_config = $oHomepageModel->getConfig($this->site_srl);
-            
+
 
             // module_type이 url이 아니면 게시판 또는 페이지를 생성한다
             if($module_type != 'url' && $mode == 'insert') {
@@ -208,7 +208,7 @@
             $args->hover_btn = $source_args->hover_btn;
             $args->active_btn = $source_args->active_btn;
             $args->group_srls = $source_args->group_srls;
-			
+
             switch($mode) {
                 case 'insert' :
                         $args->menu_item_srl = getNextSequence();
@@ -450,7 +450,7 @@
                 $oMemberController = &getController('member');
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_module_info->site_srl);
                 if($homepage_info->site_srl) $oMemberController->addMemberMenu('dispHomepageManage','cmd_cafe_setup');
-            } 
+            }
             return new Object();
         }
 
@@ -478,6 +478,15 @@
             $current_module_info->layout_srl = $layout_srl;
             Context::set('current_module_info', $current_module_info);
 
+			// 상단 메뉴 설정
+			$oModuleModel = &getModel('module');
+			$config = $oModuleModel->getModuleConfig('homepage');
+			if ($config->top_menu){
+				$oMenuModel = &getAdminModel('menu');
+				$menu_info = $oMenuModel->getMenu($config->top_menu);
+				@include $menu_info->php_file;
+				Context::set('cafe_xe_top_menu', $menu);
+			}
             Context::set('is_homepage', true);
 
             return new Object();
