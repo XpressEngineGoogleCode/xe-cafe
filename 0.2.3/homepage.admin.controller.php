@@ -61,7 +61,10 @@
                     
 					$oModuleModel = &getModel('module');
 					$config = $oModuleModel->getModuleConfig('homepage');
-                    
+                   
+					if (($config && $config->top_menu)|| $config->top_menu == '0'){
+						$extra_vars->top_menu = $config->top_menu;
+					}
 					$layout_args->extra_vars = serialize($extra_vars);
 
 					$output = $oLayoutAdminController->insertLayout($layout_args);
@@ -117,7 +120,8 @@
                 $args->module_srl = $module_info->module_srl;
                 $args->creation_group = implode(',',explode('|@|',$vars->creation_group));
                 $args->layout_srl = $vars->layout_srl;
-                $oModuleController->insertModuleConfig('homepage', $args);
+				$args->top_menu = $vars->top_menu;
+				$oModuleController->insertModuleConfig('homepage', $args);
             }
         }
 
@@ -217,6 +221,13 @@
             if(isSiteID($domain)) $layout->index_url = getFullSiteUrl($domain, '');
             else $layout->index_url = 'http://'.$domain; 
             $layout->main_menu = $info->menu_srl;
+
+			//Homepage의 Config를 extra_vars로 등록 (top_menu)
+			$oModuleModel = &getModel('module');
+			$config = $oModuleModel->getModuleConfig('homepage');
+			if ($config && $config->top_menu || $config->top_menu == '0'){
+				$layout->top_menu = $config->top_menu;
+			}
 
             $layout_args->extra_vars = serialize($layout);
             $oLayoutController->updateLayout($layout_args);
