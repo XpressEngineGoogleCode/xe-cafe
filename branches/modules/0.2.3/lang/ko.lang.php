@@ -114,4 +114,5 @@
 	$lang->addon_name = '애드온명';
 	$lang->config_top_menu = '상단메뉴 설정';
 	$lang->about_config_top_menu = '상단메뉴를 선택합니다.';
+	$lang->msg_not_export_index_module = '카페의 초기화면 모듈은 내보낼 수 없습니다.';
 ?>

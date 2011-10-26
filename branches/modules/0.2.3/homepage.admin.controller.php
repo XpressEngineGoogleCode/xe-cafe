@@ -547,6 +547,7 @@
             $site_srl = $module_info->site_srl;
             $site_module_info = $oModuleModel->getSiteInfo($site_srl);
             if(!$site_module_info->site_srl) return new Object(-1,'msg_invalid_request');
+			if($site_module_info->module_srl == $module_srl) return new Object(-1, 'msg_not_export_index_module');
 
             $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
 
