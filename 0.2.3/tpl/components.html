@@ -7,8 +7,8 @@
 <h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
 
 <ul class="localNavigation">
-    <li class="on"><a hrefs="components" class="onOneObj">{$lang->editor}</a></li>
-    <li><a hrefs="addons" class="onOneObj">{$lang->addon}</a></li>
+    <li class="on"><a href="#" viewObj="components" class="onOneObj">{$lang->editor}</a></li>
+    <li><a href="#" viewObj="addons" class="onOneObj">{$lang->addon}</a></li>
 </ul>
 <div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
 	<p>{$XE_VALIDATOR_MESSAGE}</p>
@@ -21,9 +21,6 @@
 	<fieldset class="section">
 		<div class="table even easyList">
 			<table id="sortable_table" class="sortable"width="100%" border="1" cellspacing="0">
-				<caption>
-				All({$component_count})
-				</caption>
 				<thead>
 					<tr>
 						<th scope="col">{$lang->cmd_move}</th>
@@ -67,7 +64,6 @@
 	<p>{$lang->about_installed_addon}</p>
 	<div class="table even easyList">
 		<table width="100%" border="1" cellspacing="0">
-			<caption>All({$addon_count})</caption>
 			<thead>
 				<tr>
 					<th scope="col" class="title">{$lang->addon_name}</th>

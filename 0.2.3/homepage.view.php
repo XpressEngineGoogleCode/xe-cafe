@@ -477,11 +477,12 @@
             $oAddonModel = &getAdminModel('addon');
             $addon_list = $oAddonModel->getAddonList($this->site_srl);
             Context::set('addon_list', $addon_list);
-
+			Context::set('addon_count',count($addon_list));
+			
             // 에디터 컴포넌트 목록을 가져옴
             $oEditorModel = &getModel('editor');
-            Context::set('component_list', $oEditorModel->getComponentList(false, $this->site_srl));
-
+			 $component_list =  $oEditorModel->getComponentList(false, $this->site_srl);
+            Context::set('component_list',$component_list);
             // 표시
             $this->setTemplateFile('components');
         }

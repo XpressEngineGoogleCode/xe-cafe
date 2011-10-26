@@ -1,10 +1,10 @@
 jQuery(function($){
 		$('.onOneObj').click(function(){
 			$('#xeAdmin').find('.onOneObj').each(function(){
-				$('#'+$(this).attr('hrefs')).css('display','none');
+				$('#'+$(this).attr('viewObj')).css('display','none');
 				$(this).parent().removeClass('on');
 			});
-			$('#'+$(this).attr('hrefs')).css('display','');
+			$('#'+$(this).attr('viewObj')).css('display','');
 			$(this).parent().addClass('on');
 
 	});

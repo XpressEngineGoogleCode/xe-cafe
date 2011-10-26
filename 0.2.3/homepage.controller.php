@@ -337,6 +337,7 @@
             $args->group_srl = Context::get('group_srl');
             $args->title = Context::get('title');
             $args->is_default = Context::get('is_default');
+
             if($args->is_default!='Y') $args->is_default = 'N';
             $args->description = Context::get('description');
             $args->site_srl = $this->site_srl;
