@@ -29,14 +29,18 @@
 				<div class="header">
 					<a href="#content" class="skipToContent">Skip to content.</a>
 					<div class="menu">
+						<!--// CafeXE에서 top_menu를 자동으로 설정해준다 -->
+						{@
+							$oMenuModel = &getAdminModel('menu');
+							$menu_info = $oMenuModel->getMenu($layout_info->top_menu);
+							@include $menu_info->php_file;
+							$top_menu = $included_menu;
+							$i = 0;
+						}
 						<ul class="menu_lst">
-						<li><a href="http://www.xpressengine.com/project">Xe&nbsp;hosting&nbsp;bought</a></li>
-						<li><a href="http://www.xpressengine.com/intro">Xe&nbsp;introduces</a></li>
-						<li><a href="http://www.xpressengine.com/manual">Xe&nbsp;guide</a></li>
-						<li><a href="http://www.xpressengine.com/community">Community</a></li>
-						<li><a href="http://www.xpressengine.com/xeForum">Developers&nbsp;BBS</a></li>
-						<li class="last"><a href="http://www.xpressengine.com/showCase">Display&nbsp;case</a></li>
+						<li loop="$top_menu->list=>$key1,$val1" class="last"|cond="count($top_menu->list) == $i+1">{@$i++}<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a></li>
 						</ul>
+
 						<ul class="menu_r">
 						<li><!--@if($logged_info)--><a href="{getUrl('act','dispMemberLogout')}">Sign&nbsp;Out</a><!--@end--></li>
 						<!--@if($logged_info)-->
@@ -44,7 +48,7 @@
 							<img class="zbxe_widget_output" widget="login_info" skin="cafe_site" /></li>
 						<!--@end-->
 						<li class="sub last">
-						<img class="zbxe_widget_output" widget="language_select" skin="cafe_site" />						
+						<img class="zbxe_widget_output" widget="language_select" skin="cafe_site" />
 						</li>
 						</ul>
 						</div>
@@ -82,7 +86,7 @@
             <!-- /#header -->
 
             <hr class="hr" />
-			
+
             <!-- #body -->
             <div id="body">
                 <div id="content">
@@ -93,19 +97,19 @@
                 <div class="extension e1 ow_e1">
 					<!--@if(!$logged_info)-->
 						<div id="info" class="info cafe">
-						<!--// Site Status -->			
+						<!--// Site Status -->
 								<!--// Login Info Widget -->
 								<div class="section memberInfo">
 									<img class="zbxe_widget_output" widget="login_info" skin="default" />
 								</div>
-						</div>	
+						</div>
 					<!--@end-->
 					<!--@if($logged_info)-->
 						 <ul class="widgetTab">
 						 <li id='cafe_info' class="cafe_info on"><a href="#">Cafe Info</a></li>
 						 <li id='member_info' class="member_info"><a href="#">Member Info</a></li>
 						 </ul>
-					
+
 						 <!--calculate article count -->
 						 {@ $oHomepageModel = &getModel('homepage');
 							$homepageInfo = $oHomepageModel->getHomepageInfo($module_info->site_srl);
@@ -139,7 +143,7 @@
 						   $memberComments = $oCommentModel->getTotalCommentList($arg);
 						   $comment_count = 0;
 						   $reply_count = 0;
-						}	
+						}
 						<!--@if(count($memberComments->data)>0)-->
 							<!--@foreach($memberComments->data as $key => $comment)-->
 								<!--@if($comment->parent_srl == 0)-->
@@ -153,9 +157,9 @@
 						 <li><span class="b">{$logged_info->user_id}</span><a href="{getUrl('act','dispMemberModifyInfo')}"><img src="img/btn_edit.gif" width="26" height="13" alt="edit"></a></li>
 						 <li><span>Comment</span><em>{$comment_count}</em><span>Reply</span><em>{$reply_count}</em></li>
 						 <li><span>Join&nbsp;Date</span>{zdate($logged_info->regdate,'Y.m.d')}</li>
-						 </ul>	
+						 </ul>
 					 <!--@end-->
-					
+
 					 {@ $group_count = count($logged_info->group_list);}
 					 <!--@if($logged_info)-->
 						 <!--@if(!$group_count)-->
@@ -163,8 +167,8 @@
 						 <!--@else-->
 							<div class="btn_out_site_info" style="display:none"><input type="button" onclick="doSiteLeave('{$lang->confirm_leave}'); return false;" value="{$lang->cmd_leave}"></div>
 						 <!--@end-->
-						<div class="btn_out" style="display:none"><input type="button" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>	
-					 <!--@end-->	
+						<div class="btn_out" style="display:none"><input type="button" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>
+					 <!--@end-->
 					<!--@if($site_module_info->site_srl>0)-->
 					<div class="cafeMenu">
 						<h2>{$lang->menu}</h2>
