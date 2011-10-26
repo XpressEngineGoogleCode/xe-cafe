@@ -10,8 +10,8 @@
     <description xml:lang="zh-CN">显示子站点信息的控件。</description>
     <description xml:lang="zh-TW">可顯示網站資訊。</description>
     <description xml:lang="jp">cafeXEのような分譲型バーチャル(Virtual)サイトの情報を出力するウィジェットです。</description>
-    <version>0.1</version>
-    <date>2009-02-16</date>
+    <version>0.2</version>
+    <date>2011-10-26</date>
 
     <author email_address="zero@zeroboard.com" link="http://www.zeroboard.com">
         <name xml:lang="ko">zero</name>
