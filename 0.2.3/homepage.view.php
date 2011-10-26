@@ -318,7 +318,6 @@
             $args->site_srl = $this->site_srl;
             $oModuleModel = &getModel('module');
             $mid_list = $oModuleModel->getMidList($args);
-
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {
                 if($val->category != 'service') continue;

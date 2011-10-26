@@ -189,7 +189,7 @@
             $oModuleAdminController->makeCacheDefinedLangCode($info->site_srl);
 
             $homepage_config = $oHomepageModel->getConfig(0);
-            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe';
+            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe_site';
 
             // 레이아웃 생성
             $info->layout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_layout);
