@@ -30,15 +30,8 @@
 					<a href="#content" class="skipToContent">Skip to content.</a>
 					<div class="menu">
 						<!--// CafeXE에서 top_menu를 자동으로 설정해준다 -->
-						{@
-							$oMenuModel = &getAdminModel('menu');
-							$menu_info = $oMenuModel->getMenu($layout_info->top_menu);
-							@include $menu_info->php_file;
-							$top_menu = $included_menu;
-							$i = 0;
-						}
 						<ul class="menu_lst">
-						<li loop="$top_menu->list=>$key1,$val1" class="last"|cond="count($top_menu->list) == $i+1">{@$i++}<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a></li>
+						<li loop="$cafe_xe_top_menu->list=>$key1,$val1" class="last"|cond="count($cafe_xe_top_menu->list) == $i+1">{@$i++}<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a></li>
 						</ul>
 
 						<ul class="menu_r">
