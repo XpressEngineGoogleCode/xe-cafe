@@ -24,7 +24,7 @@
             if(!isset($configs[$site_srl])) {
                 $config = $oModuleModel->getModuleConfig('homepage');
                 if(!$config) {
-                    $config->default_layout = 'xe_cafe_site';
+                    $config->default_layout = 'xe_cafe';
                     $config->enable_change_layout = 'N';
                     $config->allow_service = array('board'=>10,'page'=>2);
                     $config->creation_group = array();
