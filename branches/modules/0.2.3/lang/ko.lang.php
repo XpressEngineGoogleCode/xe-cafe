@@ -9,7 +9,7 @@
 
     $lang->cafe = 'CafeXE';
 	$lang->cafe_management = 'CafeXE 관리';
-    $lang->cafe_id = "카페 접속 ID"; 
+    $lang->cafe_id = "카페 접속 ID";
     $lang->cafe_title = 'Cafe 이름';
     $lang->cafe_description = 'Cafe 설명';
     $lang->cafe_banner = 'Cafe 배너이미지';
@@ -112,4 +112,6 @@
 	$lang->msg_greeting = '<strong>%s</strong>님 안녕하세요.';
 	$lang->newest_comment = '최근 댓글';
 	$lang->addon_name = '애드온명';
+	$lang->config_top_menu = '상단메뉴 설정';
+	$lang->about_config_top_menu = '상단메뉴를 선택합니다.';
 ?>

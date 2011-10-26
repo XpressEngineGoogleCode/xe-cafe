@@ -7,9 +7,9 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = "虛擬網站"; 
+    $lang->cafe = "虛擬網站";
 	$lang->cafe_management = 'CafeXE 관리';
-    $lang->cafe_id = "網站 ID"; 
+    $lang->cafe_id = "網站 ID";
     $lang->cafe_title = "網站名稱";
     $lang->cafe_description = '網站說明';
     $lang->cafe_banner = '網站廣告';
@@ -112,4 +112,7 @@
 
 	$lang->msg_greeting = '<strong>%s</strong> Welcome to homepage';
 	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
 ?>

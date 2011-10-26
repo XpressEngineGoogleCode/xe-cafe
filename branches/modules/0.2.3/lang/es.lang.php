@@ -7,9 +7,9 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = 'CafeXE'; 
+    $lang->cafe = 'CafeXE';
 	$lang->cafe_management = 'CafeXE 관리';
-    $lang->cafe_id = "카페 접속 ID"; 
+    $lang->cafe_id = "카페 접속 ID";
     $lang->cafe_title = 'Nombre de café';
     $lang->cafe_description = 'Description of cafe';
     $lang->cafe_banner = 'Banner of Cafe';
@@ -111,4 +111,7 @@
 
 	$lang->msg_greeting = '<strong>%s</strong> Welcome to homepage';
 	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
 ?>

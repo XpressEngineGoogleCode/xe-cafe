@@ -10,9 +10,9 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = "CafeXE"; 
+    $lang->cafe = "CafeXE";
 	$lang->cafe_management = 'CafeXE 관리';
-    $lang->cafe_id = "Cafe ID"; 
+    $lang->cafe_id = "Cafe ID";
     $lang->cafe_title = "Tiêu đề Cafe";
     $lang->cafe_description = 'Mô tả';
     $lang->cafe_banner = 'Banner';
@@ -95,7 +95,7 @@
     $lang->about_cafe_title = "Tiêu đề chỉ sử dụng cho quản lý, nó sẽ không được hiển thị.";
     $lang->about_menu_names = "Bạn có thể đặt tiêu đè của Menu cho mội dạng ngôn ngữ<br />Nếu bạn chỉ nhập vào một tiêu đề duy nhất, tiêu đề này sẽ hiển thị giống nhau trên mọi ngôn ngữ.";
     $lang->about_menu_option = "Bạn có thể dặt mở ra trang mới khi bấm vào Menu.<br />Tùy chọn này hoạt động phụ thuộc vào cách trình bày giao diện.";
-    
+
     $lang->about_group_grant = 'Nếu bạn chọn một nhóm thì chỉ nhóm này mới có thể thấy được Menu. (Nếu File XML được mở trực tiếp, nó sẽ được hiển thị.)';
     $lang->about_module_type = "Nó sẽ tạo một Module cho những Board, Trangvà những URL, nó sẽ tạo một Link cho URL.<br/>Định dạng này sẽ không thể thay đổi khi đã tạo xong.";
     $lang->about_browser_title = "Nó sẽ hiển thị trên tiêu đề của trình duyệt khi người dùng truy cập.";
@@ -104,7 +104,7 @@
     $lang->about_menu_image_button = "Có thể sử dụng hình ảnh để thay thế tiêu đề.";
     $lang->about_cafe_delete = "Chú ý! Nếu xóa Cafe, tất cả những Module gồm Board, trang, bài viết và những địa chỉ tạo ra từ Cafe đó cũng sẽ bị xóa.";
     $lang->about_cafe_admin = "Bạn có thể đặt Administrator của Cafe. <br />Administrator của Cafe có thể truy cập trang quản lý qua địa chỉ <b>http://address/?act=dispHomepageManage</b>. Chỉ cho phép những ID đã được đặt là Administrator.";
-    
+
     $lang->confirm_change_layout = "Nếu thay đổi giao diện, nội dung và thông tin đã sửa đổi sẽ bị xóa. Bạn có muốn thay đổi không?";
     $lang->confirm_delete_menu_item = "Nếu bạn xóa Menu, những địa chỉ Board và trang cũng sẽ bị xóa. Bạn có muốn xóa không?";
 	$lang->msg_default_mid_cannot_delete = 'Bạn không thể xóa Menu đã được thiết lập tại trang quản lý Cafe. Nếu muốn xóa, xin hãy trở lại trang quản lý và xóa tại đó.';
@@ -116,4 +116,7 @@
     $lang->msg_module_type_setting = 'Định dạng Module chưa được chọn.';
 
 	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
 ?>

@@ -7,9 +7,9 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = "CafeXE"; 
+    $lang->cafe = "CafeXE";
 	$lang->cafe_management = 'CafeXE Management';
-    $lang->cafe_id = "Cafe ID"; 
+    $lang->cafe_id = "Cafe ID";
     $lang->cafe_title = "Title of cafe";
     $lang->cafe_description = 'Description of cafe';
     $lang->cafe_banner = 'Banner of Cafe';
@@ -92,7 +92,7 @@
     $lang->about_cafe_title = "The title is only used for management, it would not be displayed.";
     $lang->about_menu_names = "You can set the title of the menu for each language displayed in the menus<br />If you input one of the titles, titles for other languages will be set as same.";
     $lang->about_menu_option = "You can assign it to open a page in a new window when the menu clicked.<br />The option for menu expand may work depending on the layout.";
-    
+
     $lang->about_group_grant = 'If you select a group, only the group members can see the menu. (if xml file is directly opened, it will be shown.)';
     $lang->about_module_type = "For boards and pages, it would create a module, and for URLs, it would make a link to the url.<br/> The type cannot be modified after creation.";
     $lang->about_browser_title = "It will be displayed on the title of the web browser, when users connect to the menu.";
@@ -101,7 +101,7 @@
     $lang->about_menu_image_button = "Instead of the title, the menu image can be used.";
     $lang->about_cafe_delete = "Caution! If you delete the cafe, all the modules(boards, pages) linked to the cafe and all the documents will be removed.";
     $lang->about_cafe_admin = "You can set administrators of the cafe. <br />The administrators can access the administration page via http://address/?act=dispHomepageManage. Only existing IDs can be registered as administrator";
-    
+
     $lang->confirm_change_layout = "If you change the layout, some information of the layout might be reset. Would you like to change it?";
     $lang->confirm_delete_menu_item = "If you delete the menu item, the linked module(board or page) will be removed, too. Would you like to delete it?";
     $lang->msg_default_mid_cannot_delete = 'The default module cannot be removed. Set another as default module first.';
@@ -112,4 +112,7 @@
 
 	$lang->msg_greeting = '<strong>%s</strong> Welcome to homepage';
 	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
 ?>
