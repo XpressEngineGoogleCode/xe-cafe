@@ -27,7 +27,7 @@ a:focus{ text-decoration:underline;}
 .extension.e2{ display:block !important; clear:both;}
 
 /* body style override fw.css 2011/09/16 */
-#body{background:url(../img/bg_body.gif) repeat-y; padding:25px 22px 93px 23px; margin-top:20px; overflow:hidden}
+#body{background:url(../img/bg_body.gif) repeat-y; padding:25px 22px 93px 23px; margin-top:20px; overflow:visible;}
 .fixed #container{width:968px !important}
 #body .top{ background: url(../img/bg_body_top.gif) no-repeat; overflow:hidden; height:5px; width:968px; position:absolute; left:0; top:0;}
 #body .btm{ background: url(../img/bg_body_btm.gif) no-repeat; overflow:hidden; height:5px; width:968px; position:absolute; left:0; bottom:0;}
