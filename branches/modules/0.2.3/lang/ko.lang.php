@@ -111,4 +111,5 @@
 
 	$lang->msg_greeting = '<strong>%s</strong>님 안녕하세요.';
 	$lang->newest_comment = '최근 댓글';
+	$lang->addon_name = '애드온명';
 ?>

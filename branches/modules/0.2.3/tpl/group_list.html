@@ -50,6 +50,7 @@
 
 <!-- 그룹 추가 -->
 <form action="./" method="get" onsubmit="return procFilter(this, insert_group)">
+<input type="hidden" name="module" value="homepage" />
 <input type="hidden" name="group_srl" value="{$selected_group->group_srl}" />
 <!--@if($selected_group->group_srl && $selected_group->is_default == 'Y')-->
 <input type="hidden" name="is_default" value="Y" />
