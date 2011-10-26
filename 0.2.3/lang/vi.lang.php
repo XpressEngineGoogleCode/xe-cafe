@@ -119,4 +119,5 @@
 	$lang->addon_name = 'Addon name';
 	$lang->config_top_menu = 'Config top menu';
 	$lang->about_config_top_menu = 'Select top menu.';
+	$lang->msg_not_export_index_module = 'You can not export module that is index page of cafe.';
 ?>
