@@ -550,6 +550,21 @@
 
             $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
 
+			// 내보낸 모듈관 연결된 메뉴 삭제
+			$args->target_menu_srl = $homepage_info->first_menu_srl;
+			$args->target_mid = $module_info->mid;
+			$output = executeQueryArray('homepage.getMenuItemByMenuSrlAndMid', $args);
+
+			$oMenuAdminController = &getAdminController('menu');
+			Context::set('menu_srl', $args->target_menu_srl);
+
+			if ($output->data){
+				foreach($output->data as $key => $val){
+					Context::set('menu_item_srl', $val->menu_item_srl);
+					$oMenuAdminController->procMenuAdminDeleteItem();
+				}
+			}
+
             // 대상 모듈의 site_srl을 변경
             $output = $oModuleController->updateModuleSite($module_srl, 0, '');
             if(!$output->toBool()) return $output;
