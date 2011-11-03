@@ -79,9 +79,14 @@
             $logged_info = Context::get('logged_info');
 
             $default_group = $oMemberModel->getDefaultGroup($site_srl);
-            $oMemberController->addMemberToGroup($logged_info->member_srl, $default_group->group_srl, $site_srl);
+			$oMemberController->addMemberToGroup($logged_info->member_srl, $default_group->group_srl, $site_srl);
+		
+			//계정 로그인 방식 체크
+			$member_config = $oMemberModel->getMemberConfig();
+			if($member_config->identifier == 'email_address') $adminKey = $logged_info->email_address;
+			else $adminKey = $logged_info->user_id;
 
-            $output = $oModuleController->insertSiteAdmin($site_srl, array($logged_info->user_id));
+            $output = $oModuleController->insertSiteAdmin($site_srl, array($adminKey));
 
             $this->setRedirectUrl(getSiteUrl($domain));
 
