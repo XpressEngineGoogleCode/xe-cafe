@@ -56,10 +56,10 @@
 </form>
 </div>
 <div id="addons" style="display:none;">
-<!-- test -->
 <form action="./" method="post">
 	<input type="hidden" name="module" value="addon" />
-	<input type="hidden" name="act" value="procAddonAdminToggleActivate" />
+	<input type="hidden" name="act" value="procAddonAdminSaveActivate" />
+	<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
 
 	<p>{$lang->about_installed_addon}</p>
 	<div class="table even easyList">
