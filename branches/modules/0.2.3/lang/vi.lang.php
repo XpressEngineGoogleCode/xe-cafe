@@ -26,6 +26,7 @@
     $lang->cafe_info = "Thông tin Cafe";
     $lang->cafe_admin = "CafeXE Administrator";
     $lang->do_selected_member = "Chuyển những thành viên đã chọn vào: ";
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = "Bài viết mới nhất của Cafe";
     $lang->cafe_latest_comments = "Bình luận mới nhất của Cafe";
     $lang->mycafe_list = "Những Cafe đã tạo";

@@ -23,6 +23,7 @@
     $lang->cafe_info = '카페 정보';
     $lang->cafe_admin = 'Cafe 관리자';
     $lang->do_selected_member = '선택된 회원을 : ';
+	$lang->new_cafe = '생성된 카페';
     $lang->cafe_latest_documents = '카페 최신 글';
     $lang->cafe_latest_comments = '카페 최신 댓글';
     $lang->mycafe_list = '가입한 카페';
