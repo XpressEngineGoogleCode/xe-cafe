@@ -23,6 +23,7 @@
     $lang->cafe_info = "網站資訊";
     $lang->cafe_admin = "網站管理者";
     $lang->do_selected_member = "選擇會員 : ";
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = '最新主題';
     $lang->cafe_latest_comments = '最新評論';
     $lang->mycafe_list = '加入的網站';

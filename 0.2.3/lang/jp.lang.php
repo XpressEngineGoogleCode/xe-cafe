@@ -23,6 +23,7 @@
     $lang->cafe_info = 'Cafeの情報';
     $lang->cafe_admin = 'Cafe管理者';
     $lang->do_selected_member = '選択した会員を : ';
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = 'Cafeの新規書き込み';
     $lang->cafe_latest_comments = 'Cafeの新規コメント';
     $lang->mycafe_list = '登録したCafe';

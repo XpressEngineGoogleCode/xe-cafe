@@ -23,6 +23,7 @@
     $lang->cafe_info = "Cafe Infomation";
     $lang->cafe_admin = "CafeXE administrator";
     $lang->do_selected_member = "Change the selected members into : ";
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = "Cafe's latest documents";
     $lang->cafe_latest_comments = "Cafe's latest comments";
     $lang->mycafe_list = "Joined Cafes";
