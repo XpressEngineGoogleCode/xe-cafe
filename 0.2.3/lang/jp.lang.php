@@ -38,6 +38,7 @@
     $lang->allow_service = '許可サービス';
     $lang->about_allow_service = '個々のCafeで利用する基本サービスを設定します。';
 
+    $lang->cmd_more = 'More';
     $lang->cmd_make_cafe = 'Cafe作成';
     $lang->cmd_import = 'インポート';
     $lang->cmd_export = 'エクスポート';
