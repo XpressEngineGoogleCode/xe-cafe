@@ -38,6 +38,7 @@
     $lang->allow_service = 'Allowed services';
     $lang->about_allow_service = 'You may configure default setting for the number and the type of services allowed in newly created cafes';
 
+    $lang->cmd_more = 'More';
     $lang->cmd_make_cafe = 'Cafe creation';
     $lang->cmd_import = 'Import';
     $lang->cmd_export = 'Export';

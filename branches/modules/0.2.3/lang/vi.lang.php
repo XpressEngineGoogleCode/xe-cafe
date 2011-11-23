@@ -41,6 +41,7 @@
     $lang->allow_service = 'Những dịch vụ cho phép';
     $lang->about_allow_service = 'Bạn có thể thiếp lập các dịch vụ mặc định khi người dùng tạo Cafe mới.';
 
+    $lang->cmd_more = 'More';
     $lang->cmd_make_cafe = 'Tạo Cafe';
     $lang->cmd_import = 'Nhập vào';
     $lang->cmd_export = 'Xuất ra';

@@ -38,6 +38,7 @@
     $lang->allow_service = '허용 서비스';
     $lang->about_allow_service = '개별 카페에서 사용할 기본 서비스를 설정할 수 있습니다';
 
+    $lang->cmd_more = '더 보기';
     $lang->cmd_make_cafe = '카페 생성';
     $lang->cmd_import = '가져오기';
     $lang->cmd_export = '내보내기';
