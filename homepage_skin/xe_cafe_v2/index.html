@@ -17,9 +17,17 @@
 			$('.m2').blur();
 		});
 
-		 $("ul.cafe_list").children().first().attr('class','last');
-		 $("ul.list").children().first().attr('class','last');
-		 
+		$("ul.cafe_list").children().first().attr('class','last');
+		$("ul.list").children().first().attr('class','last');
+
+		$('#viewAll').click(function(){
+			if($('#latestDocContent:visible').length > 0){
+				$('#latestDocContent ul li').slideDown('fast');
+			}
+			if($('#newCafeContent:visible').length > 0){
+				$('#newCafeContent ul li').slideDown('fast');
+			}
+		});
 
 	});
 
@@ -54,7 +62,7 @@
 		<ul>
 		<li id="latestDocTab" class="m1"><a href="###"><span><b>{strtoupper($lang->cafe_latest_documents)}</b><em id="doc_count">{count($newest_documents)}</em></span></a></li>
 		<li id="newCafeTab" class="m2"><a href="###"><span><b>{strtoupper($lang->new_cafe)}</b></span></a></li>
-		<span class="view"><a href="#"><img src="img/btn_view_all.gif" width="57" height="21" alt="view all"></a></span>
+		<span class="view"><a href="###" id="viewAll"><img src="img/btn_view_all.gif" width="57" height="21" alt="view all"></a></span>
 		</ul>
 	</div>
 
