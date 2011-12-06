@@ -14,7 +14,7 @@
     $lang->cafe_description = 'Description of cafe';
     $lang->cafe_banner = 'Banner of Cafe';
     $lang->cafe_list = 'Cafe List';
-    $lang->cafe_main_skin = 'Cafe Main Skin';
+    $lang->cafe_main_skin = 'Cafe Hub Skin';
     $lang->module_type = "Type of target module";
     $lang->board = "Board";
     $lang->page = "Page";
@@ -29,7 +29,7 @@
     $lang->mycafe_list = "Joined Cafes";
     $lang->cafe_creation_type = "Type of Cafe";
     $lang->about_cafe_creation_type = "Please choose how users access the created cafe. If you choose Site ID, they would access via http://defaultAddr/SiteID, and in the case of Domain name, they would access via sub-domain of registered domain name, http://subdomain.defaultDomain";
-    $lang->cafe_main_layout = "Cafe's main layout";
+    $lang->cafe_main_layout = "Cafe's Hub layout";
 
     $lang->default_layout = 'Default layout';
     $lang->about_default_layout = 'You may set the default layout will be applied to newly created cafes';
@@ -44,8 +44,8 @@
     $lang->cmd_export = 'Export';
     $lang->cafe_creation_privilege = 'Cafe creation privilege';
 
-    $lang->cafe_main_mid = 'Cafe ID';
-    $lang->about_cafe_main_mid = "Input an ID of cafe's main page address, http://addr/cafeID";
+    $lang->cafe_main_mid = 'Cafe Hub ID';
+    $lang->about_cafe_main_mid = "Input an Hub ID of cafe's main page address, http://addr/cafeID";
 
     $lang->default_menus = array(
         'home' => 'Home',
