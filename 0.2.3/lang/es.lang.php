@@ -14,7 +14,7 @@
     $lang->cafe_description = 'Description of cafe';
     $lang->cafe_banner = 'Banner of Cafe';
     $lang->cafe_list = 'Cafe 목록';
-    $lang->cafe_main_skin = 'Cafe 메인 스킨';
+    $lang->cafe_main_skin = 'Cafe 허브 스킨';
     $lang->module_type = 'Meta';
     $lang->board = 'Boletines';
     $lang->page = 'Página';
@@ -29,7 +29,7 @@
     $lang->mycafe_list = '가입한 카페';
     $lang->cafe_creation_type = '카페 접속 방법';
     $lang->about_cafe_creation_type = '사용자들이 카페를 생성할때 카페 접속 방법을 정해야 합니다. Site ID는 http://기본주소/ID 로 접속 가능하고 Domain 접속은 입력하신 도메인의 2차 도메인(http://domain.mydomain.net) 으로 카페가 생성됩니다';
-    $lang->cafe_main_layout = '카페 메인 레이아웃';
+    $lang->cafe_main_layout = '카페 허브 레이아웃';
 
     $lang->default_layout = '기본 레이아웃';
     $lang->about_default_layout = '카페가 생성될때 설정될 기본 레이아웃을 지정할 수 있습니다';
@@ -44,8 +44,8 @@
     $lang->cmd_export = 'Export';
     $lang->cafe_creation_privilege = 'Café creación privilegio';
 
-    $lang->cafe_main_mid = '카페 메인 ID';
-    $lang->about_cafe_main_mid = '카페 메인 페이지를 http://주소/ID 값으로 접속하기 위한 ID값을 입력해주세요.';
+    $lang->cafe_main_mid = '카페 허브 ID';
+    $lang->about_cafe_main_mid = '카페 허브 페이지를 http://주소/ID 값으로 접속하기 위한 ID값을 입력해주세요.';
 
     $lang->default_menus = array(
         'home' => 'Inicio',
