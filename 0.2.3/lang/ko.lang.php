@@ -71,7 +71,7 @@
         'dispHomepageMidSetup' => '모듈 세부 설정',
     );
     $lang->cmd_cafe_registration = '카페 생성';
-    $lang->cmd_cafe_setup = '카페 설정';
+    $lang->cmd_cafe_setup = '카페 허브 설정';
     $lang->cmd_cafe_delete = 'Cafe 삭제';
     $lang->cmd_go_home = '홈으로 이동';
     $lang->cmd_go_cafe_admin = 'Cafe 전체 관리';
