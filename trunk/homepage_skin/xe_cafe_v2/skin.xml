@@ -24,8 +24,8 @@
     <description xml:lang="zh-TW">
         網站預設面板。
     </description>
-    <version>0.1</version>
-    <date>2011-05-22</date>
+    <version>0.1.1</version>
+    <date>2011-12-08</date>
 
     <author email_address="developers@xpressengine.com" link="http://www.xpressengine.com/">
         <name xml:lang="ko">NHN</name>
