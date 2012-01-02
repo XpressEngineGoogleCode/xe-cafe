@@ -45,7 +45,7 @@
     $lang->cafe_creation_privilege = 'Cafe creation privilege';
 
     $lang->cafe_main_mid = 'Cafe Hub ID';
-    $lang->about_cafe_main_mid = "Input an Hub ID of cafe's main page address, http://addr/cafeID";
+    $lang->about_cafe_main_mid = "Input an Hub ID of cafe's hub page address, http://addr/cafeID";
 
     $lang->default_menus = array(
         'home' => 'Home',
