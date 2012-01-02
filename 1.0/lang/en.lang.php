@@ -71,6 +71,7 @@
         "dispHomepageMidSetup" => "Module configuration",
     );
     $lang->cmd_cafe_registration = "Create a cafe";
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = "Configure cafe";
     $lang->cmd_cafe_delete = "Delete ";
     $lang->cmd_go_home = "Move to home";

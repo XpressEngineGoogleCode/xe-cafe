@@ -74,6 +74,7 @@
         "dispHomepageMidSetup" => "Cấu hình Module",
     );
     $lang->cmd_cafe_registration = "Tạo Cafe";
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = "Cài đặt Cafe";
     $lang->cmd_cafe_delete = "Xóa";
     $lang->cmd_go_home = "Chuyển tới trang chủ";
