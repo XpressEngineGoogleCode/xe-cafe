@@ -126,7 +126,7 @@
 							$siteAminInfo = $oModuleModel->getSiteAdmin($homepageInfo->site_srl);
 						}
 						 <ul id='cafe_info_area' class="widgetMyInfo cafe_info">
-						 <li><span>Cafe Admin</span><b>{$siteAminInfo[0]->user_id}</b></li>
+						 <li><span>Cafe Admin</span><b>{$siteAminInfo[0]->nick_name}</b></li>
 						 <li><span>Article</span><em>{$articleCount}</em></li>
 						 <li><span>Create&nbsp;Date</span>{zdate($homepageInfo->regdate,'Y.m.d')}</li>
 						 </ul>		
@@ -150,7 +150,7 @@
 							<!--@end-->
 						<!--@end-->
 						 <ul id="member_info_area" class="widgetMyInfo member_info" style="display:none">
-						 <li><span class="b">{$logged_info->user_id}</span><a href="{getUrl('act','dispMemberModifyInfo')}"><img src="img/btn_edit.gif" width="26" height="13" alt="edit"></a></li>
+						 <li><span class="b">{$logged_info->nick_name}</span><a href="{getUrl('act','dispMemberModifyInfo')}"><img src="img/btn_edit.gif" width="26" height="13" alt="edit"></a></li>
 						 <li><span>Comment</span><em>{$comment_count}</em><span>Reply</span><em>{$reply_count}</em></li>
 						 <li><span>Join&nbsp;Date</span>{zdate($logged_info->regdate,'Y.m.d')}</li>
 						 </ul>	
