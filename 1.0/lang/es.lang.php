@@ -71,6 +71,7 @@
         'dispHomepageMidSetup' => 'Módulo detalle establecido',
     );
     $lang->cmd_cafe_registration = 'La creación de Cafe';
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = 'Café Conjunto';
     $lang->cmd_cafe_delete = 'Eliminar Cafe';
     $lang->cmd_go_home = 'Ir a Portada';
