@@ -29,13 +29,13 @@
                     $config->allow_service = array('board'=>10,'page'=>2);
                     $config->creation_group = array();
                     $config->cafe_main_mid = 'cafe';
-                    $config->skin = 'xe_default';
+                    $config->skin = 'xe_cafe_v2';
                     $config->access_type = 'vid';
                     $config->default_domain = '';
                 } else {
                     $config->creation_group = explode(',',$config->creation_group);
                     if(!isset($config->cafe_main_mid)) $config->cafe_main_mid = 'cafe';
-                    if(!isset($config->skin)) $config->skin = 'xe_default';
+                    if(!isset($config->skin)) $config->skin = 'xe_cafe_v2';
                     if(!isset($config->access_type)) $config->access_type = 'vid';
                     if($config->default_domain) {
                         if(strpos($config->default_domain,':')===false) $config->default_domain = 'http://'.$config->default_domain;

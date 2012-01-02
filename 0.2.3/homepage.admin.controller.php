@@ -84,7 +84,7 @@
                 if(!$args->browser_title) $args->browser_title = 'cafeXE';
                 if(!$args->cafe_main_mid) return new Object(-1,sprintf($lang->filter->isnull,$lang->cafe_main_mid));
                 $args->skin = $vars->skin;
-                if(!$args->skin) $args->skin = 'xe_default';
+                if(!$args->skin) $args->skin = 'xe_cafe_v2';
 
                 $homepage_config = $oHomepageModel->getConfig(0);
                 $mid = $homepage_config->cafe_main_mid;
