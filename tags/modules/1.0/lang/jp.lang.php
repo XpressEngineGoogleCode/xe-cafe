@@ -71,6 +71,7 @@
         'dispHomepageMidSetup' => 'モジュール詳細設定',
     );
     $lang->cmd_cafe_registration = 'Cafe作成';
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = 'Cafe設定';
     $lang->cmd_cafe_delete = 'Cafe削除';
     $lang->cmd_go_home = 'ホームへ移動';

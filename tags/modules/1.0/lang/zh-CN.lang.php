@@ -71,6 +71,7 @@
         "dispHomepageMidSetup" => "模块设置",
     );
     $lang->cmd_cafe_registration = "生成站点";
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = "站点设置";
     $lang->cmd_cafe_delete = "删除站点";
     $lang->cmd_go_home = "查看主页";

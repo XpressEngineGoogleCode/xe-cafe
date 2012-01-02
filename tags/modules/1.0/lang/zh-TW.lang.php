@@ -71,6 +71,7 @@
         "dispHomepageMidSetup" => "詳細設定",
     );
     $lang->cmd_cafe_registration = "建立網站";
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = "網站設置";
     $lang->cmd_cafe_delete = "刪除網站";
     $lang->cmd_go_home = "移至首頁";
