@@ -67,6 +67,11 @@
             // 카페 메인 스킨 설정 
             Context::set('skins', $oModuleModel->getSkins($this->module_path));
 
+			//메뉴 목록을 가져옴 - 11.08.02
+			$oMenuAdminModel = &getAdminModel('menu');
+			$menu_list = $oMenuAdminModel->getMenus();
+			Context::set('menu_list',$menu_list);
+
             $this->setTemplateFile('manage');
 
         }
@@ -77,6 +82,10 @@
             $oModuleModel = &getModel('module');
             $oHomepageModel = &getModel('homepage');
 
+			$oMemberModel = &getModel('member');
+			$member_config = $oMemberModel->getMemberConfig();
+			Context::set('member_config', $member_config);
+			
             $site_srl = Context::get('site_srl');
             $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
             Context::set('homepage_info', $homepage_info);

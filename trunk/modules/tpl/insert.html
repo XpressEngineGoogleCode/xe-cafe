@@ -1,19 +1,19 @@
 <!--#include("./header.html")-->
 
 <form action="./" method="post" onsubmit="return procFilter(this, insert_homepage)" id="cafeFo">
-    <h3 class="xeAdmin">{$lang->cmd_make_cafe}</h3>
+	<div class="table">
     <table cellspacing="0" class="crossTable">
     <tbody>
         <tr>
             <th scope="row"><div>{$lang->cafe_title}</div></th>
-            <td>
+            <td class="text">
                 <input type="text" name="cafe_title" value="" class="inputTypeText w200" />
                 <p>{$lang->about_cafe_title}</p>
             </td>
         </tr>
         <tr>
             <th scope="row"><div>{$lang->access_type}</div></th>
-            <td>
+            <td class="text">
                 <label for="chkDomain"><input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" checked="checked" /> {$lang->access_domain}</label>
                 <label for="chkVid"><input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" /> {$lang->access_vid}</label>
                 <div id="accessDomain" style="display:block; margin-top:10px;">
@@ -26,10 +26,11 @@
                 </div>
             </td>
         </tr>
-        <tr class="row2">
-            <td colspan="2" class="button"><span class="button black strong"><input type="submit" value="{$lang->cmd_cafe_registration}" accesskey="s" /></span></div></td>
-        </tr>
     </tbody>
     </table>
+	</div>
+    <div class="btnArea">
+		<span class="btn"><input type="submit" value="{$lang->cmd_cafe_registration}" /></span>
+	</div>
 </form>
 

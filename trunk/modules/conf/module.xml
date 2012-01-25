@@ -20,6 +20,7 @@
         <permission action="dispHomepageBoardExtraVars" target="manager" />
 
         <permission action="dispHomepageCreate" target="member" />
+        <permission action="getHomepageMenuTplInfo" target="manager" />
 
         <permission action="procHomepageCafeCreation" target="member" />
         <permission action="procHomepageChangeLayout" target="manager" />
@@ -60,6 +61,7 @@
         <action name="dispHomepageBoardExtraVars" type="view" standalone="true" />
 
         <action name="getHomepageMenuItem" type="model" standalone="true" />
+        <action name="getHomepageMenuTplInfo" type="model" standalone="true" />
 
         <action name="procHomepageCafeCreation" type="controller" standalone="true" />
         <action name="procHomepageChangeLayout" type="controller" standalone="true" />

@@ -7,14 +7,14 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = "虛擬網站"; 
+    $lang->cafe = "虛擬網站";
 	$lang->cafe_management = 'CafeXE 관리';
-    $lang->cafe_id = "網站 ID"; 
+    $lang->cafe_id = "網站 ID";
     $lang->cafe_title = "網站名稱";
     $lang->cafe_description = '網站說明';
     $lang->cafe_banner = '網站廣告';
     $lang->cafe_list = 'Cafe 목록';
-    $lang->cafe_main_skin = 'Cafe 메인 스킨';
+    $lang->cafe_main_skin = 'Cafe 허브 스킨';
     $lang->module_type = "目標";
     $lang->board = "討論板";
     $lang->page = "頁面";
@@ -23,6 +23,7 @@
     $lang->cafe_info = "網站資訊";
     $lang->cafe_admin = "網站管理者";
     $lang->do_selected_member = "選擇會員 : ";
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = '最新主題';
     $lang->cafe_latest_comments = '最新評論';
     $lang->mycafe_list = '加入的網站';
@@ -37,6 +38,7 @@
     $lang->allow_service = '允許服務';
     $lang->about_allow_service = 'You may configure default setting for the number and the type of services allowed in newly created cafes';
 
+    $lang->cmd_more = 'More';
     $lang->cmd_make_cafe = '建立網站';
     $lang->cmd_import = '匯入';
     $lang->cmd_export = '匯出';
@@ -69,6 +71,7 @@
         "dispHomepageMidSetup" => "詳細設定",
     );
     $lang->cmd_cafe_registration = "建立網站";
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = "網站設置";
     $lang->cmd_cafe_delete = "刪除網站";
     $lang->cmd_go_home = "移至首頁";
@@ -109,4 +112,11 @@
     $lang->msg_not_enabled_id = '無法使用的帳號';
     $lang->msg_same_site = '無法在虛擬網站間移動模組。';
     $lang->about_move_module = '可在預設網站與虛擬網站間移動模組。<br/>Moving modules among virtual sites is note allowed. Also, if there exists a module with same mid, there can be unexpected errors, thus move only modules which have unique mid.';
+
+	$lang->msg_greeting = '<strong>%s</strong> Welcome to homepage';
+	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
+	$lang->msg_not_export_index_module = 'You can not export module that is index page of cafe.';
 ?>

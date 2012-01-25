@@ -124,12 +124,12 @@
         </div>
     </th>
     <!--@end-->
-    <td class="wide">
+    <td class="text">
         {@$img_percent = $percent-30}
         <!--@if($img_percent<1)-->
-            <img class="graphHr" style="width:3px;" alt="" src="../../counter/tpl/images/iconBar.gif" />
+            <img class="graphHr" style="height:10px;width:3px;" alt="" src="../../counter/tpl/images/iconBar.gif" />
         <!--@else-->
-            <img class="graphHr" style="width:{$img_percent}%;" alt="" src="../../counter/tpl/images/iconBar.gif" />
+            <img class="graphHr" style="height:10px;width:{$img_percent}%;" alt="" src="../../counter/tpl/images/iconBar.gif" />
         <!--@end-->
         {number_format($val)}({$percent}%) 
     </td>

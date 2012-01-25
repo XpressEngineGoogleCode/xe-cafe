@@ -40,7 +40,7 @@
         }
 
         function procHomepageCafeCreation() {
-            global $lang; 
+            global $lang;
             $oHomepageAdminController = &getAdminController('homepage');
             $oHomepageModel = &getModel('homepage');
             $oModuleModel = &getModel('module');
@@ -79,9 +79,14 @@
             $logged_info = Context::get('logged_info');
 
             $default_group = $oMemberModel->getDefaultGroup($site_srl);
-            $oMemberController->addMemberToGroup($logged_info->member_srl, $default_group->group_srl, $site_srl);
+			$oMemberController->addMemberToGroup($logged_info->member_srl, $default_group->group_srl, $site_srl);
+		
+			//계정 로그인 방식 체크
+			$member_config = $oMemberModel->getMemberConfig();
+			if($member_config->identifier == 'email_address') $adminKey = $logged_info->email_address;
+			else $adminKey = $logged_info->user_id;
 
-            $output = $oModuleController->insertSiteAdmin($site_srl, array($logged_info->user_id));
+            $output = $oModuleController->insertSiteAdmin($site_srl, array($adminKey));
 
             $this->setRedirectUrl(getSiteUrl($domain));
 
@@ -164,7 +169,7 @@
 
             // homepage config 구함
             $homepage_config = $oHomepageModel->getConfig($this->site_srl);
-            
+
 
             // module_type이 url이 아니면 게시판 또는 페이지를 생성한다
             if($module_type != 'url' && $mode == 'insert') {
@@ -337,6 +342,7 @@
             $args->group_srl = Context::get('group_srl');
             $args->title = Context::get('title');
             $args->is_default = Context::get('is_default');
+
             if($args->is_default!='Y') $args->is_default = 'N';
             $args->description = Context::get('description');
             $args->site_srl = $this->site_srl;
@@ -449,7 +455,7 @@
                 $oMemberController = &getController('member');
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_module_info->site_srl);
                 if($homepage_info->site_srl) $oMemberController->addMemberMenu('dispHomepageManage','cmd_cafe_setup');
-            } 
+            }
             return new Object();
         }
 
@@ -477,6 +483,15 @@
             $current_module_info->layout_srl = $layout_srl;
             Context::set('current_module_info', $current_module_info);
 
+			// 상단 메뉴 설정
+			$oModuleModel = &getModel('module');
+			$config = $oModuleModel->getModuleConfig('homepage');
+			if ($config->top_menu){
+				$oMenuModel = &getAdminModel('menu');
+				$menu_info = $oMenuModel->getMenu($config->top_menu);
+				@include $menu_info->php_file;
+				Context::set('cafe_xe_top_menu', $menu);
+			}
             Context::set('is_homepage', true);
 
             return new Object();

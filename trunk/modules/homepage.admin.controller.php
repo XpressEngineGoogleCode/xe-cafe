@@ -5,7 +5,7 @@
      * @brief  homepage 모듈의 admin controller class
      **/
 
-    class homepageAdminController extends homepage {
+     class homepageAdminController extends homepage {
 
         function init() {
         }
@@ -15,18 +15,15 @@
          **/
         function procHomepageAdminInsertConfig() {
             global $lang;
-
             $oModuleController = &getController('module');
             $oLayoutAdminController = &getAdminController('layout');
             $oLayoutModel = &getModel('layout');
             $oModuleModel = &getModel('module');
             $oHomepageModel = &getModel('homepage');
-
             $vars = Context::getRequestVars();
-            unset($vars->module);
+			unset($vars->module);
             unset($vars->act);
             unset($vars->body);
-
             $args->default_layout = $vars->default_layout;
             $args->enable_change_layout = $vars->enable_change_layout;
             $args->use_rss = $vars->use_rss;
@@ -34,7 +31,6 @@
                 if(strpos($key,'allow_service_')===false) continue;
                 $args->allow_service[substr($key, strlen('allow_service_'))] = $val;
             }
-
             // 개별 카페 인 경우
             $site_srl = $vars->site_srl;
             if($site_srl) {
@@ -49,7 +45,6 @@
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
                 $layout_srl = $homepage_info->layout_srl;
                 $layout_info = $oLayoutModel->getLayout($layout_srl);
-
                 if(!$layout_info || $layout_info->layout != $layout) {
                     if($layout_info->layout_srl) if($layout_srl && $layout_info) $oLayoutAdminController->deleteLayout($layout_info->layout_srl);
 
@@ -63,11 +58,13 @@
                     $layout_args->site_srl = $site_srl;
                     $layout_args->layout = $layout;
                     $layout_args->title = $homepage_info->title;
-                    $layout_args->extra_vars = serialize($extra_vars);
-                    $oLayoutAdminController->insertLayout($layout_args);
-                    $oLayoutAdminController->updateLayout($layout_args);
 
-                    $home_args->title = $homepage_info->title;
+					$layout_args->extra_vars = serialize($extra_vars);
+
+					$output = $oLayoutAdminController->insertLayout($layout_args);
+                    if(!$output->toBool())$oLayoutAdminController->updateLayout($layout_args);
+
+					$home_args->title = $homepage_info->title;
                     $home_args->layout_srl = $layout_args->layout_srl;
                     $home_args->site_srl = $site_srl;
                     $output = executeQuery('homepage.updateHomepage', $home_args);
@@ -87,12 +84,12 @@
                 if(!$args->browser_title) $args->browser_title = 'cafeXE';
                 if(!$args->cafe_main_mid) return new Object(-1,sprintf($lang->filter->isnull,$lang->cafe_main_mid));
                 $args->skin = $vars->skin;
-                if(!$args->skin) $args->skin = 'xe_default';
+                if(!$args->skin) $args->skin = 'xe_cafe_v2';
 
                 $homepage_config = $oHomepageModel->getConfig(0);
                 $mid = $homepage_config->cafe_main_mid;
                 $module_info = $oModuleModel->getModuleInfoByMid($mid, 0);
-                if(!$module_info->module_srl) {
+				if(!$module_info->module_srl) {
                     $module_args->site_srl = 0;
                     $module_args->mid = $args->cafe_main_mid;
                     $module_args->skin = $args->skin;
@@ -117,7 +114,8 @@
                 $args->module_srl = $module_info->module_srl;
                 $args->creation_group = implode(',',explode('|@|',$vars->creation_group));
                 $args->layout_srl = $vars->layout_srl;
-                $oModuleController->insertModuleConfig('homepage', $args);
+				$args->top_menu = $vars->top_menu;
+				$oModuleController->insertModuleConfig('homepage', $args);
             }
         }
 
@@ -189,7 +187,7 @@
             $oModuleAdminController->makeCacheDefinedLangCode($info->site_srl);
 
             $homepage_config = $oHomepageModel->getConfig(0);
-            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe';
+            if(!$homepage_config->default_layout) $homepage_config->default_layout = 'xe_cafe_site';
 
             // 레이아웃 생성
             $info->layout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_layout);
@@ -215,10 +213,10 @@
 
             // vid 형식일 경우
             if(isSiteID($domain)) $layout->index_url = getFullSiteUrl($domain, '');
-            else $layout->index_url = 'http://'.$domain; 
+            else $layout->index_url = 'http://'.$domain;
             $layout->main_menu = $info->menu_srl;
-            $layout_args->extra_vars = serialize($layout);
 
+            $layout_args->extra_vars = serialize($layout);
             $oLayoutController->updateLayout($layout_args);
 
             // 생성된 게시판/ 페이지들의 레이아웃 변경
@@ -324,6 +322,7 @@
             $args->is_default = 'N';
             $args->layout_srl = $layout_srl;
             $args->content = $content;
+			$args->page_type = 'WIDGET';
 
             $oModuleController = &getController('module');
             $output = $oModuleController->insertModule($args);
@@ -351,7 +350,6 @@
             $oLayoutAdminController = &getAdminController('layout');
             $output = $oLayoutAdminController->insertLayout($args);
             if(!$output->toBool()) return $output;
-
             return $args->layout_srl;
         }
 
@@ -374,7 +372,7 @@
         }
 
         function getHomeContent() {
-            return 
+            return
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="document" list_type="normal" tab_type="none" option_view="title,regdate,nickname" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="2" duration_new="24" widgetstyle="simple" list_count="7" ws_colorset="layout" ws_title="$user_lang->view_total" ws_more_url="" ws_more_text="" style="float:left;width:100%"/>'.
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="comment" list_type="normal" tab_type="none" option_view="title,regdate,nickname" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="2" duration_new="24" widgetstyle="simple" list_count="7" ws_colorset="layout" ws_title="$user_lang->view_comment" ws_more_url="" ws_more_text="" style="float:left;width:100%" />'.
                 '<img class="zbxe_widget_output" widget="content" skin="default" colorset="layout" content_type="image" list_type="gallery" tab_type="none" option_view="title,regdate,nickname,thumbnail" show_browser_title="Y" show_comment_count="Y" show_trackback_count="Y" show_category="Y" show_icon="Y" order_target="list_order" order_type="desc" thumbnail_type="crop" thumbnail_width="100" thumbnail_height="75" list_count="10" page_count="1" cols_list_count="5" duration_new="24" content_cut_size="20" widgetstyle="simple" ws_colorset="layout" ws_title="$user_lang->cafe_album" ws_more_url="" ws_more_text="" style="float:left;width:100%"/>'.
@@ -386,7 +384,7 @@
             $oModuleController = &getController('module');
 
             // 카페이름, 접속방법, 카페관리자 지정
-            $args = Context::gets('site_srl','title','homepage_admin');
+            $args = Context::gets('site_srl','title','homepage_admin','layout_srl');
             if(!$args->site_srl) return new Object(-1,'msg_invalid_request');
 
             if(Context::get('access_type')=='domain') $args->domain = Context::get('domain');
@@ -394,7 +392,7 @@
             if(!$args->domain) return new Object(-1,'msg_invalid_request');
 
             $homepage_info = $oHomepageModel->getHomepageInfo($args->site_srl);
-            if(!$homepage_info->site_srl) return new Object(-1,'msg_invalid_request');
+			if(!$homepage_info->site_srl) return new Object(-1,'msg_invalid_request');
 
             // 관리자 지정
             $admin_list = explode(',',$args->homepage_admin);
@@ -403,7 +401,7 @@
 
             // 카페이름 변경
             $output = executeQuery('homepage.updateHomepage', $args);
-            if(!$output->toBool()) return false;
+			if(!$output->toBool()) return false;
 
             // 도메인 변경
             $output = $oModuleController->updateSite($args);
@@ -412,7 +410,7 @@
             // 기본 레이아웃, 레이아웃 변경, 허용 서비스 변경
             $this->procHomepageAdminInsertConfig();
 
-            $this->setMessage('success_updated');
+			$this->setMessage('success_updated');
         }
 
         function procHomepageAdminDeleteHomepage() {
@@ -482,7 +480,7 @@
 
             $this->setMessage('success_deleted');
         }
-        
+
         /**
          * @brief 다른 가상 사이트에서 모듈을 이동
          **/
@@ -549,8 +547,24 @@
             $site_srl = $module_info->site_srl;
             $site_module_info = $oModuleModel->getSiteInfo($site_srl);
             if(!$site_module_info->site_srl) return new Object(-1,'msg_invalid_request');
+			if($site_module_info->module_srl == $module_srl) return new Object(-1, 'msg_not_export_index_module');
 
             $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
+
+			// 내보낸 모듈관 연결된 메뉴 삭제
+			$args->target_menu_srl = $homepage_info->first_menu_srl;
+			$args->target_mid = $module_info->mid;
+			$output = executeQueryArray('homepage.getMenuItemByMenuSrlAndMid', $args);
+
+			$oMenuAdminController = &getAdminController('menu');
+			Context::set('menu_srl', $args->target_menu_srl);
+
+			if ($output->data){
+				foreach($output->data as $key => $val){
+					Context::set('menu_item_srl', $val->menu_item_srl);
+					$oMenuAdminController->procMenuAdminDeleteItem();
+				}
+			}
 
             // 대상 모듈의 site_srl을 변경
             $output = $oModuleController->updateModuleSite($module_srl, 0, '');

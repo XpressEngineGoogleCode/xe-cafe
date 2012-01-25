@@ -1,48 +1,15 @@
-<!--%import("./filter/insert_menu_item.xml")-->
-<!--%import("./filter/delete_menu_item.xml")-->
+<input type="hidden" name="mode" value="{$mode}" />
+<input type="hidden" name="mtype" value="{$item_info->module_type}" />
+<input type="hidden" name="module_id" value="{$item_info->module_id}" />
+<input type="hidden" name="menu_item_srl" value="{$item_info->menu_item_srl}" />
+<input type="hidden" name="parent_srl" value="{$item_info->parent_srl}" />
+<input type="hidden" name="normal_btn" value="{$item_info->normal_btn}" />
+<input type="hidden" name="hover_btn" value="{$item_info->hover_btn}" />
+<input type="hidden" name="active_btn" value="{$item_info->active_btn}" />
 
-<!--#include("_header.html")-->
-
-<!--// tree javascript plugin load -->
-<!--%load_js_plugin("ui.tree")-->
-
-<h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-<span style="float:right">
-    <a href="#" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;" class="button"><span>{$lang->cmd_remake_cache}</span></a>
-</span>
-<p class="summary">{$lang->about_cafe_act[$act]}</p>
-
-<form method="post" action="./" id="menu_item_form">
-    <input type="hidden" name="menu_item_srl" value="" />
-</form>
-
-<form method="post" action="./" id="menu_form">
-    <input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
-    <div id="menu">
-        <ul class="simpleTree">
-            <li class="root" id='tree_0'><span>{$lang->menu}</span></li>
-        </ul>
-    </div>
-    <br />
-</form>
-
-<div id="menuItem" class="layer boxModelController">
-    <form id="fo_menu" action="./" method="post" onsubmit="return procFilter(this, insert_menu_item);" class="clear" target="tmp_upload_iframe" enctype="multipart/form-data">
-    <input type="hidden" name="module" value="homepage" />
-    <input type="hidden" name="act" value="procHompageUpdateMenuItem" />
-    <input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
-    <input type="hidden" name="parent_srl" value="" />
-    <input type="hidden" name="menu_item_srl" value="" />
-    <input type="hidden" name="mode" value="" />
-    <input type="hidden" name="target" value="" />
-    <input type="hidden" name="normal_btn" value="" />
-    <input type="hidden" name="hover_btn" value="" />
-    <input type="hidden" name="active_btn" value="" />
-    <input type="hidden" name="module_id" value="" />
-    <input type="hidden" name="mtype" value="" />
+<div class="layer" style="display:block;">
 
     <h4 class="xeAdmin">{$lang->menu}</h4>
-    <button class="xButton" type="button" onclick="closeTreeMenuInfo();return false" ><span>{$lang->cmd_close}</span></button>
 
     <div class="layerBody">
 
@@ -52,27 +19,29 @@
         <tr>
             <th scope="row"><div>{$lang->module_type}</div></th>
             <td colspan="2">
-                <select name="module_type" onchange="changeMenuType(this)">
+{@$module_type_disabled = ($mode == 'update')?'disabled="disabled"':''}
+                <select name="module_type" onchange="changeMenuType(this)" {$module_type_disabled}>
                     <option value=""></option>
                     <!--@foreach($homepage_config->allow_service as $k => $v)-->
                     <!--option value="{$k}" <!--@if($v<1)-->disabled="disabled"<!--@end-->>{$k}</option-->
-                    <option value="{$k}">{$k}</option>
+                    <option value="{$k}" <!--@if($k == $item_info->module_type)-->selected="selected"<!--@end-->>{$k}</option>
                     <!--@end-->
-                    <option value="url">{$lang->url}</option>
+                    <option value="url" <!--@if($item_info->module_type == 'url')-->selected="selected"<!--@end-->>{$lang->url}</option>
                 </select>
             </td>
         </tr>
-        <tr id="urlForm" style="display:none;">
+{@$url_form_hide = (!$item_info->module_type || $item_info->module_type != 'url')?'style="display:none"':''}
+        <tr id="urlForm" {$url_form_hide}>
             <th scope="row"><div>{$lang->url}</div></th>
             <td colspan="2">
-                http://<input type="text" name="url" value="" class="inputTypeText fullWidth" />
+                http://<input type="text" name="url" value="{$item_info->url}" class="inputTypeText fullWidth" />
                 <p>{$lang->about_menu_item_url}</p>
             </td>
         </tr>
         <tr>
             <th scope="row"><div>{$lang->menu_name}</div></th>
             <td colspan="2">
-                <input type="text" name="menu_name" id="menu_name" value="" class="inputTypeText"/>
+                <input type="text" name="menu_name" id="menu_name" value="{$item_info->name}" class="inputTypeText"/>
                 <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','menu_name')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
                 <p>{$lang->about_langcode}</p>
             </td>
@@ -80,9 +49,9 @@
         <tr>
             <th scope="row"><div>{$lang->cmd_option}</div></th>
             <td colspan="2">
-                <input type="checkbox" id="menu_open_window" name="menu_open_window" value="Y" />
+                <input type="checkbox" id="menu_open_window" name="menu_open_window" value="Y" <!--@if($item_info->open_window == 'Y')-->checked="checked"<!--@end--> />
                 <label for="menu_open_window">{$lang->menu_open_window}</label>
-                <input type="checkbox" id="menu_expand" name="menu_expand" value="Y" />
+                <input type="checkbox" id="menu_expand" name="menu_expand" value="Y" <!--@if($item_info->expend == 'Y')-->checked="checked"<!--@end--> />
                 <label for="menu_expand">{$lang->menu_expand}</label>
                 <p>{$lang->about_menu_option}</p>
             </td>
@@ -132,40 +101,28 @@
             <td colspan="2">{$lang->about_menu_image_button}</td>
         </tr>
         </table>
+			<div class="btnArea">
+				<span class="btn">
+                <input type="submit" value="{$lang->cmd_save}" />
+    			<button class="xButton" type="button" onclick="closeTreeMenuInfo();return false" >{$lang->cmd_close}</button>
+				</span>
+			</div>				
 
-        <table cellspacing="0" class="rowTable">
-        <tr>
-            <th scope="row" class="button"><div>
-                <span class="button black strong"><input type="submit" value="{$lang->cmd_save}" /></span>
-            </div></th>
-        </tr>
-        </table>
+        <script type="text/javascript">
+
+        (function($){
+        $("[name^=menu_name_]").bind("blur",function(e){
+            if($("[name=ck_"+$(this).attr("name")+"]:checked").size()>0){
+                $("[name^=ck_menu_name_]:checked").each(function(i){
+                    $("[name="+$(this).attr("name").substring(3)+"]").val(e.target.value);
+                });
+            }
+        });
+
+        $('input#menu_name').focus();
+        
+        })(jQuery);
+        </script>
+
     </div>
-
-    </form>
 </div>
-
-<iframe id='tmp_upload_iframe' name='tmp_upload_iframe' style='display:none;width:1px;height:1px;position:absolute;top:-10px;left:-10px'></iframe>
-
-<script type="text/javascript">
-var max_menu_depth = 999; //{$menu_max_depth};
-var simpleTreeCollection;
-var alertImageOnly = "{$lang->alert_image_only}";
-var confirmMenuMove = "{$lang->confirm_move}";
-var lang_confirm_delete = "{$lang->confirm_delete}";
-var xml_url = "{$menu_info->xml_file}";
-homepageLoadMenuInfo(xml_url);
-homepageMoveMenuItem();
-
-(function($){
-$("[name^=menu_name_]").bind("blur",function(e){
-	if($("[name=ck_"+$(this).attr("name")+"]:checked").size()>0){
-		$("[name^=ck_menu_name_]:checked").each(function(i){
-			$("[name="+$(this).attr("name").substring(3)+"]").val(e.target.value);
-		});
-	}
-});
-})(jQuery);
-</script>
-
-<!--#include("_footer.html")-->

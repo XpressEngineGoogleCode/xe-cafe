@@ -7,9 +7,9 @@
 
 	$lang->cafe_welcome_title = 'CafeXE has been installed successfully!';
 
-    $lang->cafe = 'CafeXE'; 
+    $lang->cafe = 'CafeXE';
 	$lang->cafe_management = 'CafeXE管理';
-    $lang->cafe_id = "CafeへのアクセスID"; 
+    $lang->cafe_id = "CafeへのアクセスID";
     $lang->cafe_title = 'Cafe名';
     $lang->cafe_description = 'Cafeの説明';
     $lang->cafe_banner = 'Cafeのバナーイメージ';
@@ -23,6 +23,7 @@
     $lang->cafe_info = 'Cafeの情報';
     $lang->cafe_admin = 'Cafe管理者';
     $lang->do_selected_member = '選択した会員を : ';
+	$lang->new_cafe = 'New Cafe';
     $lang->cafe_latest_documents = 'Cafeの新規書き込み';
     $lang->cafe_latest_comments = 'Cafeの新規コメント';
     $lang->mycafe_list = '登録したCafe';
@@ -37,6 +38,7 @@
     $lang->allow_service = '許可サービス';
     $lang->about_allow_service = '個々のCafeで利用する基本サービスを設定します。';
 
+    $lang->cmd_more = 'More';
     $lang->cmd_make_cafe = 'Cafe作成';
     $lang->cmd_import = 'インポート';
     $lang->cmd_export = 'エクスポート';
@@ -69,6 +71,7 @@
         'dispHomepageMidSetup' => 'モジュール詳細設定',
     );
     $lang->cmd_cafe_registration = 'Cafe作成';
+    $lang->cmd_cafe_hub_setup = "Configure cafe hub";
     $lang->cmd_cafe_setup = 'Cafe設定';
     $lang->cmd_cafe_delete = 'Cafe削除';
     $lang->cmd_go_home = 'ホームへ移動';
@@ -108,4 +111,11 @@
     $lang->msg_not_enabled_id = '利用出来ないIDです。';
     $lang->msg_same_site = '同一バーチャル（Virtual）サイトのモジュールは移動出来ません。';
     $lang->about_move_module = 'バーチャル（Virtual）サイトと基本サイト間でのモジュール移動が出来ます。<br/>ただし、他のバーチャル（Virtual）サイトへのモジュールを移動したり、同名のmidがある場合、予測が出来ない不具合が有り得るので、必ずバーチャル（Virtual）サイトと基本サイト間で異なる名前のモジュールを移動してください。';
+
+	$lang->msg_greeting = '<strong>%s</strong> Welcome to homepage';
+	$lang->newest_comment = 'Recent Comments';
+	$lang->addon_name = 'Addon name';
+	$lang->config_top_menu = 'Config top menu';
+	$lang->about_config_top_menu = 'Select top menu.';
+	$lang->msg_not_export_index_module = 'You can not export module that is index page of cafe.';
 ?>

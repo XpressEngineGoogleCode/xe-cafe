@@ -47,7 +47,7 @@
             } else {
                 $template_path = sprintf("%sskins/%s/",$this->module_path, $this->module_info->skin);
                 if(!is_dir($template_path)||!$this->module_info->skin) {
-                    $this->module_info->skin = 'xe_default';
+                    $this->module_info->skin = 'xe_cafe_v2';
                     $template_path = sprintf("%sskins/%s/",$this->module_path, $this->module_info->skin);
                 }
                 $this->setTemplatePath($template_path);
@@ -294,25 +294,12 @@
             $oLayoutModel = &getModel('layout');
             $oHomepageModel = &getModel('homepage');
 
-            // 홈페이지 정보
-            $homepage_config = $oHomepageModel->getConfig($this->site_srl);
-            if(count($homepage_config->allow_service)) {
-                foreach($homepage_config->allow_service as $k => $v) {
-                    if($v<1) continue;
-                    $c = $oModuleModel->getModuleCount($this->site_srl, $k);
-                    $homepage_config->allow_service[$k] -= $c;
-                }
-            }
-            Context::set('homepage_config', $homepage_config);
-
             // 메뉴 정보 가져오기
             $menu_srl = $this->homepage_info->first_menu_srl;
 
             $menu_info = $oMenuModel->getMenu($menu_srl);
             Context::set('menu_info', $menu_info);
 
-            $group_list = $oMemberModel->getGroups($this->site_srl);
-            Context::set('group_list', $group_list);
 
             $selected_layout = $oLayoutModel->getLayout($this->homepage_info->layout_srl);
 
@@ -320,7 +307,7 @@
             $menu = array_shift($_menu_info);
             Context::set('menu_max_depth', $menu->maxdepth);
 
-            $this->setTemplateFile('menu_manage');
+            $this->setTemplateFile($this->act);
         }
 
         /**
@@ -331,7 +318,6 @@
             $args->site_srl = $this->site_srl;
             $oModuleModel = &getModel('module');
             $mid_list = $oModuleModel->getMidList($args);
-
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {
                 if($val->category != 'service') continue;
@@ -490,11 +476,12 @@
             $oAddonModel = &getAdminModel('addon');
             $addon_list = $oAddonModel->getAddonList($this->site_srl);
             Context::set('addon_list', $addon_list);
-
+			Context::set('addon_count',count($addon_list));
+			
             // 에디터 컴포넌트 목록을 가져옴
             $oEditorModel = &getModel('editor');
-            Context::set('component_list', $oEditorModel->getComponentList(false, $this->site_srl));
-
+			 $component_list =  $oEditorModel->getComponentList(false, $this->site_srl);
+            Context::set('component_list',$component_list);
             // 표시
             $this->setTemplateFile('components');
         }
