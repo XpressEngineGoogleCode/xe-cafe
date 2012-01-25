@@ -40,7 +40,7 @@
                     <!--@if(Context::get('is_homepage'))-->
                     <ul class="topMenu">
                     <!--@if(Context::getDefaultUrl())-->
-                        <li class="homepage"><a href="{Context::getDefaultUrl()}">Home</a></li>
+                        <li class="homepage"><a href="{Context::getUrl()}">Home</a></li>
                     <!--@end-->
                     <!--@if($grant->manager)-->
                         <li class="setup"><a href="{getUrl('act','dispHomepageManage')}">{$lang->cmd_cafe_setup}</a></li>
