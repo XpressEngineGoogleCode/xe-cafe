@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * @file   modules/homepage/lang/ko.lang.php
+	 * @file   modules/homepage/lang/tr.lang.php
 	 * @author zero (zero@nzeo.com)
 	 * @brief  CafeXE(homepage) 모듈의 기본 언어팩
 	 **/
