@@ -66,6 +66,16 @@
                 <p>{$lang->about_default_layout}</p>
             </td>
         </tr>
+		<tr>
+			<th scope="row"><div>{$lang->mobile_layout}</div></th>
+			<td>
+				<select name="mlayout_srl" id="layout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$mlayout_list => $key, $val" value="{$val->layout_srl}" selected="selected"|cond="$homepage_config->mlayout_srl== $val->layout_srl">{$val->title} ({$val->layout})</option>
+				</select>
+			</td>
+			<p class="desc">{$lang->about_layout}</p>
+		</tr>
         <tr>
             <th scope="row"><div>{$lang->enable_change_layout}</div></th>
             <td colspan="2">

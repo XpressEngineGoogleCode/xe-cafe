@@ -72,11 +72,11 @@
 			$menu_list = $oMenuAdminModel->getMenus();
 			Context::set('menu_list',$menu_list);
 
-			// for mobile layout - 12.05.31
+			// for mobile layout
 			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
 			Context::set('mlayout_list', $mobile_layout_list);
 
-			// for mobile layout  - 12.05.31
+			// for mobile layout
 			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
 			Context::set('mskin_list', $mskin_list);
 
@@ -117,6 +117,10 @@
             $oModuleModel = &getModel('module');
             $admin_list = $oModuleModel->getSiteAdmin($site_srl);
             Context::set('admin_list', $admin_list);
+
+			// for mobile layout
+			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
+			Context::set('mlayout_list', $mobile_layout_list);
 
             $this->setTemplateFile('setup');
         }
