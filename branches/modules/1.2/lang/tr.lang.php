@@ -94,7 +94,7 @@
 	$lang->about_menu_item_url = 'URLile bağlanılırken kullanılacak olan link bilgisidir.<br/>http://\'yi silip giriş yapınız.';
 	$lang->about_menu_image_button = 'Menü isimlerinin yerine resimler vasıtasıyla menüyü kullanabilirsiniz.';
 	$lang->about_cafe_delete = 'Bir Café\'yi silerken, bağlantılı olan bütün modül(pano, sayfa vs.) ve bunlarla bağlantılı olan bütün yazılar silenecektir.<br />Dikkat gerekmektedir.';
-	$lang->about_cafe_admin = 'kişisini seçtikten sonra ekle düğmesine basıp kayıy ediyoruz. Café yöneticilerini ekleyebilirsiniz.<br/>Cafe yöneticisi, http://adres/?act=dispHomepageManage adlı adres üzerinden yönetici sayfasına giriş yapabiliyor olup, kayıtlı olmayan kullanıcılar, direkt olarak yönetici olamazlar.';
+	$lang->about_cafe_admin = 'kişisini seçtikten sonra ekle düğmesine basıp kayıy ediyoruz. (Input the %s)Café yöneticilerini ekleyebilirsiniz.<br/>Cafe yöneticisi, http://adres/?act=dispHomepageManage adlı adres üzerinden yönetici sayfasına giriş yapabiliyor olup, kayıtlı olmayan kullanıcılar, direkt olarak yönetici olamazlar.';
 	$lang->confirm_change_layout = 'Düzeni değiştirmek istediğinizde, düzen bilgilerinin bir kısmını kaybedebilirsiniz. Değiştirmek istiyor musunuz? ';
 	$lang->confirm_delete_menu_item = 'Bir menü öğesini silerken, bağlantılı olan pano ve sayfa modülüde beraber silinmektedir. Hala devam etmek istiyor musunuz?';
 	$lang->msg_default_mid_cannot_delete = 'Giriş menüsünde seçilen menüyü silinememektedir.';

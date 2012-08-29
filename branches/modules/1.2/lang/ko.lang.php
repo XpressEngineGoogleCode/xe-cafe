@@ -102,7 +102,7 @@
     $lang->about_menu_item_url = '대상을 URL로 할때 연결할 링크주소입니다.<br/>http://는 빼고 입력해주세요';
     $lang->about_menu_image_button = '메뉴명 대신 이미지로 메뉴를 사용할 수 있습니다.';
     $lang->about_cafe_delete = 'Cafe를 삭제하게 되면 연결되어 있는 모든 모듈(게시판,페이지등)과 그에 따른 글들이 삭제됩니다.<br />주의가 필요합니다';
-    $lang->about_cafe_admin = '를 입력후 추가 버튼을 누른뒤 저장하세요. 카페 관리자를 등록할 수 있습니다.<br/>Cafe 관리자는 http://주소/?act=dispHomepageManage 로 관리자 페이지로 접속할 수 있으며 존재하지 않는 사용자는 관리자로 등록되지 않습니다';
+    $lang->about_cafe_admin = '%s을(를) 입력후 추가 버튼을 누른뒤 저장하세요. 카페 관리자를 등록할 수 있습니다.<br/>Cafe 관리자는 http://주소/?act=dispHomepageManage 로 관리자 페이지로 접속할 수 있으며 존재하지 않는 사용자는 관리자로 등록되지 않습니다';
 
     $lang->confirm_change_layout = '레이아웃을 변경할 경우 레이아웃 정보들 중 일부가 사라질 수가 있습니다. 변경하시겠습니까?';
     $lang->confirm_delete_menu_item = '메뉴 항목 삭제시 연결되어 있는 게시판이나 페이지 모듈도 같이 삭제가 됩니다. 그래도 삭제하시겠습니까?';

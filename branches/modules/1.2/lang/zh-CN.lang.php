@@ -102,7 +102,7 @@
     $lang->about_menu_item_url = "对象选择URL时，要链接的地址。<br/>输入的时候请不要输入http://头。";
     $lang->about_menu_image_button = "可以用图片来代替菜单名。";
     $lang->about_cafe_delete = "删除站点：即删除所以所属模块(版面，页面等)及所属主题。<br />一定要慎重操作。";
-    $lang->about_cafe_admin = "可以指定站点管理员。<br/>管理员登录口为http://域名/?act=dispHomepageManage。管理员只能在已有的用户中指定。";
+    $lang->about_cafe_admin = "可以指定站点管理员。(Input the %s)<br/>管理员登录口为http://域名/?act=dispHomepageManage。管理员只能在已有的用户中指定。";
 
     $lang->confirm_change_layout = "切换布局可能一些原有的信息将无法显示。你确定要切换吗？";
     $lang->confirm_delete_menu_item = "删除菜单：即同时删除链接到此菜单的版面或页面模块。你确定要删除吗？";

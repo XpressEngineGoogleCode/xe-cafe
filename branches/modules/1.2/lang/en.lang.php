@@ -103,7 +103,7 @@
     $lang->about_menu_item_url = "If the target is URL, input the address here <br />Do not include http://";
     $lang->about_menu_image_button = "Instead of the title, the menu image can be used.";
     $lang->about_cafe_delete = "Caution! If you delete the cafe, all the modules(boards, pages) linked to the cafe and all the documents will be removed.";
-    $lang->about_cafe_admin = "You can set administrators of the cafe. <br />The administrators can access the administration page via http://address/?act=dispHomepageManage. Only existing IDs can be registered as administrator";
+    $lang->about_cafe_admin = "You can set administrators of the cafe. Input a %s. <br />The administrators can access the administration page via http://address/?act=dispHomepageManage. Only existing IDs can be registered as administrator";
 
     $lang->confirm_change_layout = "If you change the layout, some information of the layout might be reset. Would you like to change it?";
     $lang->confirm_delete_menu_item = "If you delete the menu item, the linked module(board or page) will be removed, too. Would you like to delete it?";

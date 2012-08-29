@@ -102,7 +102,7 @@
     $lang->about_menu_item_url = 'Cuando es la dirección de la URL como vínculo de conexión. <br/> Http:// excepto para las palabras';
     $lang->about_menu_image_button = 'Menyumyeong pueden usar un menú en lugar de la imagen.';
     $lang->about_cafe_delete = 'Todos los módulos están conectados en caso de supresión de Café (Boletín, página jideung) y será suprimido en consecuencia geuldeulyi. <br /> ¿Necesita atención';
-    $lang->about_cafe_admin = 'Cafe Manager se puede configurar. <br/> Cafe Manager dirección es http:// /? = Ley dispHomepageManage el administrador puede conectarse a una página que no existe, el usuario no está registrado como administrador';
+    $lang->about_cafe_admin = 'Cafe Manager se puede configurar. (Input the %s)<br/> Cafe Manager dirección es http:// /? = Ley dispHomepageManage el administrador puede conectarse a una página que no existe, el usuario no está registrado como administrador';
 
     $lang->confirm_change_layout = 'Si cambia el diseño de algunas de la información relativa al diseño puede desaparecer. ¿Te gustaría cambiar?';
     $lang->confirm_delete_menu_item = 'Eliminación de un elemento de menú o de la página, el módulo está conectado con el boletín se eliminarán. Si desea eliminar?';
