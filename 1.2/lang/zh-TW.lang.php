@@ -103,7 +103,7 @@
     $lang->about_menu_item_url = "目標是連結網址時，在此輸入網址。<br/>請勿輸入 http://";
     $lang->about_menu_image_button = "可用圖片代替選單名稱";
     $lang->about_cafe_delete = "刪除網站：即刪除所有相關的模組(討論板，頁面等)以及相關文章。請慎重使用。";
-    $lang->about_cafe_admin = "可以建立網站管理員。<br/>管理員登入網址是 http://域名/?act=dispHomepageManage。只能在現有的會員中指定管理員。";
+    $lang->about_cafe_admin = "可以建立網站管理員。(Input the %s)<br/>管理員登入網址是 http://域名/?act=dispHomepageManage。只能在現有的會員中指定管理員。";
 
     $lang->confirm_change_layout = "變換版面可能會使原來的資料無法顯示。確定要變換嗎？";
     $lang->confirm_delete_menu_item = "刪除選單：刪除選單的同時，將會使連結到選單的討論板或頁面一起刪除。確定要刪除嗎？";

@@ -106,7 +106,7 @@
     $lang->about_menu_item_url = "Nếu đích là URL, hãy nhập địa chỉ tại đây <br />không sử dụng http://. Ví dụ: <b>vietxe.net</b>";
     $lang->about_menu_image_button = "Có thể sử dụng hình ảnh để thay thế tiêu đề.";
     $lang->about_cafe_delete = "Chú ý! Nếu xóa Cafe, tất cả những Module gồm Board, trang, bài viết và những địa chỉ tạo ra từ Cafe đó cũng sẽ bị xóa.";
-    $lang->about_cafe_admin = "Bạn có thể đặt Administrator của Cafe. <br />Administrator của Cafe có thể truy cập trang quản lý qua địa chỉ <b>http://address/?act=dispHomepageManage</b>. Chỉ cho phép những ID đã được đặt là Administrator.";
+    $lang->about_cafe_admin = "Bạn có thể đặt Administrator của Cafe. (Input the %s)<br />Administrator của Cafe có thể truy cập trang quản lý qua địa chỉ <b>http://address/?act=dispHomepageManage</b>. Chỉ cho phép những ID đã được đặt là Administrator.";
 
     $lang->confirm_change_layout = "Nếu thay đổi giao diện, nội dung và thông tin đã sửa đổi sẽ bị xóa. Bạn có muốn thay đổi không?";
     $lang->confirm_delete_menu_item = "Nếu bạn xóa Menu, những địa chỉ Board và trang cũng sẽ bị xóa. Bạn có muốn xóa không?";
