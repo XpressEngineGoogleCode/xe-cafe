@@ -172,19 +172,26 @@
             $info->domain = $domain;
 
 			// 언어 코드 추출
-			$files = FileHandler::readDir('./modules/homepage/lang');
-			Context::loadLang(_XE_PATH_.'modules/layout/lang/');
-			$lang = null;
-			$lang = Context::get('lang');
 
-			if(count($lang->default_menus)) 
+			$supported_lang = Context::loadLangSupported();
+			$now_lang_prefix = Context::getLangType();
+
+			foreach($supported_lang as $lang_prefix => $lang_text)
 			{
-				foreach($lang->default_menus as $key => $val) 
+				Context::setlangtype($lang_prefix);
+				Context::loadLang(_XE_PATH_.'modules/homepage/lang/');
+				$default_menus = Context::getLang('default_menus');
+
+				if(!count($default_menus)) continue;
+
+				foreach($default_menus as $key => $val) 
 				{
-					$defined_lang[$lang_code]->{$key} = $val;
+					$defined_lang[$lang_prefix]->{$key} = $val;
 				}
 			}
-			$lang = null;
+			$default_menus = null;
+			Context::setlangtype($now_lang_prefix);
+
 
             // virtual site 생성하고 site_srl을 보관
             $output = $oModuleController->insertSite($domain, 0);
