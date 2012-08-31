@@ -16,8 +16,6 @@
         function procHomepageAdminInsertConfig() {
             global $lang;
             $oModuleController = &getController('module');
-            $oLayoutAdminController = &getAdminController('layout');
-            $oLayoutModel = &getModel('layout');
             $oModuleModel = &getModel('module');
             $oHomepageModel = &getModel('homepage');
             $vars = Context::getRequestVars();
@@ -40,42 +38,16 @@
             // 개별 카페 인 경우
             $site_srl = $vars->site_srl;
             if($site_srl) {
-                unset($vars->creation_group);
-                unset($vars->cafe_main_mid);
-                unset($vars->skin);
-
-                $layout = $args->default_layout;
-
                 $oModuleController->insertModulePartConfig('homepage', $site_srl, $args);
-
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_srl);
-                $layout_srl = $homepage_info->layout_srl;
-                $layout_info = $oLayoutModel->getLayout($layout_srl);
-                if(!$layout_info || $layout_info->layout != $layout) {
-                    if($layout_info->layout_srl) if($layout_srl && $layout_info) $oLayoutAdminController->deleteLayout($layout_info->layout_srl);
-
-                    if($layout_info->extra_var && count($layout_info->extra_var)) {
-                        foreach($layout_info->extra_var as $key => $val) $extra_vars->{$key} = $val->value;
-                    }
-                    $extra_vars->main_menu = $homepage_info->first_menu_srl;
-                    $extra_vars->logo_text = $homepage_info->title;
-
-                    $layout_args->layout_srl = getNextSequence();
-                    $layout_args->site_srl = $site_srl;
-                    $layout_args->layout = $layout;
-                    $layout_args->title = $homepage_info->title;
-
-					$layout_args->extra_vars = serialize($extra_vars);
-
-					$output = $oLayoutAdminController->insertLayout($layout_args);
-                    if(!$output->toBool())$oLayoutAdminController->updateLayout($layout_args);
-
-					$home_args->title = $homepage_info->title;
-                    $home_args->layout_srl = $layout_args->layout_srl;
-                    $home_args->site_srl = $site_srl;
-                    $output = executeQuery('homepage.updateHomepage', $home_args);
-                    $output = executeQuery('homepage.updateHomepageModuleLayout', $home_args);
-                }
+				
+				unset($args);
+				$args->site_srl = $vars->site_srl;
+				$args->default_layout = $vars->default_layout;
+				$this->insertLayout($args,$homepage_info);
+				$args->default_layout = $vars->default_mlayout;
+				$this->insertLayout($args,$homepage_info,'M');
+                
 
             // 기본 정보 인 경우
             }else {
@@ -136,6 +108,64 @@
             }
         }
 
+		function insertLayout($args,$homepage_info,$layout_type = "P")
+		{
+			$oLayoutModel = &getModel('layout');
+			$oLayoutAdminController = &getAdminController('layout');
+			if($layout_type != 'M')
+				$layout_srl = $homepage_info->layout_srl;
+			else
+				$layout_srl = $homepage_info->mlayout_srl;
+
+			debugPrint($layout_srl);
+			$layout_info = $oLayoutModel->getLayout($layout_srl);
+
+			if(!$layout_info || $layout_info->layout != $args->default_layout) 
+			{
+				if($layout_info->layout_srl)
+				{
+					$output = $oLayoutAdminController->deleteLayout($layout_info->layout_srl);
+				}
+
+
+				// don't insert layout
+				if($layout_type == 'M' && !(bool)$args->default_layout) 
+				{
+					$home_args->mlayout_srl = 0;
+					$home_args->title = $homepage_info->title;
+					$home_args->site_srl = $args->site_srl;
+				}
+				else
+				{
+					if($layout_info->extra_var && count($layout_info->extra_var)) 
+					{
+						foreach($layout_info->extra_var as $key => $val) $extra_vars->{$key} = $val->value;
+					}
+					$extra_vars->main_menu = $homepage_info->first_menu_srl;
+					$extra_vars->logo_text = $homepage_info->title;
+					$layout_args->extra_vars = serialize($extra_vars);
+
+					$layout_args->layout_srl = getNextSequence();
+					$layout_args->site_srl = $args->site_srl;
+					$layout_args->layout = $args->default_layout;
+					$layout_args->title = $homepage_info->title;
+					if($layout_type == 'M') $layout_args->layout_type = 'M'; 
+
+					$output = $oLayoutAdminController->insertLayout($layout_args);
+
+					$home_args->title = $homepage_info->title;
+					if($layout_type != 'M')
+						$home_args->layout_srl = $layout_args->layout_srl;
+					else
+						$home_args->mlayout_srl = $layout_args->layout_srl;
+					$home_args->site_srl = $args->site_srl;
+				}
+				$output = executeQuery('homepage.updateHomepage', $home_args);
+				debugPrint($home_args);
+				return $output;
+			}
+			return;
+		}
         /**
          * @brief 접속 방법중 domain 이나 site id나 모두 sites 테이블의 domain 컬럼에 저장이 됨
          * site id보다 domain이 우선 순위를 가짐
@@ -483,6 +513,11 @@
 
             // 레이아웃 삭제
             Context::set('layout_srl', $homepage_info->layout_srl);
+            $oLayoutAdminController = &getAdminController('layout');
+            $oLayoutAdminController->procLayoutAdminDelete();
+
+			//모바일 레이아웃 삭제
+			Context::set('layout_srl', $homepage_info->mlayout_srl);
             $oLayoutAdminController = &getAdminController('layout');
             $oLayoutAdminController->procLayoutAdminDelete();
 

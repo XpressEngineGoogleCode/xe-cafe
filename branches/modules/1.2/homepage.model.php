@@ -78,6 +78,8 @@
                 else {
                     $banner_src = 'files/attach/cafe_banner/'.$site_srl.'.jpg';
                     if(file_exists(_XE_PATH_.$banner_src)) $output->data->cafe_banner = $banner_src.'?rnd='.filemtime(_XE_PATH_.$banner_src);
+					$output->data->layout_srl = $output->data->cafe_layout_srl;
+					$output->data->mlayout_srl = $output->data->cafe_mlayout_srl;
                     $infos[$site_srl] = $output->data;
                 }
             }

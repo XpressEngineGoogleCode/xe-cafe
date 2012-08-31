@@ -460,27 +460,30 @@
         }
 
         function triggerApplyLayout(&$oModule) {
-            // 팝업 레이아웃이면 패스
-            if(!$oModule || $oModule->getLayoutFile()=='popup_layout.html') return new Object();
-
-            // 관리자 페이지는 무조건 pass~
-            if(Context::get('module')=='admin') return new Object();
-
-            // XMLRPC, JSON 형식이어도 pass~
-            if(in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) return new Object();
-
-            // 현재 가상사이트가 아니어도 pass~
+            // It does not site, return
             $site_module_info = Context::get('site_module_info');
             if($site_module_info->site_srl<1) return new Object();
+
+            // If XMLRPC, JSON, do return 
+            if(in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) return new Object();
+
+            // If admin page, do return
+            if(Context::get('module')=='admin') return new Object();
+
+            // If popup layout, do return 
+            if(!$oModule || $oModule->getLayoutFile()=='popup_layout.html') return new Object();
 
             $args->site_srl = $site_module_info->site_srl;
             $output = executeQuery('homepage.getHomepage', $args);
             $layout_srl = $output->data->layout_srl;
-            if(!$layout_srl) return new Object();
+
+			if(!$layout_srl) return new Object();
 
             $current_module_info = Context::get('current_module_info');
-            $oModule->module_info->layout_srl = $layout_srl;
-            $current_module_info->layout_srl = $layout_srl;
+
+			$oModule->module_info->layout_srl = $layout_srl;
+			$current_module_info->layout_srl = $layout_srl;
+
             Context::set('current_module_info', $current_module_info);
 
 			// 상단 메뉴 설정
@@ -496,5 +499,33 @@
 
             return new Object();
         }
+
+		function triggerApplyMLayout(&$oModule)
+		{
+            // It does not site, return
+            $site_module_info = Context::get('site_module_info');
+            if($site_module_info->site_srl<1) return new Object();
+
+            // If XMLRPC, JSON, do return 
+            if(in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) return new Object();
+
+            // If admin page, do return
+            if(Context::get('module')=='admin') return new Object();
+
+            $args->site_srl = $site_module_info->site_srl;
+            $output = executeQuery('homepage.getHomepage', $args);
+            $mlayout_srl = $output->data->mlayout_srl;
+
+			if(!$mlayout_srl) return new Object();
+
+            $current_module_info = Context::get('current_module_info');
+			$oModule->mlayout_srl = $mlayout_srl;
+			$current_module_info->mlayout_srl = $mlayout_srl;
+
+			$oModule->use_mobile = 'Y';
+			$current_module_info->use_mobile = 'Y';
+
+            Context::set('current_module_info', $current_module_info);
+		}
     }
 ?>
