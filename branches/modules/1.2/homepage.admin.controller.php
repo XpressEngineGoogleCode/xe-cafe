@@ -117,7 +117,6 @@
 			else
 				$layout_srl = $homepage_info->mlayout_srl;
 
-			debugPrint($layout_srl);
 			$layout_info = $oLayoutModel->getLayout($layout_srl);
 
 			if(!$layout_info || $layout_info->layout != $args->default_layout) 
@@ -126,7 +125,6 @@
 				{
 					$output = $oLayoutAdminController->deleteLayout($layout_info->layout_srl);
 				}
-
 
 				// don't insert layout
 				if($layout_type == 'M' && !(bool)$args->default_layout) 
@@ -161,7 +159,6 @@
 					$home_args->site_srl = $args->site_srl;
 				}
 				$output = executeQuery('homepage.updateHomepage', $home_args);
-				debugPrint($home_args);
 				return $output;
 			}
 			return;
