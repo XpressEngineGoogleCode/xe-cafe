@@ -106,6 +106,10 @@
             $layout_list = $oLayoutModel->getDownloadedLayoutList();
             Context::set('layout_list', $layout_list);
 
+			// for mobile layout
+            $mlayout_list = $oLayoutModel->getDownloadedLayoutList('M');
+			Context::set('mlayout_list', $mlayout_list);
+
             // 서비스 모듈을 구함
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
             foreach($installed_module_list as $key => $val) {
@@ -117,10 +121,6 @@
             $oModuleModel = &getModel('module');
             $admin_list = $oModuleModel->getSiteAdmin($site_srl);
             Context::set('admin_list', $admin_list);
-
-			// for mobile layout
-			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
-			Context::set('mlayout_list', $mobile_layout_list);
 
             $this->setTemplateFile('setup');
         }

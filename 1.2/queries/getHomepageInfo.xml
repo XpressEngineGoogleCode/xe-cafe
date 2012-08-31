@@ -6,6 +6,8 @@
     </tables>
     <columns>
         <column name="homepages.*" />
+        <column name="homepages.layout_srl" alias="cafe_layout_srl"/>
+        <column name="homepages.mlayout_srl" alias="cafe_mlayout_srl"/>
         <column name="homepages.description" alias="cafe_description"/>
         <column name="sites.domain" alias="domain" />
         <column name="modules.*" />
