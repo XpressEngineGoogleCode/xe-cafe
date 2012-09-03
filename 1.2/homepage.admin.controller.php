@@ -48,7 +48,6 @@
 				$this->insertLayout($args,$homepage_info);
 				$args->default_layout = $vars->default_mlayout;
 				$this->insertLayout($args,$homepage_info,'M');
-                
 
             // 기본 정보 인 경우
             }else {
@@ -247,19 +246,20 @@
             $info->mlayout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_mlayout,'M');
 
             // 기본 게시판+페이지 생성
-            $info->module->home_srl = $this->makePage($info->site_srl, 'home', '$user_lang->home', $info->layout_srl, $this->getHomeContent(),$info->mlayout_srl);
-            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'notice', '$user_lang->notice', $info->layout_srl,$info->mlayout_srl);
-            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'levelup', '$user_lang->levelup', $info->layout_srl,$info->mlayout_srl);
-            $info->module->freeboard_srl = $this->makeBoard($info->site_srl, 'freeboard', '$user_lang->freeboard', $info->layout_srl,$info->mlayout_srl);
+            $info->module->home_srl = getNextSequence();
+            $info->module->home_mid = $this->makePage($info->site_srl, $info->module->home_srl, 'home', '$user_lang->home', $info->layout_srl, $this->getHomeContent(),$info->mlayout_srl);
+            $info->module->notice_mid = $this->makeBoard($info->site_srl, 'notice', '$user_lang->notice', $info->layout_srl,$info->mlayout_srl);
+            $info->module->levelup_mid = $this->makeBoard($info->site_srl, 'levelup', '$user_lang->levelup', $info->layout_srl,$info->mlayout_srl);
+            $info->module->freeboard_mid = $this->makeBoard($info->site_srl, 'freeboard', '$user_lang->freeboard', $info->layout_srl,$info->mlayout_srl);
 
             // 메뉴 생성
             $info->menu_srl = $this->makeMenu($info->site_srl, $title, 'Main Menu');
 
             // menu 설정
-            $this->insertMenuItem($info->menu_srl, 0, 'home', '$user_lang->home');
-            $this->insertMenuItem($info->menu_srl, 0, 'notice', '$user_lang->notice');
-            $this->insertMenuItem($info->menu_srl, 0, 'levelup', '$user_lang->levelup');
-            $this->insertMenuItem($info->menu_srl, 0, 'freeboard', '$user_lang->freeboard');
+            $this->insertMenuItem($info->menu_srl, 0, $info->module->home_mid, '$user_lang->home');
+            $this->insertMenuItem($info->menu_srl, 0, $info->module->notice_mid, '$user_lang->notice');
+            $this->insertMenuItem($info->menu_srl, 0, $info->module->levelup_mid, '$user_lang->levelup');
+            $this->insertMenuItem($info->menu_srl, 0, $info->module->freeboard_mid, '$user_lang->freeboard');
 
             // layout의 설정
             $layout_args = $oLayoutModel->getLayout($info->layout_srl);
@@ -392,12 +392,20 @@
 
             $oModuleController = &getController('module');
             $output = $oModuleController->insertModule($args);
-            return $output->get('module_srl');
+
+			$idx=0;
+			while(!$output->toBool()) {
+				$idx++;
+				$args->mid = $mid.'_'.$idx;
+				$output = $oModuleController->insertModule($args);
+			}
+
+            return $args->mid;
         }
 
-        function makePage($site_srl, $mid, $browser_title, $layout_srl, $content,$mlayout_srl=0) {
+        function makePage($site_srl, $module_srl, $mid, $browser_title, $layout_srl, $content,$mlayout_srl=0) {
             $args->site_srl = $site_srl;
-            $args->module_srl = getNextSequence();
+            $args->module_srl= $module_srl;
             $args->module = 'page';
             $args->mid = $mid;
             $args->browser_title = $browser_title;
@@ -409,7 +417,15 @@
 
             $oModuleController = &getController('module');
             $output = $oModuleController->insertModule($args);
-            return $output->get('module_srl');
+
+			$idx=0;
+			while(!$output->toBool()) {
+				$idx++;
+				$args->mid = $mid.'_'.$idx;
+				$output = $oModuleController->insertModule($args);
+			}
+
+            return $args->mid;
         }
 
         function makeMenu($site_srl, $title, $menu_title) {
