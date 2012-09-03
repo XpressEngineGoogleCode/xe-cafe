@@ -3,7 +3,6 @@
 <!--%import("./css/framework.css")-->
 <!--%import("./css/cafe.css")-->
 <!--%import("../../widgets/content/skins/default/css/widget.css")-->
-
 <!--// 모양 설정 > 본문 위치 -->
 <!--@if($layout_info->content_position == "right")-->{@$_posClass = "ec"}<!--@else-->{@$_posClass = "ce"}<!--@end-->
 
@@ -59,7 +58,7 @@
                         <li class="setup"><a href="{getUrl('act','dispHomepageManage')}">{$lang->cmd_cafe_setup}</a></li>
                     <!--@end-->
                     <!--@if(Context::getDefaultUrl())-->
-                        <li class="homepage"><a href="{getUrl('','mid','home')}">Home</a></li>
+                        <li class="homepage"><a href="{getUrl('')}">Home</a></li>
                     <!--@end-->
                     </ul>
                     <!--@end-->
