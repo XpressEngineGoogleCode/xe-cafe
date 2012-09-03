@@ -48,9 +48,21 @@
             $layout_list = $oLayoutModel->getDownloadedLayoutList();
             Context::set('layout_list', $layout_list);
 
-            // 카페 메인의 레이아웃을 구함
+			// for mobile layout
+            $mlayout_list = $oLayoutModel->getDownloadedLayoutList('M');
+			Context::set('mlayout_list', $mlayout_list);
+
+            // 카페 허브의 레이아웃을 구함
             $layout_list = $oLayoutModel->getLayoutList();
-            Context::set('main_layout_list', $layout_list);
+            Context::set('hub_layout_list', $layout_list);
+
+			// for cafe hub's mobile layout 
+			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
+			Context::set('hub_mlayout_list', $mobile_layout_list);
+
+			// for cafe hub's mobile skin
+			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
+			Context::set('hub_mskin_list', $mskin_list);
 
             // 서비스 모듈을 구함
             $installed_module_list = $oModuleModel->getModulesXmlInfo();
@@ -71,14 +83,6 @@
 			$oMenuAdminModel = &getAdminModel('menu');
 			$menu_list = $oMenuAdminModel->getMenus();
 			Context::set('menu_list',$menu_list);
-
-			// for mobile layout
-			$mobile_layout_list = $oLayoutModel->getLayoutList(0,"M");
-			Context::set('mlayout_list', $mobile_layout_list);
-
-			// for mobile layout
-			$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
-			Context::set('mskin_list', $mskin_list);
 
             $this->setTemplateFile('manage');
 

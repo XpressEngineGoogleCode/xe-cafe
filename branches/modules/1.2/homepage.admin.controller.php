@@ -23,6 +23,7 @@
             unset($vars->act);
             unset($vars->body);
             $args->default_layout = $vars->default_layout;
+            $args->default_mlayout = $vars->default_mlayout;
             $args->enable_change_layout = $vars->enable_change_layout;
             $args->use_rss = $vars->use_rss;
 
@@ -243,12 +244,13 @@
 
             // 레이아웃 생성
             $info->layout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_layout);
+            $info->mlayout_srl = $this->makeLayout($info->site_srl, $title,$homepage_config->default_mlayout,'M');
 
             // 기본 게시판+페이지 생성
-            $info->module->home_srl = $this->makePage($info->site_srl, 'home', '$user_lang->home', $info->layout_srl, $this->getHomeContent());
-            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'notice', '$user_lang->notice', $info->layout_srl);
-            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'levelup', '$user_lang->levelup', $info->layout_srl);
-            $info->module->freeboard_srl = $this->makeBoard($info->site_srl, 'freeboard', '$user_lang->freeboard', $info->layout_srl);
+            $info->module->home_srl = $this->makePage($info->site_srl, 'home', '$user_lang->home', $info->layout_srl, $this->getHomeContent(),$info->mlayout_srl);
+            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'notice', '$user_lang->notice', $info->layout_srl,$info->mlayout_srl);
+            $info->module->notice_srl = $this->makeBoard($info->site_srl, 'levelup', '$user_lang->levelup', $info->layout_srl,$info->mlayout_srl);
+            $info->module->freeboard_srl = $this->makeBoard($info->site_srl, 'freeboard', '$user_lang->freeboard', $info->layout_srl,$info->mlayout_srl);
 
             // 메뉴 생성
             $info->menu_srl = $this->makeMenu($info->site_srl, $title, 'Main Menu');
@@ -280,10 +282,35 @@
             $layout_module_args->module_srls = implode(',',$modules);
             $output = executeQuery('layout.updateModuleLayout', $layout_module_args);
 
+			//모바일 레이아웃 
+			if($info->mlayout_srl) 
+			{
+           	 // layout의 설정
+            	$layout_args = $oLayoutModel->getLayout($info->mlayout_srl);
+
+            	// vid 형식일 경우
+            	if(isSiteID($domain)) $layout->index_url = getFullSiteUrl($domain, '');
+            	else $layout->index_url = 'http://'.$domain;
+            	$layout->main_menu = $info->menu_srl;
+
+            	$layout_args->extra_vars = serialize($layout);
+            	$oLayoutController->updateLayout($layout_args);
+
+            	// 생성된 게시판/ 페이지들의 레이아웃 변경
+            	$menu_args->menu_srl = $info->menu_srl;
+            	$output = executeQueryArray('layout.getLayoutModules', $menu_args);
+            	$modules = array();
+            	foreach($info->module as $module_srl) $modules[] = $module_srl;
+            	$layout_module_args->layout_srl = $info->mlayout_srl;
+            	$layout_module_args->module_srls = implode(',',$modules);
+            	$output = executeQuery('layout.updateModuleLayout', $layout_module_args);
+			}
+
             // 홈페이지 등록
             $args->site_srl = $info->site_srl;
             $args->title = $info->title;
             $args->layout_srl = $info->layout_srl;
+            $args->mlayout_srl = $info->mlayout_srl;
             $args->first_menu_srl = $info->menu_srl;
             $args->list_order = $info->site_srl * -1;
 			// for mobile skin - 12.05.31
@@ -352,7 +379,7 @@
             $this->add('url', getSiteUrl($info->domain, ''));
         }
 
-        function makeBoard($site_srl, $mid, $browser_title, $layout_srl) {
+        function makeBoard($site_srl, $mid, $browser_title, $layout_srl,$mlayout_srl=0) {
             $args->site_srl = $site_srl;
             $args->module_srl = getNextSequence();
             $args->module = 'board';
@@ -360,6 +387,7 @@
             $args->browser_title = $browser_title;
             $args->is_default = 'N';
             $args->layout_srl = $layout_srl;
+            $args->mlayout_srl = $mlayout_srl;
             $args->skin = 'xe_board';
 
             $oModuleController = &getController('module');
@@ -367,7 +395,7 @@
             return $output->get('module_srl');
         }
 
-        function makePage($site_srl, $mid, $browser_title, $layout_srl, $content) {
+        function makePage($site_srl, $mid, $browser_title, $layout_srl, $content,$mlayout_srl=0) {
             $args->site_srl = $site_srl;
             $args->module_srl = getNextSequence();
             $args->module = 'page';
@@ -375,6 +403,7 @@
             $args->browser_title = $browser_title;
             $args->is_default = 'N';
             $args->layout_srl = $layout_srl;
+            $args->mlayout_srl = $mlayout_srl;
             $args->content = $content;
 			$args->page_type = 'WIDGET';
 
@@ -395,11 +424,12 @@
             return $args->menu_srl;
         }
 
-        function makeLayout($site_srl, $title, $layout) {
+        function makeLayout($site_srl, $title, $layout,$layout_type = 'P') {
             $args->site_srl = $site_srl;
             $args->layout_srl = getNextSequence();
             $args->layout = $layout;
             $args->title = $title;
+			$args->layout_type = $layout_type;
 
             $oLayoutAdminController = &getAdminController('layout');
             $output = $oLayoutAdminController->insertLayout($args);
