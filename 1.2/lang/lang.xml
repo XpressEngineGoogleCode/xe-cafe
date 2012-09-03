@@ -193,13 +193,31 @@
 		<value xml:lang="tr"><![CDATA[Kullanıcılar bir café kurarken, öncelikle o cafeye hangi yöntemle giriş yapılacağına karar vermek zorundadırlar. Site ID' sine http://Temel Adres/ID şeklinde giriş mümkün olup, Domain girişinin, girmiş olduğunuz alan adının 2. Alan adı olan (http://domain.mydomain.net) şeklinde kafe oluşur.]]></value>
 		<value xml:lang="vi"><![CDATA[Xin hãy hướng dẫn người dùng tạo Cafe, Nếu chọn ID của Website thì khi tạo Cafe sẽ có dạng:  'http://defaultAddr/SiteID', Nếu chọn trường hợp của Domain, địa chỉ của Cafe sẽ có dạng một Subdomain 'http://subdomain.defaultDomain']]></value>
 	</item>
-	<item name="cafe_main_layout">
+	<item name="cafe_hub_layout">
 		<value xml:lang="ko"><![CDATA[카페 허브 레이아웃]]></value>
 		<value xml:lang="en"><![CDATA[Cafe's Hub layout]]></value>
 		<value xml:lang="jp"><![CDATA[Cafeトップページのレイアウト]]></value>
 		<value xml:lang="zh-TW"><![CDATA[主要版面]]></value>
 		<value xml:lang="tr"><![CDATA[café Hub Düzeni]]></value>
 		<value xml:lang="vi"><![CDATA[Giao diện chính]]></value>
+	</item>
+	<item name="hub_skin">
+		<value xml:lang="ko"><![CDATA[카페 허브 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Skin of Cafe Hub]]></value>
+		<value xml:lang="jp"><![CDATA[Skin of Cafe Hub]]></value>
+		<value xml:lang="tr"><![CDATA[Skin of Cafe Hub]]></value>
+	</item>
+	<item name="hub_mobile_skin">
+		<value xml:lang="ko"><![CDATA[카페 허브 모바일 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Mobile Skin of Cafe Hub]]></value>
+		<value xml:lang="jp"><![CDATA[Mobile Skin of Cafe Hub]]></value>
+		<value xml:lang="tr"><![CDATA[Mobile Skin of Cafe Hub]]></value>
+	</item>
+	<item name="hub_mobile_layout">
+		<value xml:lang="ko"><![CDATA[카페 허브 모바일 레이아웃]]></value>
+		<value xml:lang="en"><![CDATA[The Mobile Layout of Cafe Hub]]></value>
+		<value xml:lang="jp"><![CDATA[The Mobile Layout of Cafe Hub]]></value>
+		<value xml:lang="tr"><![CDATA[The Mobile Layout of Cafe Hub]]></value>
 	</item>
 	<item name="default_layout">
 		<value xml:lang="ko"><![CDATA[기본 레이아웃]]></value>
@@ -493,13 +511,18 @@
 		<value xml:lang="tr"><![CDATA[café Oluşturma]]></value>
 		<value xml:lang="vi"><![CDATA[Tạo Cafe]]></value>
 	</item>
+	<item name="cmd_cafe_setup">
+		<value xml:lang="ko"><![CDATA[카페 설정]]></value>
+		<value xml:lang="en"><![CDATA[Configure cafe]]></value>
+		<value xml:lang="tr"><![CDATA[café Seçimi]]></value>
+	</item>
 	<item name="cmd_cafe_hub_setup">
 		<value xml:lang="ko"><![CDATA[카페 허브 설정]]></value>
 		<value xml:lang="en"><![CDATA[Configure cafe hub]]></value>
 		<value xml:lang="tr"><![CDATA[café Hub Seçimi]]></value>
 	</item>
-	<item name="cmd_cafe_setup">
-		<value xml:lang="ko"><![CDATA[카페 설정]]></value>
+	<item name="cmd_cafe_basic_setup">
+		<value xml:lang="ko"><![CDATA[카페 기본 설정]]></value>
 		<value xml:lang="en"><![CDATA[Configure cafe]]></value>
 		<value xml:lang="jp"><![CDATA[Cafe設定]]></value>
 		<value xml:lang="zh-CN"><![CDATA[站点设置]]></value>
