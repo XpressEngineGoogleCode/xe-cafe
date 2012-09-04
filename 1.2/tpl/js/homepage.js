@@ -10,11 +10,6 @@ jQuery(function($){
 	});
 });
 
-function completeInsertHomepage(ret_obj) {
-    var site_srl = ret_obj['site_srl'];
-    location.href = current_url.setQuery('site_srl',site_srl).setQuery('act','dispHomepageAdminSetup');
-}
-
 function doHomepageInsertAdmin() {
     var fo_obj = xGetElementById("cafeFo");
     var sel_obj = fo_obj.admin_list;

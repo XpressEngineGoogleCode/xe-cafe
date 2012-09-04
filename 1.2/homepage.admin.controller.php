@@ -168,10 +168,10 @@
          * site id보다 domain이 우선 순위를 가짐
          **/
         function procHomepageAdminInsertHomepage() {
-            $title = Context::get('title');
+            $title = Context::get('cafe_title');
 
             $domain = preg_replace('/^(http|https):\/\//i','', trim(Context::get('domain')));
-            $vid = trim(Context::get('site_id'));
+            $vid = trim(Context::get('cafe_vid'));
 
             if($domain && $vid) unset($vid);
             if(!$domain && $vid) $domain = $vid;
@@ -180,6 +180,19 @@
             if(!$domain) return new Object(-1, 'msg_invalid_request');
 
             $output = $this->insertHomepage($title, $domain);
+
+			if($this->get('site_srl')) $msg_code = 'success_updated';
+			else $msg_code = 'msg_invalid_request';
+
+			$this->setMessage($msg_code);
+
+			if (Context::get('success_return_url')){
+				$this->setRedirectUrl(Context::get('success_return_url'));
+			}else{
+				$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispHomepageAdminSetup', 'site_srl', $this->get('site_srl')));
+			}
+
+
             return $output;
         }
 
@@ -441,6 +454,7 @@
         }
 
         function makeLayout($site_srl, $title, $layout,$layout_type = 'P') {
+			if(!$layout) return false;
             $args->site_srl = $site_srl;
             $args->layout_srl = getNextSequence();
             $args->layout = $layout;
