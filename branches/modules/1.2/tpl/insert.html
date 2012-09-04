@@ -1,6 +1,10 @@
 <!--#include("./header.html")-->
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
 
-<form action="./" method="post" onsubmit="return procFilter(this, insert_homepage)" id="cafeFo">
+<form action="./" method="post" ruleset="insertHomepage" id="cafeFo">
+	<input type="hidden" name="act" value="procHomepageAdminInsertHomepage" />
 	<div class="table">
     <table cellspacing="0" class="crossTable">
     <tbody>
@@ -21,7 +25,7 @@
                     <p>{$lang->about_domain}</p>
                 </div>
                 <div id="accessVid" style="display:none; margin-top:10px;">
-                    <input type="text" name="vid" value="" class="inputTypeText w200" />
+                    <input type="text" name="cafe_vid" value="" class="inputTypeText w200" />
                     <p>{$lang->about_vid}</p>
                 </div>
             </td>
