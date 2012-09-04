@@ -186,7 +186,7 @@
 
 			$this->setMessage($msg_code);
 
-			if (Context::get('success_return_url')){
+			if (Context::get('success_return_url') || !$this->get('site_srl')){
 				$this->setRedirectUrl(Context::get('success_return_url'));
 			}else{
 				$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispHomepageAdminSetup', 'site_srl', $this->get('site_srl')));
