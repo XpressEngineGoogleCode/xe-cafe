@@ -68,7 +68,7 @@
 
     <ul class="localNavigation">
         <!--@foreach($lang->cmd_select_counter_type as $key => $val)-->
-        <li <!--@if($type==$key || (!$type && $key == "hour"))-->class="on"<!--@end-->><a href="{getUrl('type',$key)}">{$val}</a></li>
+        <li <!--@if($type==$key)-->class="on"<!--@end-->><a href="{getUrl('type',$key)}">{$val}</a></li>
         <!--@end-->
     </ul>
 </div>
