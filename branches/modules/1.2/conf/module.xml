@@ -25,7 +25,6 @@
         <permission action="procHomepageCafeCreation" target="member" />
         <permission action="procHomepageChangeLayout" target="manager" />
         <permission action="procHomepageChangeLanguage" target="manager" />
-        <permission action="procHomepageLayoutUpdate" target="manager" />
         <permission action="procHomepageInsertMenuItem" target="manager" />
         <permission action="procHomepageDeleteMenuItem" target="manager" />
         <permission action="procHomepageMenuItemMove" target="manager" />
@@ -37,6 +36,8 @@
         <permission action="procHomepageDeleteMember" target="manager" />
         <permission action="procHomepageUpdateBoardSkin" target="manager" />
         <permission action="procHomepageChangeIndex" target="manager" />
+        <permission action="procHomepageUpdateSiteConfig" target="manager" />
+        <permission action="procHomepageUpdateLayoutConfig" target="manager" />
     </permissions>
     <actions>
         <action name="dispHomepageIndex" type="view" standalone="true" index="true" />
@@ -66,7 +67,6 @@
         <action name="procHomepageCafeCreation" type="controller" standalone="true" />
         <action name="procHomepageChangeLayout" type="controller" standalone="true" />
         <action name="procHomepageChangeLanguage" type="controller" standalone="true" />
-        <action name="procHomepageLayoutUpdate" type="controller" standalone="true" />
         <action name="procHomepageInsertMenuItem" type="controller" standalone="true" />
         <action name="procHomepageDeleteMenuItem" type="controller" standalone="true" />
         <action name="procHomepageMenuItemMove" type="controller" standalone="true" />
@@ -78,6 +78,8 @@
         <action name="procHomepageUpdateMemberGroup" type="controller" standalone="true" />
         <action name="procHomepageChangeIndex" type="controller" standalone="true" />
         <action name="procHomepageInsertCafeBanner" type="controller" standalone="true" />
+        <action name="procHomepageUpdateSiteConfig" type="controller" standalone="true" ruleset="updateSiteConfig" />
+        <action name="procHomepageUpdateLayoutConfig" type="controller" standalone="true" ruleset="updateLayout" />
 
         <action name="dispHomepageAdminContent" type="view" standalone="true" admin_index="true" />
         <action name="dispHomepageAdminInsert" type="view" standalone="true" />
