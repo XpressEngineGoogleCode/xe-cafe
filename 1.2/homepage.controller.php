@@ -121,18 +121,6 @@
             $oLayoutAdminController->initLayout($layout_srl, $layout);
         }
 
-        function procHomepageLayoutUpdate() {
-            $layout_srl = Context::get('layout_srl');
-            if(!$layout_srl || $layout_srl!=$this->selected_layout->layout_srl) exit();
-            $oLayoutAdminController = &getAdminController('layout');
-            $oLayoutAdminController->procLayoutAdminUpdate();
-
-            $this->setLayoutPath( $oLayoutAdminController->getLayoutPath() );
-            $this->setLayoutFile( $oLayoutAdminController->getLayoutFile() );
-            $this->setTemplatePath( $oLayoutAdminController->getTemplatePath() );
-            $this->setTemplateFile( $oLayoutAdminController->getTemplateFile() );
-        }
-
         function procHomepageInsertMenuItem() {
             global $lang;
 
@@ -413,9 +401,7 @@
 
         function procHomepageInsertCafeBanner() {
             global $lang;
-
             $oHomepageModel = &getModel('homepage');
-
             $site_srl = Context::get('site_srl');
             if(!$site_srl) return new Object(-1,'msg_invalid_request');
 
@@ -436,15 +422,35 @@
             if(!$output->toBool()) return $output;
 
             $cafe_banner = Context::get('cafe_banner');
-            if($cafe_banner['name']) {
-                $banner_src = 'files/attach/cafe_banner/'.$homepage_info->site_srl.'.jpg';
-                FileHandler::createImageFile($cafe_banner['tmp_name'], $banner_src,100,100,'jpg','crop');
-            }
+			$banner_src = 'files/attach/cafe_banner/'.$homepage_info->site_srl.'.jpg';
+			if (Context::get('banner_del') == 'Y')
+			{
+				FileHandler::removeFile($banner_src);
+			}
+			else if($cafe_banner['name'])
+			{
+				FileHandler::createImageFile($cafe_banner['tmp_name'], $banner_src,100,100,'jpg','crop');
+			}
 
             $this->setTemplatePath($this->module_path.'tpl');
             $this->setTemplateFile('redirect.html');
         }
 
+		function procHomepageUpdateSiteConfig()
+		{
+			$this->procHomepageInsertCafeBanner();
+			$this->procHomepageChangeIndex();
+			$this->procHomepageChangeLanguage();
+		}
+		function procHomepageUpdateLayoutConfig()
+		{
+			if(Context::get('layout')) $this->procHomepageChangeLayout();
+            $layout_srl = Context::get('layout_srl');
+            if(!$layout_srl || $layout_srl!=$this->selected_layout->layout_srl) exit();
+            $oLayoutAdminController = &getAdminController('layout');
+            $oLayoutAdminController->procLayoutAdminUpdate();
+			return $this->setRedirectUrl(Context::get('error_return_url'), $output);
+		}
         function triggerMemberMenu(&$content) {
             $site_module_info = Context::get('site_module_info');
             $logged_info = Context::get('logged_info');
