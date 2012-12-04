@@ -178,7 +178,7 @@
             $tpl = $oTemplate->compile($this->module_path.'tpl', 'homepage_menu_item_info');
 
 			$oModuleController = &getController('module');
-			$oModuleController->replaceDefinedLangCode(&$tpl);
+			$oModuleController->replaceDefinedLangCode($tpl);
 
             $this->add('tpl', str_replace("\n"," ",$tpl));
 		
