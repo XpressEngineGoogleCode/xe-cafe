@@ -55,17 +55,30 @@
 
         function isCreationGranted($member_info = null) {
             if(!$member_info) $member_info = Context::get('logged_info');
-            if(!$member_info->member_srl) return false;
             if($member_info->is_admin == 'Y') return true;
 
             $config = $this->getConfig(0);
 
-            if(!is_array($member_info->group_list) || !count($member_info->group_list) || !count($config->creation_group)) return;
+			switch($config->creation_default)
+			{
+				case 'all':
+					return true;
+				break;
 
-            $keys = array_keys($member_info->group_list);
-            for($i=0,$c=count($keys);$i<$c;$i++) {
-                if(in_array($keys[$i],$config->creation_group)) return true;
-            }
+				case 'member':
+					if(Context::get('is_logged')) return true;
+				break;
+
+				case 'group':
+					if(!is_array($member_info->group_list) || !count($member_info->group_list) || !count($config->creation_group)) return false;
+					$keys = array_keys($member_info->group_list);
+					for($i=0,$c=count($keys);$i<$c;$i++) 
+					{
+						if(in_array($keys[$i],$config->creation_group)) return true;
+					}
+				break;
+			}
+
             return false;
         }
 

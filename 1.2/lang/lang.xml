@@ -170,6 +170,12 @@
 		<value xml:lang="tr"><![CDATA[Cafedeki En Son Yorum]]></value>
 		<value xml:lang="vi"><![CDATA[Bình luận mới nhất của Cafe]]></value>
 	</item>
+	<item name="cafe_signup_date">
+		<value xml:lang="ko"><![CDATA[카페 가입일]]></value>
+		<value xml:lang="en"><![CDATA[Cafe signup date]]></value>
+		<value xml:lang="jp"><![CDATA[Cafe signup date]]></value>
+		<value xml:lang="tr"><![CDATA[Cafe signup date]]></value>
+	</item>
 	<item name="mycafe_list">
 		<value xml:lang="ko"><![CDATA[가입한 카페]]></value>
 		<value xml:lang="en"><![CDATA[Joined Cafes]]></value>

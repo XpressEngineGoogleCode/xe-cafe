@@ -38,7 +38,7 @@
             <th scope="col" class="quarter_wide"><div>{$lang->user_id}</div></th>
             <th scope="col" class="quarter_wide"><div>{$lang->user_name}</div></th>
             <th scope="col" class="quarter_wide"><div>{$lang->group}</div></th>
-            <th scope="col"><div>{$lang->signup_date}</div></th>
+            <th scope="col"><div>{$lang->cafe_signup_date}</div></th>
             <th scope="col"><div>{$lang->last_login}</div></th>
         </tr>
     </thead>
@@ -56,8 +56,8 @@
                 &nbsp;
                 <!--@end-->
             </td>
-            <td class="date center nowrap">{zdate($val->regdate,"Y-m-d H:i:s")}</td>
-            <td class="date center nowrap">{zdate($val->last_login,"Y-m-d H:i:s")}</td>
+            <td class="date center nowrap">{zdate($val->regdate,"Y-m-d")}</td>
+            <td class="date center nowrap">{zdate($val->last_login,"Y-m-d")}</td>
         </tr>
         <!--@end-->
     </tbody>
