@@ -1,4 +1,14 @@
 <!--#include("./header.html")-->
+<script type="text/javascript">
+function doShowGrantZone() {
+    jQuery(".grant_default").each( function() {
+        var id = "#zone_cafe_grant";
+        if(jQuery(this).val() == 'group') jQuery(id).css("display","block");
+        else jQuery(id).css("display","none");
+    } );
+}
+    jQuery( function() { jQuery('.grant_default').change( function(event) { doShowGrantZone(); } ); doShowGrantZone() } );
+</script>
 <form action="./" method="post" onsubmit="return procFilter(this, insert_config)" id="cafeSetup">
     <div class="table">
 	<h2>{$lang->cmd_cafe_hub_setup}</h2>
@@ -85,10 +95,18 @@
         <tr>
             <th scope="row"><div>{$lang->cafe_creation_privilege}</div></th>
             <td class="text">
-                <!--@foreach($groups as $key => $val)-->
-                <input type="checkbox" name="creation_group" <!--@if(in_array($val->group_srl, $homepage_config->creation_group))-->checked="checked"<!--@end--> value="{$val->group_srl}" id="creation_group_{$key}"/><label for="creation_group_{$key}">{$val->title}</label>
-                <!--@end-->
-            </td>
+				<select name="creation_default" class="grant_default">
+					<option value="all" <!--@if($homepage_config->creation_default=='all')-->selected="selected"<!--@end-->>{$lang->grant_to_all}</option>
+					<option value="member" <!--@if($homepage_config->creation_default=='member')-->selected="selected"<!--@end-->>{$lang->grant_to_login_user}</option>
+					<option value="group" <!--@if($homepage_config->creation_default=='group')-->selected="selected"<!--@end-->>{$lang->grant_to_group}</option>
+					<option value="" <!--@if(!$homepage_config->creation_default)-->selected="selected"<!--@end-->>{$lang->cmd_show_super_admin_member}</option>
+				</select>
+				<div id="zone_cafe_grant" style="display:none">
+				<!--@foreach($groups as $key => $val)-->
+				<input type="checkbox" name="creation_group" <!--@if(in_array($val->group_srl, $homepage_config->creation_group))-->checked="checked"<!--@end--> value="{$val->group_srl}" id="creation_group_{$key}"/><label for="creation_group_{$key}">{$val->title}</label>
+				<!--@end-->
+				</div>
+			</td>
         </tr>
         <tr>
             <th scope="row"><div>{$lang->default_layout}</div></th>

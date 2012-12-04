@@ -101,7 +101,11 @@
 
                 $module_info = $oModuleModel->getModuleInfoByMid($mid, 0);
                 $args->module_srl = $module_info->module_srl;
-                $args->creation_group = implode(',',explode('|@|',$vars->creation_group));
+				if(in_array($vars->creation_default,array('all','member','group')))
+				{
+					$args->creation_default = $vars->creation_default;
+					$args->creation_group = implode(',',explode('|@|',$vars->creation_group));
+				}
                 $args->layout_srl = $vars->layout_srl;
 				$args->top_menu = $vars->top_menu;
 				$oModuleController->insertModuleConfig('homepage', $args);
