@@ -96,7 +96,6 @@ function doShowGrantZone() {
             <th scope="row"><div>{$lang->cafe_creation_privilege}</div></th>
             <td class="text">
 				<select name="creation_default" class="grant_default">
-					<option value="all" <!--@if($homepage_config->creation_default=='all')-->selected="selected"<!--@end-->>{$lang->grant_to_all}</option>
 					<option value="member" <!--@if($homepage_config->creation_default=='member')-->selected="selected"<!--@end-->>{$lang->grant_to_login_user}</option>
 					<option value="group" <!--@if($homepage_config->creation_default=='group')-->selected="selected"<!--@end-->>{$lang->grant_to_group}</option>
 					<option value="" <!--@if(!$homepage_config->creation_default)-->selected="selected"<!--@end-->>{$lang->cmd_show_super_admin_member}</option>
