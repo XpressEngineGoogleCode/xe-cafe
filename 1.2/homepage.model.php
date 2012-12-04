@@ -61,10 +61,6 @@
 
 			switch($config->creation_default)
 			{
-				case 'all':
-					return true;
-				break;
-
 				case 'member':
 					if(Context::get('is_logged')) return true;
 				break;

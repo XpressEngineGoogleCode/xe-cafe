@@ -101,7 +101,7 @@
 
                 $module_info = $oModuleModel->getModuleInfoByMid($mid, 0);
                 $args->module_srl = $module_info->module_srl;
-				if(in_array($vars->creation_default,array('all','member','group')))
+				if(in_array($vars->creation_default,array('member','group')))
 				{
 					$args->creation_default = $vars->creation_default;
 					$args->creation_group = implode(',',explode('|@|',$vars->creation_group));
