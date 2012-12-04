@@ -175,6 +175,7 @@
                 $args->browser_title = $browser_title;
                 $args->layout_srl = $this->selected_layout->layout_srl;
                 $args->module = $module_type;
+				if($args->module == 'page') $args->page_type = 'WIDGET';
                 $args->menu_srl = $source_args->menu_srl;
                 $output = $oModuleController->insertModule($args);
                 while(!$output->toBool()) {
