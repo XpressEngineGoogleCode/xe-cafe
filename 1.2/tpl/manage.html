@@ -11,7 +11,7 @@ function doShowGrantZone() {
 </script>
 <form action="./" method="post" onsubmit="return procFilter(this, insert_config)" id="cafeSetup">
     <div class="table">
-	<h2>{$lang->cmd_cafe_hub_setup}</h2>
+	<h2>{$lang->cmd_cafe_hub_setup}<a href="{getUrl('','mid',$homepage_config->cafe_main_mid)}" cond="$homepage_config->cafe_main_mid" target="_blank"> | View</a></h2>
 	<table cellspacing="0" class="rowTable">
     <tbody>
         <tr>
