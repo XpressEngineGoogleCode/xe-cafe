@@ -4,12 +4,13 @@
 <!--%import("../../addon/tpl/js/addon.js")-->
 <!--%import("../../admin/tpl/js/admin.js")-->
 
-<h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-
-<ul class="localNavigation">
+<h2 class="h2">{$lang->cmd_admin_menus[$act]}</h2>
+<div class="cnb">
+<ul>
     <li class="on"><a href="#" viewObj="components" class="onOneObj">{$lang->editor}</a></li>
     <li><a href="#" viewObj="addons" class="onOneObj">{$lang->addon}</a></li>
 </ul>
+</div>
 <div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
 	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>

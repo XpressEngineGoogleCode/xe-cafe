@@ -13,9 +13,9 @@
 </script>
 
 
-<h3 class="xeAdmin">{$lang->counter} <span class="gray">{$lang->cmd_management}</span></h3>
+<h2 class="h2">{$lang->counter} {$lang->cmd_management}</h3>
 
-<div class="header4 gap1">
+<div class="table">
 
     <form action="./index.php" method="get" id="fo_calendar">
     <input type="hidden" name="module" value="{$module}" />
@@ -65,12 +65,13 @@
     </table>
 
     </form>
-
-    <ul class="localNavigation">
+	<div class="cnb">
+    <ul>
         <!--@foreach($lang->cmd_select_counter_type as $key => $val)-->
         <li <!--@if($type==$key)-->class="on"<!--@end-->><a href="{getUrl('type',$key)}">{$val}</a></li>
         <!--@end-->
     </ul>
+	</div>
 </div>
 
 

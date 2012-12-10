@@ -1,17 +1,15 @@
 <!--%import("./js/homepage.js",optimized=false)-->
 <!--%import("./filter/insert_config.xml")-->
 
-<h3 class="xeAdmin"><span class="gray">{$lang->cafe_management}</span></h3>
+<h1 class="h1">{$lang->cafe_management}</h1>
 
-<div class="infoText">{nl2br($lang->about_cafe)}</div>
+<p>{nl2br($lang->about_cafe)}</p>
 
-<div class="header4">
-
-    <ul class="localNavigation">
-        <li <!--@if($act=='dispHomepageAdminContent')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminContent','module_srl','')}">{$lang->cafe_list}</a></li>
-        <li <!--@if($act=='dispHomepageAdminInsert')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminInsert','module_srl')}">{$lang->cmd_make_cafe}</a></li>
-        <li <!--@if($act=='dispHomepageAdminManage')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminManage','module_srl')}">{$lang->cmd_cafe_setup}</a></li>
-        <li <!--@if($act=='dispHomepageAdminSkinSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminSkinSetup','module_srl')}">{$lang->cafe_main_skin}</a></li>
+<div class="cnb">
+    <ul>
+        <li <!--@if($act=='dispHomepageAdminContent')-->class="active"<!--@end-->><a href="{getUrl('act','dispHomepageAdminContent','module_srl','')}">{$lang->cafe_list}</a></li>
+        <li <!--@if($act=='dispHomepageAdminInsert')-->class="active"<!--@end-->><a href="{getUrl('act','dispHomepageAdminInsert','module_srl')}">{$lang->cmd_make_cafe}</a></li>
+        <li <!--@if($act=='dispHomepageAdminManage')-->class="active"<!--@end-->><a href="{getUrl('act','dispHomepageAdminManage','module_srl')}">{$lang->cmd_cafe_setup}</a></li>
     </ul>
 </div>
 

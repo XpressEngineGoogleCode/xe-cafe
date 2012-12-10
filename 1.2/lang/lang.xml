@@ -60,7 +60,7 @@
 		<value xml:lang="tr"><![CDATA[Cafe Listesi]]></value>
 		<value xml:lang="vi"><![CDATA[Danh sách Cafe]]></value>
 	</item>
-	<item name="cafe_main_skin">
+	<item name="cafe_hub_skin">
 		<value xml:lang="ko"><![CDATA[카페 허브 스킨]]></value>
 		<value xml:lang="en"><![CDATA[Cafe Hub Skin]]></value>
 		<value xml:lang="jp"><![CDATA[Cafeメインスキン]]></value>

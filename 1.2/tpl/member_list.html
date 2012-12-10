@@ -6,6 +6,7 @@
 <p class="summary">{$lang->about_cafe_act[$act]}</p>
 
 <form action="./" method="get" class="adminSearch" style="margin-bottom:10px;">
+<div class="table">
 <input type="hidden" name="mid" value="{$mid}" />
 <input type="hidden" name="vid" value="{$vid}" />
 <input type="hidden" name="act" value="{$act}" />
@@ -72,6 +73,7 @@
 		 <span class="btn"><input type="submit" value="{$lang->cmd_modify}" /></span>
          <a href="#" onclick="doRemoveMember('{$lang->confirm_delete}');return false;" class="btn red"><span>{$lang->cmd_delete}</span></a>
 	</div>
+</div>
 </form>
 
 <!-- 페이지 네비게이션 -->
