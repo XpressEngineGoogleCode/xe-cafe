@@ -1,8 +1,8 @@
 <!--#include("_header.html")-->
 
-<h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-<p class="summary">{$lang->about_cafe_act[$act]}</p>
-
+<h2 class="h2">{$lang->cmd_admin_menus[$act]}</h2>
+<p>{$lang->about_cafe_act[$act]}</p>
+<div class="table">
 <table cellspacing="0" class="rowTable">
 <thead>
     <tr>
@@ -26,7 +26,7 @@
 </tbody>
 </table>
 </form>
-
+</div>
 <!--@if($logged_info->is_admin == 'Y')-->
 <!--%import("filter/export_module.xml")-->
 <div class="fl">

@@ -9,7 +9,7 @@
 <form id="fo_group">
 <input type="hidden" name="group_srl" value=""/>
 </form>
-
+<div class="table">
 <table cellspacing="0" class="rowTable">
 <thead>
     <tr>
@@ -55,7 +55,6 @@
 <!--@if($selected_group->group_srl && $selected_group->is_default == 'Y')-->
 <input type="hidden" name="is_default" value="Y" />
 <!--@end-->
-	<div class="table">
     <table cellspacing="0" class="rowTable">
     <tr>
         <th scope="row"><div>{$lang->group_title}</div></th>
@@ -75,7 +74,6 @@
         <td><textarea name="description" class="inputTypeTextArea w400">{$selected_group->description}</textarea></td>
     </tr>
     </table>
-	</div>
 	<div class="btnArea">
         <!--@if($selected_group->group_srl)-->
         <span class="btn"><input type="submit" value="{$lang->cmd_modify}" accesskey="s" /></span>
@@ -84,6 +82,7 @@
         <span class="btn"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
         <!--@end-->
 	</div>
+</div>
 
 
 </form>
