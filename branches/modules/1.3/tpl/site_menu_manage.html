@@ -8,7 +8,7 @@
 <!--%import("./js/homepage_tree.js",optimized=false)-->
 <h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
 <span style="float:right">
-    <a href="#" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;" class="button"><span>{$lang->cmd_remake_cache}</span></a>
+	<button class="x_btn" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;">{$lang->cmd_remake_cache}</button>
 </span>
 <p class="summary">{$lang->about_cafe_act[$act]}</p>
 

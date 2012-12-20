@@ -1,185 +1,214 @@
 <!--#include("./header.html")-->
-<script type="text/javascript">
-function doShowGrantZone() {
-    jQuery(".grant_default").each( function() {
-        var id = "#zone_cafe_grant";
-        if(jQuery(this).val() == 'group') jQuery(id).css("display","block");
-        else jQuery(id).css("display","none");
-    } );
-}
-    jQuery( function() { jQuery('.grant_default').change( function(event) { doShowGrantZone(); } ); doShowGrantZone() } );
-</script>
-<form action="./" method="post" onsubmit="return procFilter(this, insert_config)" id="cafeSetup">
-    <div class="table">
-	<h2>{$lang->cmd_cafe_hub_setup}<a href="{getUrl('','mid',$homepage_config->cafe_main_mid)}" cond="$homepage_config->cafe_main_mid" target="_blank"> | View</a></h2>
-	<table cellspacing="0" class="rowTable">
-    <tbody>
-        <tr>
-            <th scope="row"><div>{$lang->cafe_main_mid}</div></th>
-            <td class="text">
-                <input type="input" name="cafe_main_mid" value="{$homepage_config->cafe_main_mid}" class="inputTypeText" />
-                <p>{$lang->about_cafe_main_mid}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->browser_title}</div></th>
-            <td class="text">
-                <input type="input" name="browser_title" value="{$homepage_config->browser_title}" class="inputTypeText" />
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->layout}</div></th>
-            <td class="text">
-                <select name="layout_srl">
-                    <!--@foreach($hub_layout_list as $key => $val)-->
-                    <option value="{$val->layout_srl}" <!--@if($homepage_config->layout_srl==$val->layout_srl)-->selected="selected"<!--@end-->>{$val->title} ({$val->layout})</option>
-                    <!--@end-->
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->skin}</div></th>
-            <td class="text">
-                <select name="skin">
-                    <!--@foreach($skins as $key => $val)-->
-                    <option value="{$key}" <!--@if($homepage_config->skin== $key)-->selected="selected"<!--@end-->>{$val->title}</option>
-                    <!--@end-->
-                </select>
-                <!--@if($homepage_config->module_srl)-->
-				<a href="{getUrl('act','dispHomepageAdminSkinSetup','module_srl')}" class="btn" target="_blank"><span>{$lang->skin_default_info}</span></a>
-                <!--@end-->
-            </td>
-        </tr>
-		<tr>
-			<th scope="row"><div>{$lang->mobile_layout}</div></th>
-			<td>
-				<select name="mlayout_srl" id="layout_srl">
+<div cond="$XE_VALIDATOR_MESSAGE" class="x_alert x_alert-{$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form action="./" method="post" onsubmit="return procFilter(this, insert_config)" id="cafeSetup" class="x_form-horizontal">
+	<section class="section">
+		<h1>
+			{$lang->cmd_cafe_hub}
+			<span cond="$homepage_config->cafe_main_mid" style="font-size: 14px;display: inline-block;">
+				&gt; <a href="{getUrl('','mid',$homepage_config->cafe_main_mid)}" target="_blank">View</a>
+			</span>
+		</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="cafe_main_mid">
+				{$lang->cafe_main_mid}
+				<a href="#cafe_main_mid_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<input type="input" name="cafe_main_mid" id="cafe_main_mid" value="{$homepage_config->cafe_main_mid}" />
+				<p id="cafe_main_mid_help" class="x_help-block" hidden>{$lang->about_cafe_main_mid}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="browser_title">{$lang->browser_title}</label>
+			<div class="x_controls">
+				<input type="input" name="browser_title" id="browser_title" value="{$homepage_config->browser_title}" />
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="layout_srl">
+				{$lang->layout}
+				<a href="#mlayout_srl_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<select name="layout_srl" id="layout_srl">
+					<!--@foreach($hub_layout_list as $key => $val)-->
+					<option value="{$val->layout_srl}" <!--@if($homepage_config->layout_srl==$val->layout_srl)-->selected="selected"<!--@end-->>{$val->title} ({$val->layout})</option>
+					<!--@end-->
+				</select>
+				<p id="mlayout_srl_help" class="x_help-block" hidden>{$lang->about_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="skin">
+				{$lang->skin}
+				<a href="#skin_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<select name="skin" id="skin">
+					<!--@foreach($skins as $key => $val)-->
+					<option value="{$key}" <!--@if($homepage_config->skin== $key)-->selected="selected"<!--@end-->>{$val->title}</option>
+					<!--@end-->
+				</select>
+				<!--@if($homepage_config->module_srl)-->
+					<a href="{getUrl('act','dispHomepageAdminSkinSetup','module_srl')}" target="_blank">{$lang->skin_default_info}</a>
+				<!--@end-->
+				<p id="skin_help" class="x_help-block" hidden>{$lang->about_skin}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="mlayout_srl">{$lang->mobile_layout}</label>
+			<div class="x_controls">
+				<select name="mlayout_srl" id="mlayout_srl">
 					<option value="0">{$lang->notuse}</option>
 					<option loop="$hub_mlayout_list => $key, $val" value="{$val->layout_srl}" selected="selected"|cond="$homepage_config->mlayout_srl== $val->layout_srl">{$val->title} ({$val->layout})</option>
 				</select>
-				<p class="desc">{$lang->about_layout}</p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><div>{$lang->mobile_skin}</div></th>
-			<td>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="mskin">{$lang->mobile_skin}</label>
+			<div class="x_controls">
 				<select name="mskin" id="mskin">
 					<option loop="$hub_mskin_list=> $key, $val" value="{$key}" selected="selected"|cond="$homepage_config->mskin== $key || ($homepage_config->skin && $key=='xe_faq')">{$val->title}</option>
 				</select>
-				<p class="desc">{$lang->about_skin}</p>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	<h2>{$lang->cmd_cafe_basic_setup}</h2>
-	<table cellspacing="0" class="rowTable">
-    <tbody>
-		<tr>
-			<th scope="row"><div>{$lang->mobile_view}</div></th>
-			<td>
-			<input type="checkbox" name="use_mobile" id="use_mobile" value="Y" checked="checked"|cond="$homepage_config->use_mobile == 'Y'" /> 
-			<p>{$lang->about_mobile_view}</p>
-			</td>
-		</tr>
-        <tr>
-            <th scope="row"><div>{$lang->cafe_creation_type}</div></th>
-            <td class="text">
-                <label for="chkCafeVid"><input type="radio" id="chkCafeVid" name="access_type" value="vid" onclick="toggleCafeAccessType('vid');" <!--@if($homepage_config->access_type=='vid')-->checked="checked"<!--@end--> /> {$lang->access_vid}</label>
-                <label for="chkCafeDomain"><input type="radio" id="chkCafeDomain" name="access_type" value="domain" onclick="toggleCafeAccessType('domain');" <!--@if($homepage_config->access_type!='vid')-->checked="checked"<!--@end--> /> {$lang->access_domain}</label>
-                <div id="accessCafeDomain" style="display:<!--@if($homepage_config->access_type=='vid')-->none<!--@end-->; margin-top:10px;">
-                    URL : <input type="text" name="default_domain" value="{$homepage_config->default_domain}" class="inputTypeText w200" />
-                </div>
-                <p>{$lang->about_cafe_creation_type}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->cafe_creation_privilege}</div></th>
-            <td class="text">
-				<select name="creation_default" class="grant_default">
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<h1>{$lang->cmd_cafe_basic_setup}</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="use_mobile">
+				{$lang->mobile_view}
+				<a href="#use_mobile_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<input type="checkbox" name="use_mobile" id="use_mobile" value="Y" checked="checked"|cond="$homepage_config->use_mobile == 'Y'" /> 
+				<p id="use_mobile_help" class="x_help-block" hidden>{$lang->about_mobile_view}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cafe_creation_type}
+				<a href="#create_type_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<label for="chkCafeVid" class="x_inline">
+					<input type="radio" id="chkCafeVid" name="access_type" value="vid" onclick="toggleCafeAccessType('vid');" <!--@if($homepage_config->access_type=='vid')-->checked="checked"<!--@end--> /> {$lang->access_vid}
+				</label>
+				<label for="chkCafeDomain" class="x_inline">
+					<input type="radio" id="chkCafeDomain" name="access_type" value="domain" onclick="toggleCafeAccessType('domain');" <!--@if($homepage_config->access_type!='vid')-->checked="checked"<!--@end--> /> {$lang->access_domain}
+				</label>
+				<p id="create_type_help" class="x_help-block" hidden>{$lang->about_cafe_creation_type}</p>
+				<div id="accessCafeDomain" style="display:<!--@if($homepage_config->access_type=='vid')-->none<!--@end-->; margin-top:10px;">
+					URL : <input type="text" name="default_domain" value="{$homepage_config->default_domain}" />
+				</div>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="creation_default">{$lang->cafe_creation_privilege}</label>
+			<div class="x_controls">
+				<select name="creation_default" class="grant_default" id="creation_default">
 					<option value="member" <!--@if($homepage_config->creation_default=='member')-->selected="selected"<!--@end-->>{$lang->grant_to_login_user}</option>
 					<option value="group" <!--@if($homepage_config->creation_default=='group')-->selected="selected"<!--@end-->>{$lang->grant_to_group}</option>
 					<option value="" <!--@if(!$homepage_config->creation_default)-->selected="selected"<!--@end-->>{$lang->cmd_show_super_admin_member}</option>
 				</select>
 				<div id="zone_cafe_grant" style="display:none">
-				<!--@foreach($groups as $key => $val)-->
-				<input type="checkbox" name="creation_group" <!--@if(in_array($val->group_srl, $homepage_config->creation_group))-->checked="checked"<!--@end--> value="{$val->group_srl}" id="creation_group_{$key}"/><label for="creation_group_{$key}">{$val->title}</label>
-				<!--@end-->
+					<!--@foreach($groups as $key => $val)-->
+					<label for="creation_group_{$key}" class="x_inline"><input type="checkbox" id="creation_group_{$key}" name="creation_group" <!--@if(in_array($val->group_srl, $homepage_config->creation_group))-->checked="checked"<!--@end--> value="{$val->group_srl}" id="creation_group_{$key}"/>{$val->title}</label>
+					<!--@end-->
 				</div>
-			</td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->default_layout}</div></th>
-            <td class="text">
-                <select name="default_layout">
-                    <option value="faceoff" <!--@if($homepage_config->default_layout=='faceoff')-->selected="selected"<!--@end--> >faceoff</option>
-                    <optgroup label="{$lang->downloaded_list}">
-                    <!--@foreach($layout_list as $key => $val)-->
-                    <option value="{$val->layout}" <!--@if($homepage_config->default_layout== $val->layout)-->selected="selected"<!--@end-->> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
-                <!--@end-->
-                    </optgroup>
-                </select>
-                <p>{$lang->about_default_layout}</p>
-            </td>
-        </tr>
-		<tr>
-			<th scope="row"><div>{$lang->mobile_layout}</div></th>
-			<td>
-                <select name="default_mlayout">
-                    <option value="0" <!--@if(!$homepage_config->default_layout)-->selected="selected"<!--@end--> >미사용</option>
-                    <!--@foreach($mlayout_list as $key => $val)-->
-                    <option value="{$val->layout}" <!--@if($homepage_config->default_mlayout== $val->layout)-->selected="selected"<!--@end-->> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
-                <!--@end-->
-                    </optgroup>
-                </select>
-			</td>
-		</tr>
-        <tr>
-            <th scope="row"><div>{$lang->enable_change_layout}</div></th>
-            <td class="text">
-                <input type="checkbox" name="enable_change_layout" value="Y" <!--@if($homepage_config->enable_change_layout=='Y')-->checked="checked"<!--@end-->/>
-                <p>{$lang->about_change_layout}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row" rowspan="{count($service_modules)}"><div>{$lang->allow_service}</div></th>
-            {@$_idx = 0}
-        <!--@foreach($service_modules as $k => $v)-->
-            <!--@if($v->category == 'service' && $v->default_index_act)-->
-            <!--@if($_idx>0)--><tr><!--@end-->
-            <td  class="text">
-                {$v->title} : <input type="text" name="allow_service_{$v->module}" value="{$homepage_config->allow_service[$v->module]}" class="inputTypeText w80" />
-            </td>
-            <!--@end-->
-            {@$_idx++}
-        <!--@end-->
-        </tr>
-        <tr rowspan="{$_idx}">
-	   		<td class="text">
-                <p>{$lang->about_allow_service}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>RSS</div></th>
-            <td>
-                <input type="checkbox" name="use_rss" value="Y" <!--@if($homepage_config->use_rss=='Y')-->checked="checked"<!--@end-->/>
-            </td>
-        </tr>
-		<tr>
-			<th>{$lang->config_top_menu}</th>
-			<td>
-				<select name="top_menu">
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="default_layout">
+				{$lang->default_layout}
+				<a href="#default_layout_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<select name="default_layout" id="default_layout">
+				<!--@foreach($layout_list as $key => $val)-->
+				<option value="{$val->layout}" <!--@if($homepage_config->default_layout== $val->layout)-->selected="selected"<!--@end-->> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
+				<!--@end-->
+			</select>
+				<p id="default_layout_help" class="x_help-block" hidden>{$lang->about_default_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="default_mlayout">{$lang->mobile_layout}</label>
+			<div class="x_controls">
+				<select name="default_mlayout" id="default_mlayout">
+				<option value="0" <!--@if(!$homepage_config->default_layout)-->selected="selected"<!--@end--> >미사용</option>
+				<!--@foreach($mlayout_list as $key => $val)-->
+				<option value="{$val->layout}" <!--@if($homepage_config->default_mlayout== $val->layout)-->selected="selected"<!--@end-->> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
+				<!--@end-->
+				</select>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="enable_change_layout">
+				{$lang->enable_change_layout}
+				<a href="#enable_change_layout_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<input type="checkbox" id="enable_change_layout" name="enable_change_layout" value="Y" <!--@if($homepage_config->enable_change_layout=='Y')-->checked="checked"<!--@end-->/>
+				<p id="enable_change_layout_help" class="x_help-block" hidden>{$lang->about_change_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">
+				{$lang->allow_service}
+				<a href="#allow_service_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<!--@foreach($service_modules as $k => $v)-->
+				<!--@if($v->category == 'service' && $v->default_index_act)-->
+				<p>{$v->title} : <input type="text" name="allow_service_{$v->module}" value="{$homepage_config->allow_service[$v->module]}" /></p>
+				<!--@end-->
+				<!--@end-->
+				<p id="allow_service_help" class="x_help-block" hidden>{$lang->about_allow_service}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="use_rss">RSS</label>
+			<div class="x_controls">
+                <input type="checkbox" name="use_rss" id="use_rss" value="Y" <!--@if($homepage_config->use_rss=='Y')-->checked="checked"<!--@end-->/>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="top_menu">
+				{$lang->config_top_menu}
+				<a href="#_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			</label>
+			<div class="x_controls">
+				<select name="top_menu" id="top_menu">
 					<option value="0">------------------------</option>
 					<!--@foreach($menu_list as $key => $val)-->
 					<option value="{$val->menu_srl}" <!--@if($val->menu_srl == $homepage_config->top_menu)-->selected="selected"<!--@end-->>{$val->title}</option>
 					<!--@end-->
 				</select>
-				<p>{$lang->about_config_top_menu}</p>
-			</td>
-		</tr>
-    </tbody>
-    </table>
-	</div>
-	<div class="btnArea">
-    	<span class="btn"><input type="submit" value="{$lang->cmd_save}" accesskey="s" /></span>
+				<p id="_help" class="x_help-block" hidden>{$lang->about_config_top_menu}</p>
+			</div>
+		</div>
+	</section>
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('act', 'dispHomepageAdminContent')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
 	</div>
 </form>
+
+<script type="text/javascript">
+function doShowGrantZone() {
+	jQuery(".grant_default").each( function() {
+		var id = "#zone_cafe_grant";
+		if(jQuery(this).val() == 'group') jQuery(id).css("display","block");
+		else jQuery(id).css("display","none");
+	});
+}
+jQuery( function() { jQuery('.grant_default').change( function(event) { doShowGrantZone(); } ); doShowGrantZone() } );
+</script>
+

@@ -3,10 +3,10 @@
         <table name="homepages" />
     </tables>
     <columns>
-        <column name="title" var="title" notnull="notnull" />
+        <column name="title" var="title" />
         <column name="description" var="description" />
-        <column name="layout_srl" var="layout_srl" />
-        <column name="mlayout_srl" var="mlayout_srl" />
+        <column name="layout_srl" var="layout_srl" filter="number" />
+        <column name="mlayout_srl" var="mlayout_srl" filter="number" />
     </columns>
     <conditions>
         <condition operation="equal" column="site_srl" var="site_srl" filter="number" notnull="notnull" />

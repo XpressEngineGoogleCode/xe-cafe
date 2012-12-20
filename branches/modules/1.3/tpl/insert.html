@@ -3,38 +3,47 @@
 	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>
 
-<form action="./" method="post" ruleset="insertHomepage" id="cafeFo">
+<form action="./" method="post" ruleset="insertHomepage" class="x_form-horizontal">
 	<input type="hidden" name="act" value="procHomepageAdminInsertHomepage" />
-	<div class="table">
-    <table cellspacing="0" class="crossTable">
-    <tbody>
-        <tr>
-            <th scope="row"><div>{$lang->cafe_title}</div></th>
-            <td class="text">
-                <input type="text" name="cafe_title" value="" class="inputTypeText w200" />
-                <p>{$lang->about_cafe_title}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->access_type}</div></th>
-            <td class="text">
-                <label for="chkDomain"><input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" checked="checked" /> {$lang->access_domain}</label>
-                <label for="chkVid"><input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" /> {$lang->access_vid}</label>
-                <div id="accessDomain" style="display:block; margin-top:10px;">
-                    http://<input type="text" name="domain" value="" class="inputTypeText w200" />
-                    <p>{$lang->about_domain}</p>
-                </div>
-                <div id="accessVid" style="display:none; margin-top:10px;">
-                    <input type="text" name="cafe_vid" value="" class="inputTypeText w200" />
-                    <p>{$lang->about_vid}</p>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-    </table>
-	</div>
-    <div class="btnArea">
-		<span class="btn"><input type="submit" value="{$lang->cmd_cafe_registration}" /></span>
+	<section class="section">
+		<h1>{$lang->cmd_make_cafe}</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="cafe_title">{$lang->cafe_title}</label>
+			<div class="x_controls">
+				<input type="text" name="cafe_title" id="cafe_title" />
+				<a href="#cafe_title_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="cafe_title_help" class="x_help-block" hidden>{$lang->about_cafe_title}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="cafe_title">{$lang->access_type}</label>
+			<div class="x_controls">
+				<label for="chkDomain">
+					<input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" /> {$lang->access_domain}
+					<a href="#chkDomain_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<div id="accessDomain" style="display:none;margin-top:5px">
+						http://<input type="text" name="domain" />
+					</div>
+					<p id="chkDomain_help" class="x_help-block" hidden>{$lang->about_domain}</p>
+				</label>
+				<label for="chkVid">
+					<input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" checked="checked" /> {$lang->access_vid}
+					<a href="#chkVid_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<div id="accessVid" style="display:block;margin-top:5px">
+						<input type="text" name="cafe_vid" />
+					</div>
+					<p id="chkVid_help" class="x_help-block" hidden>{$lang->about_vid}</p>
+				</label>
+			</div>
+		</div>
+	</section>
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('act', 'dispHomepageAdminContent')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
 	</div>
 </form>
 

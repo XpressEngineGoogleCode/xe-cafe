@@ -1,15 +1,3 @@
-jQuery(function($){
-		$('.onOneObj').click(function(){
-			$('#xeAdmin').find('.onOneObj').each(function(){
-				$('#'+$(this).attr('viewObj')).css('display','none');
-				$(this).parent().removeClass('on');
-			});
-			$('#'+$(this).attr('viewObj')).css('display','');
-			$(this).parent().addClass('on');
-
-	});
-});
-
 function doHomepageInsertAdmin() {
     var fo_obj = xGetElementById("cafeFo");
     var sel_obj = fo_obj.admin_list;
