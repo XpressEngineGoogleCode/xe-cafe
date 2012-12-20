@@ -365,7 +365,6 @@ class homepageController extends homepage
 			else
 				$output = $oMemberAdminController->insertGroup($update_args);
 		}
-debugPrint($output);
 		$this->setMessage('success_updated');
 		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'mid', Context::get('mid'), 'act', 'dispHomepageMemberGroupManage');
 		$this->setRedirectUrl($returnUrl);
