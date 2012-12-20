@@ -134,7 +134,6 @@
 				if($layout_type == 'M' && !(bool)$args->default_layout) 
 				{
 					$home_args->mlayout_srl = 0;
-					$home_args->title = $homepage_info->title;
 					$home_args->site_srl = $args->site_srl;
 				}
 				else
@@ -155,7 +154,6 @@
 
 					$output = $oLayoutAdminController->insertLayout($layout_args);
 
-					$home_args->title = $homepage_info->title;
 					if($layout_type != 'M')
 						$home_args->layout_srl = $layout_args->layout_srl;
 					else

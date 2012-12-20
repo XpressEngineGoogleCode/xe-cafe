@@ -1,0 +1,221 @@
+<!--#include("_header.html")-->
+<load target="../../layout/tpl/js/layout_modify.js" />
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form method="post" action="{Context::getRequestUri()}" enctype="multipart/form-data" class="x_form-horizontal">
+	<input type="hidden" name="module" value="homepage" />
+	<input type="hidden" name="layout_srl" value="{$selected_layout->layout_srl}" />
+	<input type="hidden" name="vid" value="{$site_module_info->domain}" cond="isSiteID($site_module_info->domain)" />
+	<input type="hidden" name="site_srl" value="{$homepage_info->site_srl}" />
+	<input type="hidden" name="act" value="procHomepageUpdateSiteConfig" />
+	<section class="section">
+		<h1>{$lang->cafe_info}</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="cafe_title">{$lang->cafe_title}</label>
+			<div class="x_controls"><input type="text" name="cafe_title" id="cafe_title" value="{htmlspecialchars($homepage_info->title)}" /></div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="cafe_description">{$lang->cafe_description}</label>
+			<div class="x_controls"><textarea name="cafe_description" id="cafe_description" style="width:90%;">{htmlspecialchars($homepage_info->cafe_description)}</textarea></div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cafe_banner}</label>
+			<div class="x_controls">
+				<div id="preview_{$name}" cond="$homepage_info->cafe_banner">
+					<img src="{$homepage_info->cafe_banner}" alt="cafe banner" style="display:block;margin-bottom:10px;" cond="$homepage_info->cafe_banner"/>
+					<input type="checkbox" name="banner_del" value="Y"/>{$lang->cmd_delete}
+				</div>
+				<input type="file" name="cafe_banner" />
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="index_mid">{$lang->cmd_select_index}</label>
+			<div class="x_controls">
+				<select name="index_mid" id="index_mid">
+					<option value="{$val->module_srl}" loop="$mid_list=>$no,$val" selected="selected"|cond="$val->module_srl==$homepage_info->module_srl">{$val->browser_title} ({$val->mid})</option>
+				</select>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="language">{$lang->default_language}</label>
+			<div class="x_controls">
+				<select name="language" id="language">
+				<!--@foreach($lang_supported as $key => $val)-->
+				<option value="{$key}" <!--@if($key==$site_module_info->default_language)-->selected="selected"<!--@end-->>{$val}</option>
+				<!--@endforeach-->
+				</select>
+			</div>
+		</div>
+	</section>
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+<form id="config_form" ruleset="updateLayout" action="./" class="form" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="module" value="layout" />
+	<input type="hidden" name="act" value="procHomepageUpdateLayoutConfig" />
+	<input type="hidden" name="layout_srl" value="{$selected_layout->layout_srl}" />
+	<input type="hidden" name="_layout_type" value="{$selected_layout->layout_type}" />
+	<!--// For submit config. Do not delete this division. -->
+	<div></div>
+</form>
+
+<div id="layout_config" class="x_form-horizontal">
+	<section class="section">
+		<h1>{$lang->layout}</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="">{$lang->layout}</label>
+			<div class="x_controls">
+			<!--@if($homepage_config->enable_change_layout == 'Y')-->
+			<select name="layout">
+				<!--@foreach($layout_list as $key => $val)-->
+				<option value="{$val->layout}" selected="selected"|cond="$selected_layout->layout == $val->layout"> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
+				<!--@end-->
+			</select>
+			<!--@else-->
+				<!--@foreach($layout_list as $key => $val)-->
+				<block cond="$selected_layout->layout == $val->layout"><!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></block>
+				<!--@end-->
+			<!--@end-->
+			</div>
+		</div>
+		<div cond="$selected_layout->path" class="x_control-group">
+			<label class="x_control-label">{$lang->path}</label>
+			<div class="x_controls">
+				{$selected_layout->path}
+			</div>
+		</div>
+		<div cond="$selected_layout->description" class="x_control-group">
+			<label class="x_control-label">{$lang->description}</label>
+			<div class="x_controls">
+				{$selected_layout->description}
+			</div>
+		</div>
+		<div cond="$selected_layout->author" class="x_control-group">
+			<label class="x_control-label">{$lang->author}</label>
+			<div class="x_controls">
+				<block loop="$selected_layout->author=>$author_info">
+					<!--@if($author_info->homepage)-->
+					<a href="{$author_info->homepage}" target="_blank">{$author_info->name}</a>
+					<!--@else-->
+					{$author_info->name}
+					<!--@end-->
+				</block>
+			</div>
+		</div>
+		<input type="hidden" name="title" value="{htmlspecialchars($homepage_info->title)}" />
+		<input type="hidden" name="apply_layout" value="Y" />
+		<!--@foreach($selected_layout->menu as $menu_name => $menu_info)-->
+		<input type="hidden" name="{$menu_name}" value="{$menu_info->menu_srl}" />
+		<!--@end-->
+		<div class="x_control-group">
+			<label class="x_control-label" for="header_script">{$lang->header_script}</label>
+			<div class="x_controls">
+				<textarea name="header_script" id="header_script" rows="4" cols="42">{$selected_layout->header_script}</textarea>
+				<span class="x_help-block">{$lang->about_header_script}</span>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for=""></label>
+			<div class="x_controls"></div>
+		</div>
+		<block cond="count($selected_layout->extra_var)">
+		{@$cnt = 1}
+		<block loop="$selected_layout->extra_var => $name, $var">
+			<block cond="$cnt == 1 && $var->group"><div class="x_tabbable"><ul class="x_nav x_nav-tabs"></block>
+			<block cond="$group != $var->group">
+				<li class="x_active"|cond="$cnt == 1"><a href="#extra_var{$cnt}" data-index="{$cnt}">{$var->group}</a></li>
+				{@$group = $var->group}
+				{@$cnt ++}
+			</block>
+		</block>
+		</ul>
+
+		{@$group = ''}
+		{@$cnt = 1}
+		
+		<block loop="$selected_layout->extra_var => $name, $var">
+		<block cond="$cnt == 1 && $var->group"><div class="x_tab-content"></block>
+			<block cond="$group != $var->group">
+				<block cond="$cnt != 1"></div></block>
+				<div style="display: none;"|cond="$cnt != 1" id="extra_var{$cnt}" class="x_tab-pane <!--@if($cnt == 1)-->x_active<!--@end-->" data-index="{$cnt}">
+				{@$group = $var->group}
+				{@$cnt ++}
+			</block>
+			<div class="x_control-group">
+				<label class="x_control-label" for="{$name}">{$var->title}</label>
+				<div class="x_controls">
+					<div cond="$var->type == 'text'">
+						<input type="text" name="{$name}" id="{$name}" class="lang_code" value="<!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end-->" />
+					</div>
+
+					<div cond="$var->type == 'textarea'">
+						{@$use_multilang_textarea = true}
+						<textarea name="{$name}" rows="4" cols="42" class="lang_code"><!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end--></textarea>
+					</div>
+
+					<block cond="$var->type == 'image'">
+						<input type="hidden" name="{$name}" id="file_{$name}" value="{$var->value}" />
+						<div id="preview_{$name}" class="x_thumbnail" style="<!--@if(!$var->value)-->display:none;<!--@end-->max-width:210px;margin-bottom:20px;">
+							<img src="../../../{$var->value}"|cond="$var->value" alt="" style="max-width:100%" />
+							<div style="text-align:right">
+								<button class="x_icon-remove" type="button" onclick="deleteImage('{$name}')" title="{$lang->cmd_delete}">{$lang->cmd_delete}</button>
+							</div>
+						</div>
+						<form action="./" enctype="multipart/form-data" method="post" target="hiddenIframe" class="imageUpload" style="margin:0">
+							<input type="hidden" name="module" value="layout" />
+							<input type="hidden" name="act" value="procLayoutAdminConfigImageUpload" />
+							<input type="hidden" name="layout_srl" value="{$layout_srl}" />
+							<input type="hidden" name="name" value="{$name}" />
+							<p>
+								<input type="file" name="img" id="file_select_{$name}" value="" title="{$lang->uploaded_file}" />
+								<input class="x_btn" type="submit" value="{$lang->cmd_submit}" style="vertical-align:top" />
+							</p>
+						</form>
+					</block>
+
+					<select cond="$var->type == 'select'" name="{$name}" id="{$name}" style="width:auto">
+						<option loop="$var->options => $key, $val" value="{$key}" selected="selected"|cond="$key == $var->value">{$val->val}</option>
+					</select>
+
+					<block cond="$var->type == 'checkbox'">
+						<block loop="$var->options => $key, $val">
+							<label class="x_inline"><input type="checkbox" name="{$name}[]" value="{$key}" checked="checked"|cond="@in_array($key, $var->value)" /> {$val->val}</label>
+						</block>
+					</block>
+
+					<block cond="$var->type == 'radio'">
+						<div class="x_thumbnails">
+							<block loop="$var->options => $key, $val">
+								<div class="x_span2 <!--@if($val->thumbnail)-->x_thumbnail<!--@end-->">
+									<img src="../../../{$val->thumbnail}" cond="$val->thumbnail" alt="{$val->val}" />
+									<div class="x_caption">
+										<label><input type="radio" name="{$name}" value="{$key}" checked="checked"|cond="$key == $var->value" /> {$val->val}</label>
+									</div>
+								</div>
+							</block>
+						</div>
+					</block>
+					<block cond="$var->type == 'colorpicker'">
+						{@ $use_colorpicker = true; }
+						<input type="text" class="color-indicator" name="{$name}" id="{$name}" value="{$var->value}" />
+						<p id="categoy_color_help" hidden style="margin:8px 0 0 0">{$lang->about_category_color}</p>
+					</block>
+					<p class="x_help-block">{$var->description}</p>
+				</div>
+			</div>
+		</block>
+		<block cond="$group"></div></div></block>
+		</block>
+	</section>
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" onclick="doSubmitConfig()" style="min-width: 120px">{$lang->cmd_save}</button>
+		</div>
+	</div>
+</div>
+<iframe name="hiddenIframe" src="about:blank" width="1000px" height="1000px" frameborder="0" style="position:absolute;top:-9999px;left:-9999px"></iframe>
+<!--#include("_footer.html")-->

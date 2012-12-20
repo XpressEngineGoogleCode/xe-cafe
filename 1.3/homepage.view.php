@@ -171,7 +171,7 @@
             $mid_list = $oModuleModel->getMidList($args);
             Context::set('mid_list', $mid_list);
 
-            $this->setTemplateFile('layout_setup');
+            $this->setTemplateFile('site_manage');
         }
 
         /**
@@ -192,7 +192,7 @@
             $group_list = $oMemberModel->getGroups($this->site_srl);
             Context::set('group_list', $group_list);
 
-            $this->setTemplateFile('group_list');
+            $this->setTemplateFile('site_group_list');
         }
 
         /**
@@ -260,7 +260,7 @@
 		    $args->sort_order = "desc";
             $args->page = Context::get('page');
             $args->list_count = 40;
-            $args->page_count = 10;
+            $args->page_count = 5;
             $output = executeQuery($query_id, $args);
 
             $members = array();
@@ -280,7 +280,7 @@
             Context::set('member_list', $output->data);
             Context::set('page_navigation', $output->page_navigation);
 
-            $this->setTemplateFile('member_list');
+            $this->setTemplateFile('site_member_list');
         }
 
 
@@ -307,7 +307,7 @@
             $menu = array_shift($_menu_info);
             Context::set('menu_max_depth', $menu->maxdepth);
 
-            $this->setTemplateFile($this->act);
+            $this->setTemplateFile('site_menu_manage');
         }
 
         /**
@@ -331,7 +331,7 @@
             }
             Context::set('mid_list', $mid_list);
 
-            $this->setTemplateFile('mid_list');
+            $this->setTemplateFile('site_mid_list');
         }
 
         /**
@@ -483,7 +483,7 @@
 			 $component_list =  $oEditorModel->getComponentList(false, $this->site_srl);
             Context::set('component_list',$component_list);
             // 표시
-            $this->setTemplateFile('components');
+            $this->setTemplateFile('site_addition_config');
         }
 
         /**

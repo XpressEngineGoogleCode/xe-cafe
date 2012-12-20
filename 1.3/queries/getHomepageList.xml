@@ -14,6 +14,10 @@
     <conditions>
         <condition operation="equal" column="sites.site_srl" default="homepages.site_srl" filter="number" notnull="notnull" />
         <condition operation="equal" column="modules.module_srl" default="sites.index_module_srl" pipe="and" />
+		<group pipe="and">
+			<condition operation="like" column="homepages.title" var="s_title" />
+			<condition operation="like" column="sites.domain" var="s_domain" pipe="or" />
+		</group>
     </conditions>
     <navigation>
         <index var="sort_index" default="homepages.list_order" order="asc" />

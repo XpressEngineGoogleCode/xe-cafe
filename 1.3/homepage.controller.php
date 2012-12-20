@@ -5,7 +5,8 @@
      * @brief  homepage 모듈의 controller class
      **/
 
-    class homepageController extends homepage {
+class homepageController extends homepage 
+{
 
         var $site_module_info = null;
         var $site_srl = null;
@@ -327,23 +328,48 @@
             if(!$output->toBool()) return $output;
         }
 
-        function procHomepageInsertGroup() {
-            $args->group_srl = Context::get('group_srl');
-            $args->title = Context::get('title');
-            $args->is_default = Context::get('is_default');
+	function procHomepageInsertGroup() 
+	{
+		$vars = Context::getRequestVars();
+		if(is_array($vars->group_titles))
+		{
+			foreach($vars->group_titles AS $key=>$value)
+			{
+				if(!$value)
+				{
+					return new Object(-1,'msg_insert_group_name');
+				}
+			}
+		}
 
-            if($args->is_default!='Y') $args->is_default = 'N';
-            $args->description = Context::get('description');
-            $args->site_srl = $this->site_srl;
+		$oMemberModel = &getModel('member');
+		$oModuleController = &getController('module');
 
-            $oMemberAdminController = &getAdminController('member');
-            if($args->group_srl) {
-                $output = $oMemberAdminController->updateGroup($args);
-            } else {
-                $output = $oMemberAdminController->insertGroup($args);
-            }
-            if(!$output->toBool()) return $output;
-        }
+		// group data save
+		$oMemberAdminController = &getAdminController('member');
+		$group_srls = $vars->group_srls;
+
+		foreach($group_srls as $order=>$group_srl)
+		{
+			unset($update_args);
+			$update_args->site_srl = $this->site_srl;
+			$update_args->title = $vars->group_titles[$order];
+			$update_args->is_default = ($vars->defaultGroup == $group_srl)?'Y':'N';
+			$update_args->description = $vars->descriptions[$order];
+			$update_args->list_order = $order + 1;
+			if(is_numeric($group_srl))
+			{
+				$update_args->group_srl = $group_srl;
+				$output = $oMemberAdminController->updateGroup($update_args);
+			}
+			else
+				$output = $oMemberAdminController->insertGroup($update_args);
+		}
+debugPrint($output);
+		$this->setMessage('success_updated');
+		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'mid', Context::get('mid'), 'act', 'dispHomepageMemberGroupManage');
+		$this->setRedirectUrl($returnUrl);
+	}
 
         function procHomepageDeleteMember() {
             $member_srl = Context::get('member_srl');

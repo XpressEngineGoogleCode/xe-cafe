@@ -233,6 +233,11 @@
 		<value xml:lang="tr"><![CDATA[Temel Düzen]]></value>
 		<value xml:lang="vi"><![CDATA[Giao diện mặc định]]></value>
 	</item>
+	<item name="mark">
+		<value xml:lang="ko"><![CDATA[마크]]></value>
+		<value xml:lang="en"><![CDATA[Mark]]></value>
+		<value xml:lang="tr"><![CDATA[Mark]]></value>
+	</item>
 	<item name="about_default_layout">
 		<value xml:lang="ko"><![CDATA[카페가 생성될때 설정될 기본 레이아웃을 지정할 수 있습니다]]></value>
 		<value xml:lang="en"><![CDATA[You may set the default layout will be applied to newly created cafes]]></value>
@@ -522,10 +527,10 @@
 		<value xml:lang="en"><![CDATA[Configure cafe]]></value>
 		<value xml:lang="tr"><![CDATA[café Seçimi]]></value>
 	</item>
-	<item name="cmd_cafe_hub_setup">
-		<value xml:lang="ko"><![CDATA[카페 허브 설정]]></value>
-		<value xml:lang="en"><![CDATA[Configure cafe hub]]></value>
-		<value xml:lang="tr"><![CDATA[café Hub Seçimi]]></value>
+	<item name="cmd_cafe_hub">
+		<value xml:lang="ko"><![CDATA[카페 허브]]></value>
+		<value xml:lang="en"><![CDATA[Cafe Hub]]></value>
+		<value xml:lang="tr"><![CDATA[café Hub]]></value>
 	</item>
 	<item name="cmd_cafe_basic_setup">
 		<value xml:lang="ko"><![CDATA[카페 기본 설정]]></value>
@@ -876,7 +881,7 @@
 		<value xml:lang="tr"><![CDATA[ Yukarı Menü Ayarları]]></value>
 	</item>
 	<item name="about_config_top_menu">
-		<value xml:lang="ko"><![CDATA[상단메뉴를 선택합니다.]]></value>
+		<value xml:lang="ko"><![CDATA[상단메뉴(top_menu)를 선택합니다. 사용하는 레이아웃에서 상단메뉴 출력을 지원해야 합니다.]]></value>
 		<value xml:lang="en"><![CDATA[Select top menu.]]></value>
 		<value xml:lang="tr"><![CDATA[En yukarıdaki menü seçilir.]]></value>
 	</item>
