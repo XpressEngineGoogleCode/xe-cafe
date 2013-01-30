@@ -7,6 +7,6 @@
 	<ul class="x_nav x_nav-tabs" cond="$module_info">
 		{@$_s = false; }
 		<!--@foreach($lang->cmd_admin_menus as $key => $val)-->
-		<li <!--@if($key==$act || (!$_s && $key=='dispHomepageMidSetup'))-->{@$_s=true}class="x_active"<!--@end-->><a href="{getUrl('','vid',$vid,'act', $key)}" <!--@if($act==$val)-->class="selected"<!--@end-->>{$val}</a></li>
+		<li <!--@if($key==$act || (!$_s && $key=='dispHomepageAdminSiteMidSetup'))-->{@$_s=true}class="x_active"<!--@end-->><a href="{getUrl('','vid',$vid,'act', $key)}" <!--@if($act==$val)-->class="selected"<!--@end-->>{$val}</a></li>
 		<!--@end-->
 	</ul>

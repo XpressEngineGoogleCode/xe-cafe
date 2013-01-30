@@ -441,7 +441,7 @@
 		</item>
 	</item>
 	<item name="cmd_admin_menus" type="array">
-		<item name="dispHomepageManage">
+		<item name="dispHomepageAdminSiteManage">
 			<value xml:lang="ko"><![CDATA[Cafe 설정]]></value>
 			<value xml:lang="en"><![CDATA[Configuration]]></value>
 			<value xml:lang="jp"><![CDATA[Cafe設定]]></value>
@@ -451,7 +451,7 @@
 			<value xml:lang="tr"><![CDATA[Cafe Düzenle]]></value>
 			<value xml:lang="vi"><![CDATA[Cấu hình]]></value>
 		</item>
-		<item name="dispHomepageMemberGroupManage">
+		<item name="dispHomepageAdminSiteMemberGroupManage">
 			<value xml:lang="ko"><![CDATA[회원그룹관리]]></value>
 			<value xml:lang="en"><![CDATA[Manage groups]]></value>
 			<value xml:lang="jp"><![CDATA[会員のグループ管理]]></value>
@@ -461,7 +461,7 @@
 			<value xml:lang="tr"><![CDATA[Üye Grubu Yönetimi]]></value>
 			<value xml:lang="vi"><![CDATA[Quản lý nhóm]]></value>
 		</item>
-		<item name="dispHomepageMemberManage">
+		<item name="dispHomepageAdminSiteMemberManage">
 			<value xml:lang="ko"><![CDATA[회원 목록]]></value>
 			<value xml:lang="en"><![CDATA[Member list]]></value>
 			<value xml:lang="jp"><![CDATA[会員リスト]]></value>
@@ -471,7 +471,7 @@
 			<value xml:lang="tr"><![CDATA[Üye Listesi]]></value>
 			<value xml:lang="vi"><![CDATA[Danh sách thành viên]]></value>
 		</item>
-		<item name="dispHomepageTopMenu">
+		<item name="dispHomepageAdminSiteTopMenu">
 			<value xml:lang="ko"><![CDATA[메뉴 관리]]></value>
 			<value xml:lang="en"><![CDATA[Manage menu]]></value>
 			<value xml:lang="jp"><![CDATA[基本メニュー 管理]]></value>
@@ -481,7 +481,7 @@
 			<value xml:lang="tr"><![CDATA[Menü Yöneticisi]]></value>
 			<value xml:lang="vi"><![CDATA[Quản lý Menu]]></value>
 		</item>
-		<item name="dispHomepageComponent">
+		<item name="dispHomepageAdminSiteComponent">
 			<value xml:lang="ko"><![CDATA[기능 설정]]></value>
 			<value xml:lang="en"><![CDATA[Setting Skill]]></value>
 			<value xml:lang="jp"><![CDATA[機能設定]]></value>
@@ -491,7 +491,7 @@
 			<value xml:lang="tr"><![CDATA[Fonksiyon Düzenle]]></value>
 			<value xml:lang="vi"><![CDATA[Thiết lập Thành phần]]></value>
 		</item>
-		<item name="dispHomepageCounter">
+		<item name="dispHomepageAdminSiteCounter">
 			<value xml:lang="ko"><![CDATA[접속 통계]]></value>
 			<value xml:lang="en"><![CDATA[connecting status]]></value>
 			<value xml:lang="jp"><![CDATA[アクセス集計]]></value>
@@ -501,7 +501,7 @@
 			<value xml:lang="tr"><![CDATA[Bağlantı İstatistikleri]]></value>
 			<value xml:lang="vi"><![CDATA[Trạng thái kết nối]]></value>
 		</item>
-		<item name="dispHomepageMidSetup">
+		<item name="dispHomepageAdminSiteMidSetup">
 			<value xml:lang="ko"><![CDATA[모듈 세부 설정]]></value>
 			<value xml:lang="en"><![CDATA[Module configuration]]></value>
 			<value xml:lang="jp"><![CDATA[モジュール詳細設定]]></value>
@@ -618,7 +618,7 @@
 		<value xml:lang="vi"><![CDATA[Bạn có thể thiếp đặt ngôn ngữ mặc định.]]></value>
 	</item>
 	<item name="about_cafe_act" type="array">
-		<item name="dispHomepageManage">
+		<item name="dispHomepageAdminSiteManage">
 			<value xml:lang="ko"><![CDATA[Cafe의 모양을 꾸밀 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can decorate cafe's layout here.]]></value>
 			<value xml:lang="jp"><![CDATA[Cafeのレイアウトを変更します。]]></value>
@@ -627,7 +627,7 @@
 			<value xml:lang="tr"><![CDATA[Cafenin Tipini Dekore Edebilirsiniz]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể trình bày giao diện của Cafe tại đây.]]></value>
 		</item>
-		<item name="dispHomepageMemberGroupManage">
+		<item name="dispHomepageAdminSiteMemberGroupManage">
 			<value xml:lang="ko"><![CDATA[Cafe 내에서 사용되는 그룹 관리를 할 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can manage groups used in this cafe.]]></value>
 			<value xml:lang="jp"><![CDATA[Cafe内のグループを管理します。]]></value>
@@ -636,7 +636,7 @@
 			<value xml:lang="tr"><![CDATA[Cafe içinde kullanılan grup yönetimi yapabilirsiniz]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể quản lý nhóm sử dụng trong Cafe này.]]></value>
 		</item>
-		<item name="dispHomepageMemberManage">
+		<item name="dispHomepageAdminSiteMemberManage">
 			<value xml:lang="ko"><![CDATA[Cafe에 등록된 회원들을 보거나 관리할 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can list up members registered and manage them.]]></value>
 			<value xml:lang="jp"><![CDATA[Cafeに登録されている会員を管理します。]]></value>
@@ -645,7 +645,7 @@
 			<value xml:lang="tr"><![CDATA[Cafeye kayıt yaptırmış üyeleri görebilir vey a yönetebilirsiniz]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể liệt kê và quản lý những thành viên đã đăng ký.]]></value>
 		</item>
-		<item name="dispHomepageTopMenu">
+		<item name="dispHomepageAdminSiteTopMenu">
 			<value xml:lang="ko"><![CDATA[Cafe의 상단이나 좌측등에 나타나는 일반적인 메뉴를 수정하거나 추가할 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can manage the default menus]]></value>
 			<value xml:lang="jp"><![CDATA[Cafeのヘッダー（header、上段）や左側などのメニューを管理します。]]></value>
@@ -654,7 +654,7 @@
 			<value xml:lang="tr"><![CDATA[Cafenin en üstünde ortaya çıkan basit menüyü istediğiniz gibi düzeltebilir veya ekleme/çıkarma yapabilirsiniz.]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể quản lý những Menu mặc định.]]></value>
 		</item>
-		<item name="dispHomepageComponent">
+		<item name="dispHomepageAdminSiteComponent">
 			<value xml:lang="ko"><![CDATA[에디터 컴포넌트/ 애드온을 활성화 하거나 설정을 변경할 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can enable editor components / addons and configure them.]]></value>
 			<value xml:lang="jp"><![CDATA[エディターのコンポーネント/アドオンをオンにしたら、設定を変更します。]]></value>
@@ -663,7 +663,7 @@
 			<value xml:lang="tr"><![CDATA[Editör Bileşenleri/ Eklentiyi aktif hale getirebilir veya yaptığınız bir önceki seçimi değiştirebilirsiniz.]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể mở soạn thảo thành phần / Addons và cấu hình chúng.]]></value>
 		</item>
-		<item name="dispHomepageCounter">
+		<item name="dispHomepageAdminSiteCounter">
 			<value xml:lang="ko"><![CDATA[Cafe의 접속 현황을 볼 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can see the connecting status of Cafe]]></value>
 			<value xml:lang="jp"><![CDATA[Cafeへのアクセス状況を確認できます。]]></value>
@@ -672,7 +672,7 @@
 			<value xml:lang="tr"><![CDATA[Cafeye erişim ile ilgili güncel bilgileri kontrol edebilirsiniz]]></value>
 			<value xml:lang="vi"><![CDATA[Bạn có thể thấy được trạng thái kết nối của Cafe.]]></value>
 		</item>
-		<item name="dispHomepageMidSetup">
+		<item name="dispHomepageAdminSiteMidSetup">
 			<value xml:lang="ko"><![CDATA[Cafe에서 사용하는 게시판, 페이지등의 모듈 세부 설정을 할 수 있습니다]]></value>
 			<value xml:lang="en"><![CDATA[You can configure modules, such as pages and boards, used in the cafe.]]></value>
 			<value xml:lang="jp"><![CDATA[Cafeの掲示板、ページなどのモジュールを管理します。]]></value>
@@ -791,14 +791,14 @@
 		<value xml:lang="vi"><![CDATA[Chú ý! Nếu xóa Cafe, tất cả những Module gồm Board, trang, bài viết và những địa chỉ tạo ra từ Cafe đó cũng sẽ bị xóa.]]></value>
 	</item>
 	<item name="about_cafe_admin">
-		<value xml:lang="ko"><![CDATA[를 입력후 추가 버튼을 누른뒤 저장하세요. 카페 관리자를 등록할 수 있습니다.<br/>Cafe 관리자는 http://주소/?act=dispHomepageManage 로 관리자 페이지로 접속할 수 있으며 존재하지 않는 사용자는 관리자로 등록되지 않습니다]]></value>
-		<value xml:lang="en"><![CDATA[You can set administrators of the cafe. <br />The administrators can access the administration page via http://address/?act=dispHomepageManage. Only existing IDs can be registered as administrator]]></value>
-		<value xml:lang="jp"><![CDATA[Cafe管理者の設定が出来ます。<br/>Cafe管理者は「http://ドメイン/?act=dispHomepageManage」にて管理者ページにアクセスが出来ます。<br />存在しない会員は管理者として登録出来ません。]]></value>
-		<value xml:lang="zh-CN"><![CDATA[可以指定站点管理员。<br/>管理员登录口为http://域名/?act=dispHomepageManage。管理员只能在已有的用户中指定。]]></value>
-		<value xml:lang="zh-TW"><![CDATA[可以建立網站管理員。<br/>管理員登入網址是 http://域名/?act=dispHomepageManage。只能在現有的會員中指定管理員。]]></value>
-		<value xml:lang="es"><![CDATA[Cafe Manager se puede configurar. <br/> Cafe Manager dirección es http:// /? = Ley dispHomepageManage el administrador puede conectarse a una página que no existe, el usuario no está registrado como administrador]]></value>
-		<value xml:lang="tr"><![CDATA[kişisini seçtikten sonra ekle düğmesine basıp kayıy ediyoruz. Café yöneticilerini ekleyebilirsiniz.<br/>Cafe yöneticisi, http://adres/?act=dispHomepageManage adlı adres üzerinden yönetici sayfasına giriş yapabiliyor olup, kayıtlı olmayan kullanıcılar, direkt olarak yönetici olamazlar.]]></value>
-		<value xml:lang="vi"><![CDATA[Bạn có thể đặt Administrator của Cafe. <br />Administrator của Cafe có thể truy cập trang quản lý qua địa chỉ <b>http://address/?act=dispHomepageManage</b>. Chỉ cho phép những ID đã được đặt là Administrator.]]></value>
+		<value xml:lang="ko"><![CDATA[를 입력후 추가 버튼을 누른뒤 저장하세요. 카페 관리자를 등록할 수 있습니다.<br/>Cafe 관리자는 http://주소/?act=dispHomepageAdminSiteManage 로 관리자 페이지로 접속할 수 있으며 존재하지 않는 사용자는 관리자로 등록되지 않습니다]]></value>
+		<value xml:lang="en"><![CDATA[You can set administrators of the cafe. <br />The administrators can access the administration page via http://address/?act=dispHomepageAdminSiteManage. Only existing IDs can be registered as administrator]]></value>
+		<value xml:lang="jp"><![CDATA[Cafe管理者の設定が出来ます。<br/>Cafe管理者は「http://ドメイン/?act=dispHomepageAdminSiteManage」にて管理者ページにアクセスが出来ます。<br />存在しない会員は管理者として登録出来ません。]]></value>
+		<value xml:lang="zh-CN"><![CDATA[可以指定站点管理员。<br/>管理员登录口为http://域名/?act=dispHomepageAdminSiteManage。管理员只能在已有的用户中指定。]]></value>
+		<value xml:lang="zh-TW"><![CDATA[可以建立網站管理員。<br/>管理員登入網址是 http://域名/?act=dispHomepageAdminSiteManage。只能在現有的會員中指定管理員。]]></value>
+		<value xml:lang="es"><![CDATA[Cafe Manager se puede configurar. <br/> Cafe Manager dirección es http:// /? = Ley dispHomepageAdminSiteManage el administrador puede conectarse a una página que no existe, el usuario no está registrado como administrador]]></value>
+		<value xml:lang="tr"><![CDATA[kişisini seçtikten sonra ekle düğmesine basıp kayıy ediyoruz. Café yöneticilerini ekleyebilirsiniz.<br/>Cafe yöneticisi, http://adres/?act=dispHomepageAdminSiteManage adlı adres üzerinden yönetici sayfasına giriş yapabiliyor olup, kayıtlı olmayan kullanıcılar, direkt olarak yönetici olamazlar.]]></value>
+		<value xml:lang="vi"><![CDATA[Bạn có thể đặt Administrator của Cafe. <br />Administrator của Cafe có thể truy cập trang quản lý qua địa chỉ <b>http://address/?act=dispHomepageAdminSiteManage</b>. Chỉ cho phép những ID đã được đặt là Administrator.]]></value>
 	</item>
 	<item name="confirm_change_layout">
 		<value xml:lang="ko"><![CDATA[레이아웃을 변경할 경우 레이아웃 정보들 중 일부가 사라질 수가 있습니다. 변경하시겠습니까?]]></value>
