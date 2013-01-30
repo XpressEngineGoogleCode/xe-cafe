@@ -1,39 +1,51 @@
+<!--#include("_header.html")-->
 <!--%import("./filter/insert_menu_item.xml")-->
 <!--%import("./filter/delete_menu_item.xml")-->
-<load target="./css/cafe_admin.css" />
-<!--#include("_header.html")-->
 
 <!--// tree javascript plugin load -->
 <!--%load_js_plugin("ui.tree")-->
+
 <!--%import("./js/homepage_tree.js",optimized=false)-->
+<load target="./css/cafe_admin.css" />
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="x_alert x_alert-{$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
 <h4 class="xeAdmin">{$lang->cmd_admin_menus[$act]}</h4>
-<span style="float:right">
-	<button class="x_btn" onclick="doReloadTreeMenu('{$menu_info->menu_srl}');return false;">{$lang->cmd_remake_cache}</button>
-</span>
 <p class="summary">{$lang->about_cafe_act[$act]}</p>
+
+<form method="post" action="./" id="menu_form">
+<div id="menu">
+	<input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
+	<ul class="simpleTree">
+		<li class="root" id='tree_0'><span>{$lang->category}</span></li>
+	</ul>
+</div>
+</form>
+<div class="btnArea">
+	<button type="button" onclick="doReloadTreeMenu('{$menu_info->menu_srl}')" class="x_btn">{$lang->cmd_remake_cache}</button>
+</div>
 
 <form method="post" action="./" id="menu_item_form">
     <input type="hidden" name="menu_item_srl" value="" />
 </form>
 
-<form method="post" action="./" id="menu_form">
-    <input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
-    <div id="menu">
-        <ul class="simpleTree">
-            <li class="root" id='tree_0'><span>{$lang->menu}</span></li>
-        </ul>
-    </div>
-    <br />
-</form>
-        
-<form id="fo_menu" action="./" method="post" onsubmit="return procFilter(this, insert_menu_item)" class="clear" target="tmp_upload_iframe" enctype="multipart/form-data">
-    <input type="hidden" name="module" value="homepage" />
-    <input type="hidden" name="act" value="procHompageUpdateMenuItem" />
-    <input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
-	<div id="menu_zone_info" class="boxModelController" style="z-index:100;"></div>
-</form>
-
-
+<div class="x_modal x" id="__menu_info" hidden>
+	<form id="fo_menu" action="./" method="post" onsubmit="return procFilter(this, insert_menu_item)" class="x_form x_form-horizontal" style="margin:0" target="tmp_upload_iframe" enctype="multipart/form-data">
+		<input type="hidden" name="module" value="homepage" />
+		<input type="hidden" name="act" value="procHompageUpdateMenuItem" />
+		<input type="hidden" name="menu_srl" value="{$menu_info->menu_srl}" />
+		<div class="x_modal-header">
+			<h3>{$lang->menu}</h3>
+		</div>
+		<div class="x_modal-body" id="menu_zone_info">
+		</div>
+		<div class="x_modal-footer">
+			<button type="button" class="x_btn x_pull-left" data-hide="#__category_info">{$lang->cmd_close}</button>
+			<button type="submit" class="x_btn x_btn-primary x_pull-right">{$lang->cmd_save}</button>
+		</div>
+	</form>
+</div>
 <iframe id='tmp_upload_iframe' name='tmp_upload_iframe' style='display:none;width:1px;height:1px;position:absolute;top:-10px;left:-10px'></iframe>
 
 <script type="text/javascript">

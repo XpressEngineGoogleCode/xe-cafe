@@ -366,7 +366,7 @@ class homepageController extends homepage
 				$output = $oMemberAdminController->insertGroup($update_args);
 		}
 		$this->setMessage('success_updated');
-		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'mid', Context::get('mid'), 'act', 'dispHomepageMemberGroupManage');
+		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'mid', Context::get('mid'), 'act', 'dispHomepageAdminSiteMemberGroupManage');
 		$this->setRedirectUrl($returnUrl);
 	}
 
@@ -486,7 +486,7 @@ class homepageController extends homepage
                 $oHomepageModel = &getModel('homepage');
                 $oMemberController = &getController('member');
                 $homepage_info = $oHomepageModel->getHomepageInfo($site_module_info->site_srl);
-                if($homepage_info->site_srl) $oMemberController->addMemberMenu('dispHomepageManage','cmd_cafe_setup');
+                if($homepage_info->site_srl) $oMemberController->addMemberMenu('dispHomepageAdminSiteManage','cmd_cafe_setup');
             }
             return new Object();
         }

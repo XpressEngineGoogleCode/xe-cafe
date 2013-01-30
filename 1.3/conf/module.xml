@@ -2,25 +2,17 @@
 <module>
     <grants />
     <permissions>
-        <permission action="dispHomepageManage" target="manager" />
-        <permission action="dispHomepageMemberGroupManage" target="manager" />
-        <permission action="dispHomepageMemberManage" target="manager" />
-
-        <permission action="dispHomepageTopMenu" target="manager" />
-        <permission action="dispHomepageBottomMenu" target="manager" />
-        <permission action="dispHomepageMidSetup" target="manager" />
-        <permission action="dispHomepageCounter" target="manager" />
-        <permission action="dispHomepageComponent" target="manager" />
-        <permission action="dispHomepageBoardInfo" target="manager" />
-        <permission action="dispHomepageBoardAddition" target="manager" />
-        <permission action="dispHomepageBoardGrant" target="manager" />
-        <permission action="dispHomepageBoardSkin" target="manager" />
-        <permission action="dispHomepagePageGrant" target="manager" />
-        <permission action="dispHomepageBoardCategoryInfo" target="manager" />
-        <permission action="dispHomepageBoardExtraVars" target="manager" />
+        <permission action="dispHomepageAdminSiteManage" target="manager" />
+        <permission action="dispHomepageAdminSiteMemberGroupManage" target="manager" />
+        <permission action="dispHomepageAdminSiteMemberManage" target="manager" />
+        <permission action="dispHomepageAdminSiteTopMenu" target="manager" />
+        <permission action="dispHomepageAdminSiteComponent" target="manager" />
+        <permission action="dispHomepageAdminSiteCounter" target="manager" />
+        <permission action="dispHomepageAdminSiteMidSetup" target="manager" />
 
         <permission action="dispHomepageCreate" target="member" />
-        <permission action="getHomepageMenuTplInfo" target="manager" />
+        
+		<permission action="getHomepageMenuTplInfo" target="manager" />
 
         <permission action="procHomepageCafeCreation" target="member" />
         <permission action="procHomepageChangeLayout" target="manager" />
@@ -41,25 +33,17 @@
     </permissions>
     <actions>
         <action name="dispHomepageIndex" type="view" standalone="true" index="true" />
+        <action name="dispHomepageManage" type="view" />
         <action name="dispHomepageCreate" type="view" />
         <action name="rss" type="view" />
 
-        <action name="dispHomepageManage" type="view" standalone="true" />
-        <action name="dispHomepageMemberGroupManage" type="view" standalone="true" />
-        <action name="dispHomepageMemberManage" type="view" standalone="true" />
-        <action name="dispHomepageTopMenu" type="view" standalone="true" />
-        <action name="dispHomepageBottomMenu" type="view" standalone="true" />
-        <action name="dispHomepageMidSetup" type="view" standalone="true" />
-        <action name="dispHomepageCounter" type="view" standalone="true" />
-        <action name="dispHomepageComponent" type="view" standalone="true" />
-
-        <action name="dispHomepageBoardInfo" type="view" standalone="true" />
-        <action name="dispHomepageBoardAddition" type="view" standalone="true" />
-        <action name="dispHomepageBoardGrant" type="view" standalone="true" />
-        <action name="dispHomepageBoardSkin" type="view" standalone="true" />
-        <action name="dispHomepagePageGrant" type="view" standalone="true" />
-        <action name="dispHomepageBoardCategoryInfo" type="view" standalone="true" />
-        <action name="dispHomepageBoardExtraVars" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteManage" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteMemberGroupManage" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteMemberManage" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteTopMenu" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteComponent" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteCounter" type="view" standalone="true" />
+        <action name="dispHomepageAdminSiteMidSetup" type="view" standalone="true" />
 
         <action name="getHomepageMenuItem" type="model" standalone="true" />
         <action name="getHomepageMenuTplInfo" type="model" standalone="true" />

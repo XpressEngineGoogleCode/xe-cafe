@@ -1,7 +1,16 @@
 function homepageLoadMenuInfo(url){
-    // clear tree;
-    jQuery('#menu > ul > li > ul').remove();
-    if(jQuery("ul.simpleTree > li > a").size() ==0)jQuery('<a href="#" class="add"><img src="./common/js/plugins/ui.tree/images/iconAdd.gif" /></a>').bind("click",function(e){homepageAddMenu(0,e);}).appendTo("ul.simpleTree > li");
+	var $ = jQuery;
+    
+	// clear tree;
+    $('#menu > ul > li > ul').remove();
+    if($("ul.simpleTree > li > a").size() ==0) {
+		$('<a href="#__menu_info" class="add modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconAdd.gif" /></a>')
+			.bind("click", function(e){
+				homepageAddMenu(0,e);
+			})
+			.appendTo("ul.simpleTree > li")
+			.xeModalWindow();
+	}
 
     //ajax get data and transeform ul il
     jQuery.get(url,function(data){
@@ -15,18 +24,22 @@ function homepageLoadMenuInfo(url){
             var node = jQuery('<li id="tree_'+node_srl+'"><span>'+text+'</span></li>');
 
             // button
-            jQuery('<a href="#" class="add"><img src="./common/js/plugins/ui.tree/images/iconAdd.gif" /></a>').bind("click",function(e){
+            $('<a href="#__menu_info" class="add modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconAdd.gif" /></a>').bind("click",function(e){
                 jQuery("#tree_"+node_srl+" > span").click();
                 homepageAddMenu(node_srl,e);
                 return false;
-            }).appendTo(node);
+            })
+			.appendTo(node)
+			.xeModalWindow();
 
-            jQuery('<a href="#" class="modify"><img src="./common/js/plugins/ui.tree/images/iconModify.gif" /></a>').bind("click",function(e){
+            jQuery('<a href="#__menu_info" class="modify modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconModify.gif" /></a>').bind("click",function(e){
 				jQuery("#tree_"+node_srl+" > span").click();
                 homepageModifyNode(node_srl,e);
                 return false;
 
-            }).appendTo(node);
+            })
+			.appendTo(node)
+			.xeModalWindow();
 
             jQuery('<a href="#" class="delete"><img src="./common/js/plugins/ui.tree/images/iconDel.gif" /></a>').bind("click",function(e){
                 homepageDeleteMenu(node_srl);
@@ -114,18 +127,16 @@ function doReloadTreeMenu(){
     menuFormReset();
 }
 
-function closeTreeMenuInfo(){
-    jQuery('#menu_zone_info').css("display",'none');
-}
-
 function completeInsertMenuItem(data) {
     var xml_file = data['xml_file'];
     if(!xml_file) return;
-    homepageLoadMenuInfo(xml_url);
-    jQuery('#menu_zone_info').css("display",'none');
-    menuFormReset();
+	homepageLoadMenuInfo(xml_url);
+	jQuery('#__menu_info').hide();
+	jQuery('.x_modal-backdrop').hide();
 }
-
+function completeDeleteMenuItem(data) {
+	doReloadTreeMenu();
+}
 
 function homepageAddMenu(node_srl,e) {
     jQuery('#menu_zone_info').html('');
@@ -138,7 +149,7 @@ function homepageAddMenu(node_srl,e) {
             };
 
     jQuery.exec_json('homepage.getHomepageMenuTplInfo', params, function(data){
-        jQuery('#menu_zone_info').html(data.tpl).css('position','absolute').css("left",e.layerX).css("top",e.layerY).css('display','block');
+        jQuery('#menu_zone_info').html(data.tpl);
     });
 }
 
@@ -153,7 +164,7 @@ function homepageModifyNode(node_srl,e){
             };
 
     jQuery.exec_json('homepage.getHomepageMenuTplInfo', params, function(data){
-        jQuery('#menu_zone_info').html(data.tpl).css('position','absolute').css("left",e.layerX).css("top",e.layerY).css('display','block');
+        jQuery('#menu_zone_info').html(data.tpl);
     });
 }
 

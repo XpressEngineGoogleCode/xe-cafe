@@ -248,7 +248,7 @@
                     $lang_args->name = $key;
                     $lang_args->lang_code = $lang_code;
                     $lang_args->value = $val;
-                    executeQuery('module.insertLang', $lang_args);
+                    $output = executeQuery('module.insertLang', $lang_args);
                 }
             }
             $oModuleAdminController->makeCacheDefinedLangCode($info->site_srl);

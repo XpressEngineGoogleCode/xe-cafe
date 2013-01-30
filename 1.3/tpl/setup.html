@@ -56,12 +56,9 @@
             <th scope="row"><div>{$lang->default_layout}</div></th>
             <td colspan="2">
                 <select name="default_layout">
-                    <option value="faceoff" <!--@if($homepage_config->default_layout=='faceoff')-->selected="selected"<!--@end--> >faceoff</option>
-                    <optgroup label="{$lang->downloaded_list}">
                     <!--@foreach($layout_list as $key => $val)-->
                     <option value="{$val->layout}" <!--@if($homepage_config->default_layout== $val->layout)-->selected="selected"<!--@end-->> <!--@if($val->title)-->{$val->title} ({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
                 <!--@end-->
-                    </optgroup>
                 </select>
                 <p>{$lang->about_default_layout}</p>
             </td>
