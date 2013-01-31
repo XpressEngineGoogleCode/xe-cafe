@@ -1,4 +1,3 @@
-
 	<input type="hidden" name="mode" value="{$mode}" />
 	<input type="hidden" name="mtype" value="{$item_info->module_type}" />
 	<input type="hidden" name="module_id" value="{$item_info->module_id}" />
@@ -14,7 +13,6 @@
 			<select name="module_type" id="module_type" onchange="changeMenuType(this)" {$module_type_disabled}>
 				<option value=""></option>
 				<!--@foreach($homepage_config->allow_service as $k => $v)-->
-				<!--option value="{$k}" <!--@if($v<1)-->disabled="disabled"<!--@end-->>{$k}</option-->
 				<option value="{$k}" <!--@if($k == $item_info->module_type)-->selected="selected"<!--@end-->>{$k}</option>
 				<!--@end-->
 				<option value="url" <!--@if($item_info->module_type == 'url')-->selected="selected"<!--@end-->>{$lang->url}</option>
@@ -32,7 +30,7 @@
 	<div class="x_control-group">
 		<label class="x_control-label" for="menu_name">{$lang->menu_name}</label>
 		<div class="x_controls">
-			<input type="text" name="menu_name" id="menu_name" value="{$item_info->name}" class="lang_code" />
+			<input type="text" name="menu_name" id="menu_name" value="{htmlspecialchars($item_info->name)}" class="lang_code" />
 			<p>{$lang->about_langcode}</p>
 		</div>
 	</div>
@@ -93,17 +91,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
-
-(function($){
- $("[name^=menu_name_]").bind("blur",function(e){
-	 if($("[name=ck_"+$(this).attr("name")+"]:checked").size()>0){
-	 $("[name^=ck_menu_name_]:checked").each(function(i){
-		 $("[name="+$(this).attr("name").substring(3)+"]").val(e.target.value);
-		 });
-	 }
-	 });
-	$('input#menu_name').focus();
- })(jQuery);
+	jQuery('.lang_code').xeApplyMultilingualUI();
 </script>
 
 
