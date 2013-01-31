@@ -158,7 +158,6 @@
                 $item_info->url = preg_replace('/^(http|https):\/\//i','',$item_info->url);
             }
             Context::set('item_info', $item_info);
-
             $homepage_config = $this->getConfig($this->site_srl);
             if(count($homepage_config->allow_service)) {
                 foreach($homepage_config->allow_service as $k => $v) {
@@ -175,9 +174,7 @@
 
 			$oModuleController = &getController('module');
 			$oModuleController->replaceDefinedLangCode($tpl);
-
-            $this->add('tpl', str_replace("\n"," ",$tpl));
-		
+			$this->add('tpl',$tpl);
 		}
     }
 

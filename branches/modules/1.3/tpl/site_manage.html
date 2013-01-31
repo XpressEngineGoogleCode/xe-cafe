@@ -13,7 +13,7 @@
 		<h1>{$lang->cafe_info}</h1>
 		<div class="x_control-group">
 			<label class="x_control-label" for="cafe_title">{$lang->cafe_title}</label>
-			<div class="x_controls"><input type="text" name="cafe_title" id="cafe_title" value="{htmlspecialchars($homepage_info->title)}" /></div>
+			<div class="x_controls"><input type="text" name="cafe_title" id="cafe_title" value="{htmlspecialchars($homepage_info->title)}" class="lang_code" /></div>
 		</div>
 		<div class="x_control-group">
 			<label class="x_control-label" for="cafe_description">{$lang->cafe_description}</label>
@@ -149,12 +149,12 @@
 				<label class="x_control-label" for="{$name}">{$var->title}</label>
 				<div class="x_controls">
 					<div cond="$var->type == 'text'">
-						<input type="text" name="{$name}" id="{$name}" class="lang_code" value="<!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end-->" />
+						<input type="text" name="{$name}" id="_layout_{$name}" class="lang_code" value="{htmlspecialchars($var->value)}" />
 					</div>
 
 					<div cond="$var->type == 'textarea'">
 						{@$use_multilang_textarea = true}
-						<textarea name="{$name}" rows="4" cols="42" class="lang_code"><!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end--></textarea>
+						<textarea name="{$name}" rows="4" cols="42" id="_layout_{$name}" class="lang_code">{htmlspecialchars($var->value)}</textarea>
 					</div>
 
 					<block cond="$var->type == 'image'">

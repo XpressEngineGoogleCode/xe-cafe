@@ -403,7 +403,7 @@
             $args->is_default = 'N';
             $args->layout_srl = $layout_srl;
             $args->mlayout_srl = $mlayout_srl;
-            $args->skin = 'xe_board';
+            $args->skin = 'default';
 
             $oModuleController = &getController('module');
             $output = $oModuleController->insertModule($args);
