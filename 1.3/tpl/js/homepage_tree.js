@@ -13,27 +13,27 @@ function homepageLoadMenuInfo(url){
 	}
 
     //ajax get data and transeform ul il
-    jQuery.get(url,function(data){
-        jQuery(data).find("node").each(function(i){
-            var text = jQuery(this).attr("text");
-            var node_srl = jQuery(this).attr("node_srl");
-            var parent_srl = jQuery(this).attr("parent_srl");
-            var url = jQuery(this).attr("url");
+    $.get(url,function(data){
+        $(data).find("node").each(function(i){
+            var text = $(this).attr("text");
+            var node_srl = $(this).attr("node_srl");
+            var parent_srl = $(this).attr("parent_srl");
+            var url = $(this).attr("url");
 
             // node
-            var node = jQuery('<li id="tree_'+node_srl+'"><span>'+text+'</span></li>');
+            var node = $('<li id="tree_'+node_srl+'"><span>'+text+'</span></li>');
 
             // button
             $('<a href="#__menu_info" class="add modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconAdd.gif" /></a>').bind("click",function(e){
-                jQuery("#tree_"+node_srl+" > span").click();
+                $("#tree_"+node_srl+" > span").click();
                 homepageAddMenu(node_srl,e);
                 return false;
             })
 			.appendTo(node)
 			.xeModalWindow();
 
-            jQuery('<a href="#__menu_info" class="modify modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconModify.gif" /></a>').bind("click",function(e){
-				jQuery("#tree_"+node_srl+" > span").click();
+            $('<a href="#__menu_info" class="modify modalAnchor"><img src="./common/js/plugins/ui.tree/images/iconModify.gif" /></a>').bind("click",function(e){
+				$("#tree_"+node_srl+" > span").click();
                 homepageModifyNode(node_srl,e);
                 return false;
 
@@ -41,52 +41,52 @@ function homepageLoadMenuInfo(url){
 			.appendTo(node)
 			.xeModalWindow();
 
-            jQuery('<a href="#" class="delete"><img src="./common/js/plugins/ui.tree/images/iconDel.gif" /></a>').bind("click",function(e){
+            $('<a href="#" class="delete"><img src="./common/js/plugins/ui.tree/images/iconDel.gif" /></a>').bind("click",function(e){
                 homepageDeleteMenu(node_srl);
                 return false;
             }).appendTo(node);
 
             // insert parent child
             if(parent_srl>0){
-                if(jQuery('#tree_'+parent_srl+'>ul').length==0) jQuery('#tree_'+parent_srl).append(jQuery('<ul>'));
-                jQuery('#tree_'+parent_srl+'> ul').append(node);
+                if($('#tree_'+parent_srl+'>ul').length==0) $('#tree_'+parent_srl).append($('<ul>'));
+                $('#tree_'+parent_srl+'> ul').append(node);
             }else{
-                if(jQuery('#menu ul.simpleTree > li > ul').length==0) jQuery("<ul>").appendTo('#menu ul.simpleTree > li');
-                jQuery('#menu ul.simpleTree > li > ul').append(node);
+                if($('#menu ul.simpleTree > li > ul').length==0) $("<ul>").appendTo('#menu ul.simpleTree > li');
+                $('#menu ul.simpleTree > li > ul').append(node);
             }
 
         });
 
         //button show hide
-        jQuery("#menu li").each(function(){
-            if(jQuery(this).parents('ul').size() > max_menu_depth) jQuery("a.add",this).hide();
-            if(jQuery(">ul",this).size()>0) jQuery(">a.delete",this).hide();
+        $("#menu li").each(function(){
+            if($(this).parents('ul').size() > max_menu_depth) $("a.add",this).hide();
+            if($(">ul",this).size()>0) $(">a.delete",this).hide();
         });
 
 
         // draw tree
-        simpleTreeCollection = jQuery('.simpleTree').simpleTree({
+        simpleTreeCollection = $('.simpleTree').simpleTree({
             autoclose: false,
             afterClick:function(node){
-                //alert("text-"+jQuery('span:first',node).text());
+                //alert("text-"+$('span:first',node).text());
             },
             afterDblClick:function(node){
-                //alert("text-"+jQuery('span:first',node).text());
+                //alert("text-"+$('span:first',node).text());
             },
             afterMove:function(destination, source, pos){
-                jQuery('#menuItem').css("display",'none');
+                $('#menuItem').css("display",'none');
                 if(destination.size() == 0){
                     homepageLoadMenuInfo(xml_url);
                     return;
                 }
-                var menu_srl = jQuery("#fo_menu input[name=menu_srl]").val();
+                var menu_srl = $("#fo_menu input[name=menu_srl]").val();
                 var parent_srl = destination.attr('id').replace(/.*_/g,'');
                 var target_srl = source.attr('id').replace(/.*_/g,'');
-                var brothers = jQuery('#'+destination.attr('id')+' > ul > li:not([class^=line])').length;
+                var brothers = $('#'+destination.attr('id')+' > ul > li:not([class^=line])').length;
                 var mode = brothers >1 ? 'move':'insert';
                 var source_srl = pos == 0 ? 0: source.prevAll("li:not(.line)").get(0).id.replace(/.*_/g,'');
 
-                jQuery.exec_json("homepage.procHomepageMenuItemMove",{ "menu_srl":menu_srl,"parent_srl":parent_srl,"target_srl":target_srl,"source_srl":source_srl,"mode":mode},
+                $.exec_json("homepage.procHomepageMenuItemMove",{ "menu_srl":menu_srl,"parent_srl":parent_srl,"target_srl":target_srl,"source_srl":source_srl,"mode":mode},
                 function(data){
                     if(data.error>0){
                         homepageLoadMenuInfo(xml_url);
@@ -96,12 +96,12 @@ function homepageLoadMenuInfo(url){
 
             // i want you !! made by sol
             beforeMovedToLine : function(destination, source, pos){
-                return (jQuery(destination).parents('ul').size() + jQuery('ul',source).size() <= max_menu_depth);
+                return ($(destination).parents('ul').size() + $('ul',source).size() <= max_menu_depth);
             },
 
             // i want you !! made by sol
             beforeMovedToFolder : function(destination, source, pos){
-                return (jQuery(destination).parents('ul').size() + jQuery('ul',source).size() <= max_menu_depth-1);
+                return ($(destination).parents('ul').size() + $('ul',source).size() <= max_menu_depth-1);
             },
             afterAjax:function()
             {
@@ -124,7 +124,6 @@ function doReloadTreeMenu(){
             }
     );
     jQuery('#menuItem').css("display",'none');
-    menuFormReset();
 }
 
 function completeInsertMenuItem(data) {
