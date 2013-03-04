@@ -220,7 +220,7 @@
 
 			foreach($supported_lang as $lang_prefix => $lang_text)
 			{
-				Context::setlangtype($lang_prefix);
+				Context::setLangType($lang_prefix);
 				Context::loadLang(_XE_PATH_.'modules/homepage/lang/');
 				$default_menus = Context::getLang('default_menus');
 
