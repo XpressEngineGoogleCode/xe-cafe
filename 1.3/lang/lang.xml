@@ -354,15 +354,6 @@
 			<value xml:lang="tr"><![CDATA[Duyurular]]></value>
 			<value xml:lang="vi"><![CDATA[Thông báo]]></value>
 		</item>
-		<item name="levelup">
-			<value xml:lang="ko"><![CDATA[등업신청]]></value>
-			<value xml:lang="en"><![CDATA[Request rating up]]></value>
-			<value xml:lang="jp"><![CDATA[レベルアップ]]></value>
-			<value xml:lang="zh-CN"><![CDATA[级别审批]]></value>
-			<value xml:lang="zh-TW"><![CDATA[等級審核]]></value>
-			<value xml:lang="es"><![CDATA[Deungeopsincheong]]></value>
-			<value xml:lang="tr"><![CDATA[Seviye Atla]]></value>
-		</item>
 		<item name="freeboard">
 			<value xml:lang="ko"><![CDATA[자유게시판]]></value>
 			<value xml:lang="en"><![CDATA[Off-topics]]></value>
