@@ -264,7 +264,6 @@
             $info->module->home_srl = getNextSequence();
             $info->module->home_mid = $this->makePage($info->site_srl, $info->module->home_srl, 'home', '$user_lang->home', $info->layout_srl, $this->getHomeContent(),$info->mlayout_srl);
             $info->module->notice_mid = $this->makeBoard($info->site_srl, 'notice', '$user_lang->notice', $info->layout_srl,$info->mlayout_srl);
-            $info->module->levelup_mid = $this->makeBoard($info->site_srl, 'levelup', '$user_lang->levelup', $info->layout_srl,$info->mlayout_srl);
             $info->module->freeboard_mid = $this->makeBoard($info->site_srl, 'freeboard', '$user_lang->freeboard', $info->layout_srl,$info->mlayout_srl);
 
             // 메뉴 생성
@@ -273,7 +272,6 @@
             // menu 설정
             $this->insertMenuItem($info->menu_srl, 0, $info->module->home_mid, '$user_lang->home');
             $this->insertMenuItem($info->menu_srl, 0, $info->module->notice_mid, '$user_lang->notice');
-            $this->insertMenuItem($info->menu_srl, 0, $info->module->levelup_mid, '$user_lang->levelup');
             $this->insertMenuItem($info->menu_srl, 0, $info->module->freeboard_mid, '$user_lang->freeboard');
 
             // layout의 설정
