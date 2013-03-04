@@ -17,8 +17,8 @@
     <!--@foreach($mid_list as $no => $val)-->
     <tr class="row{$cycle_idx}">
         <td class="nowrap">{Context::getLang($val->module)}</td>
-        <td class="nowrap"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}" onclick="window.open(this.href); return false;">{htmlspecialchars($val->mid)}</a></td>
-        <td class="wide"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}" onclick="window.open(this.href); return false;">{$val->browser_title}</a></td>
+        <td class="nowrap"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}">{htmlspecialchars($val->mid)}</a></td>
+        <td class="wide"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}">{$val->browser_title}</a></td>
         <td class="nowrap">{zdate($val->regdate,"Y-m-d")}</td>
         <td><a href="{getUrl('act',$val->setup_index_act,'mid',$val->mid)}" onclick="winopen(this.href,'cafeXEMidSetup');return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></td>
     </tr>

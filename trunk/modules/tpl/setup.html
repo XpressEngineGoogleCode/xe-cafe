@@ -14,7 +14,7 @@
         <tr>
             <th scope="row"><div>{$lang->cafe_title}</div></th>
             <td colspan="2">
-                <input type="text" name="title" value="{htmlspecialchars($homepage_info->title)}" class="inputTypeText w200"/> <a href="{getFullSiteUrl($homepage_info->domain,'', 'act','dispHomepageManage')}" onclick="window.open(this.href); return false;" class="button"><span>{$lang->cmd_management}</span></a>
+                <input type="text" name="title" value="{htmlspecialchars($homepage_info->title)}" class="inputTypeText w200"/> <a href="{getFullSiteUrl($homepage_info->domain,'', 'act','dispHomepageManage')}" class="button"><span>{$lang->cmd_management}</span></a>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
                 </div>
                 <div id="accessVid" style="display:<!--@if(isSiteID($homepage_info->domain))-->block<!--@else-->none<!--@end-->; margin-top:10px;">
                     <input type="text" name="vid" value="<!--@if(isSiteID($homepage_info->domain))-->{$homepage_info->domain}<!--@end-->" class="inputTypeText w200" />
-                    <a href="{getFullSiteUrl($homepage_info->domain, '')}" onclick="window.open(this.href); return false;" class="button"><span>{$lang->cmd_move}</span></a>
+                    <a href="{getFullSiteUrl($homepage_info->domain, '')}" class="button"><span>{$lang->cmd_move}</span></a>
                     <p>{$lang->about_vid}</p>
                 </div>
             </td>
