@@ -1,36 +1,32 @@
-<!--#include("./header.html")-->
-
-<form action="./" method="post" onsubmit="return procFilter(this, insert_homepage)" id="cafeFo">
-	<div class="table">
-    <table cellspacing="0" class="crossTable">
-    <tbody>
-        <tr>
-            <th scope="row"><div>{$lang->cafe_title}</div></th>
-            <td class="text">
-                <input type="text" name="cafe_title" value="" class="inputTypeText w200" />
-                <p>{$lang->about_cafe_title}</p>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><div>{$lang->access_type}</div></th>
-            <td class="text">
-                <label for="chkDomain"><input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" checked="checked" /> {$lang->access_domain}</label>
-                <label for="chkVid"><input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" /> {$lang->access_vid}</label>
-                <div id="accessDomain" style="display:block; margin-top:10px;">
-                    http://<input type="text" name="domain" value="" class="inputTypeText w200" />
-                    <p>{$lang->about_domain}</p>
-                </div>
-                <div id="accessVid" style="display:none; margin-top:10px;">
-                    <input type="text" name="vid" value="" class="inputTypeText w200" />
-                    <p>{$lang->about_vid}</p>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-    </table>
+<include target="./header.html" />
+<form action="./" method="post" onsubmit="return procFilter(this, insert_homepage)" id="cafeFo" class="x_form-horizontal">
+	<div class="x_control-group">
+		<label for="cafe_title" class="x_control-label">{$lang->cafe_title}</label>
+		<div class="x_controls">
+			<input type="text" name="cafe_title" id="cafe_title" value="" />
+			<a href="#about_cafe_title" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+			<p class="x_help-block" id="about_cafe_title" hidden>{$lang->about_cafe_title}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label">{$lang->access_type}</label>
+		<div class="x_controls">
+			<label for="chkDomain" class="x_inline"><input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" checked="checked" /> {$lang->access_domain}</label>
+			<label for="chkVid" class="x_inline"><input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" /> {$lang->access_vid}</label>
+			<div id="accessDomain">
+				http://<input type="url" name="domain" value="" />
+				<a href="#about_domain" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+				<p class="x_help-block" id="about_domain" hidden>{$lang->about_domain}</p>
+			</div>
+			<div id="accessVid" hidden>
+				<input type="text" name="vid" value="" />
+				<a href="#about_vid" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+				<p class="x_help-block" id="about_vid" hidden>{$lang->about_vid}</p>
+			</div>
+		</div>
 	</div>
     <div class="btnArea">
-		<span class="btn"><input type="submit" value="{$lang->cmd_cafe_registration}" /></span>
+		<input type="submit" value="{$lang->cmd_cafe_registration}" class="x_btn x_btn-primary" />
 	</div>
 </form>
 

@@ -1,17 +1,16 @@
-<!--%import("./js/homepage.js",optimized=false)-->
-<!--%import("./filter/insert_config.xml")-->
-
-<h3 class="xeAdmin"><span class="gray">{$lang->cafe_management}</span></h3>
-
-<div class="infoText">{nl2br($lang->about_cafe)}</div>
-
-<div class="header4">
-
-    <ul class="localNavigation">
-        <li <!--@if($act=='dispHomepageAdminContent')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminContent','module_srl','')}">{$lang->cafe_list}</a></li>
-        <li <!--@if($act=='dispHomepageAdminInsert')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminInsert','module_srl')}">{$lang->cmd_make_cafe}</a></li>
-        <li <!--@if($act=='dispHomepageAdminManage')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminManage','module_srl')}">{$lang->cmd_cafe_hub_setup}</a></li>
-        <li <!--@if($act=='dispHomepageAdminSkinSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispHomepageAdminSkinSetup','module_srl')}">{$lang->cafe_main_skin}</a></li>
-    </ul>
+<load target="./js/homepage.js" />
+<load target="./filter/insert_config.xml" />
+<div class="x_page-header">
+	<h1>
+		{$lang->cafe_management}
+		<span class="path" cond="$homepage_info->title">&gt; <a href="{getFullSiteUrl($homepage_info->domain,'')}" target="_blank"|cond="$module=='admin'">{$homepage_info->title}</a></span>
+		<a href="#about_cafe" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+	</h1>
 </div>
-
+<p class="x_alert x_alert-info" id="about_cafe" hidden>{nl2br($lang->about_cafe)}</p>
+<ul class="x_nav x_nav-tabs" cond="$act!='dispHomepageAdminDelete'">
+	<li class="x_active"|cond="$act=='dispHomepageAdminContent'"><a href="{getUrl('act','dispHomepageAdminContent','module_srl','')}">{$lang->cafe_list}</a></li>
+	<li class="x_active"|cond="$act=='dispHomepageAdminInsert'"><a href="{getUrl('act','dispHomepageAdminInsert','module_srl')}">{$lang->cmd_make_cafe}</a></li>
+	<li class="x_active"|cond="$act=='dispHomepageAdminManage'"><a href="{getUrl('act','dispHomepageAdminManage','module_srl')}">{$lang->cmd_cafe_hub_setup}</a></li>
+	<li class="x_active"|cond="$act=='dispHomepageAdminSkinSetup'"><a href="{getUrl('act','dispHomepageAdminSkinSetup','module_srl')}">{$lang->cafe_main_skin}</a></li>
+</ul>
