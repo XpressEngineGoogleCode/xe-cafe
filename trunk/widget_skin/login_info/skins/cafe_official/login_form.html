@@ -28,12 +28,12 @@
         </dl>
         <p>
             <input type="checkbox" name="keep_signed" id="keep_signed" value="Y" />
-            <label for="keepid">{$lang->keep_signed}</label>
+            <label for="keep_signed">{$lang->keep_signed}</label>
         </p>
         <!--@if($member_config->enable_openid=='Y')-->
         <p><input name="use_open_id" id="use_open_id" type="checkbox" value="Y" onclick="xGetElementById('formLogin').style.display = 'none';xGetElementById('formOpenID').style.display='block';xGetElementById('formOpenID').openid.focus();return false;" class="inputCheck" /><label for="use_open_id">Open ID</label></p>
         <!--@end-->
-        <span><input name="" type="submit" value="{$lang->cmd_login}" class="sign_in"></span>
+        <input name="" type="submit" value="{$lang->cmd_login}" class="sign_in">
         <ul class="help">
             <li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
             <li><a href="{getUrl('act','dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a></li>
