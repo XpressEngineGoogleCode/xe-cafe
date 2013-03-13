@@ -17,7 +17,7 @@
 
 <!--// 로고 영역 이미지 -->
 <!--@if($layout_info->logo_background_image)-->
-<style type="text/css"> #header, .header {background-image:url("{$layout_info->logo_background_image}") !important; } </style>
+<style> #header, .header {background-image:url("{$layout_info->logo_background_image}") !important; } </style>
 <!--@end-->
 
 <div id="xe">
@@ -34,7 +34,7 @@
 						</ul>
 
 						<ul class="menu_r">
-						<li><!--@if($logged_info)--><a href="{getUrl('act','dispMemberLogout')}">Sign&nbsp;Out</a><!--@end--></li>
+						<li><!--@if($logged_info)--><a href="{getUrl('act','dispMemberLogout')}">Sign Out</a><!--@end--></li>
 						<!--@if($logged_info)-->
 							<li id="profile" class="sub"><a href="#">Porfile</a>
 							<img class="zbxe_widget_output" widget="login_info" skin="cafe_site" /></li>
@@ -92,7 +92,7 @@
 						<!--// Site Status -->
 								<!--// Login Info Widget -->
 								<div class="section memberInfo">
-									<img class="zbxe_widget_output" widget="login_info" skin="default" />
+									<img class="zbxe_widget_output" widget="login_info" skin="cafe_site" />
 								</div>
 						</div>
 					<!--@end-->
@@ -215,38 +215,39 @@
     </div>
 </div>
 
-<script type="text/javascript">
-	jQuery(function($){
-		$('#profile').click(function(){
-			if($(this).attr('class')=='sub')
-				$(this).attr('class','sub on');
-			else
-			    $(this).attr('class','sub');
-		});
-		if($('ul#cafe_info_area').show()){
-			$('div.btn_out_site_info').show();
-			$('div.btn_out').hide();
+<script>
+jQuery(function($){
+	$('#profile>a').click(function(){
+		$(this).parent().toggleClass('on');
+		if($('#profile').hasClass('on')){
+			$('.cafe_info').show();
 		}else{
-			$('div.btn_out_site_info').hide();
-			$('div.btn_out').show();
+			$('.cafe_info').hide();
 		}
-
-		$('#cafe_info').click(function(){
-			$(this).attr('class','on');
-			$('#member_info').attr('class','');
-			$('ul#cafe_info_area').show();
-			$('ul#member_info_area').hide();
-			$('div.btn_out_site_info').show();
-			$('div.btn_out').hide();
-		});
-
-		$('#member_info').click(function(){
-			$(this).attr('class','on2');
-			$('#cafe_info').attr('class','');
-			$('ul#member_info_area').show();
-			$('ul#cafe_info_area').hide();
-			$('div.btn_out_site_info').hide();
-			$('div.btn_out').show();
-		});
 	});
+	if($('#cafe_info_area').is(':visible')){
+		$('.btn_out_site_info').show();
+		$('.btn_out').hide();
+	}else{
+		$('.btn_out_site_info').hide();
+		$('.btn_out').show();
+	}
+	$('#cafe_info>a').click(function(){
+		$(this).parent().addClass('on');
+		$('#member_info').removeClass('on');
+		$('#cafe_info_area').show();
+		$('#member_info_area').hide();
+		$('.btn_out_site_info').show();
+		$('.btn_out').hide();
+	});
+
+	$('#member_info>a').click(function(){
+		$(this).parent().addClass('on');
+		$('#cafe_info').removeClass('on');
+		$('#member_info_area').show();
+		$('#cafe_info_area').hide();
+		$('.btn_out_site_info').hide();
+		$('.btn_out').show();
+	});
+});
 </script>

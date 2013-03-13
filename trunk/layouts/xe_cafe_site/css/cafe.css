@@ -160,7 +160,7 @@ a:focus{ text-decoration:underline;}
 .widgetTab li.on a{ color:#3a3a3a; background:url(../img/bu_6.gif) no-repeat 100% 50%; padding-right:10px}
 .widgetTab li.on2 a{ color:#3a3a3a; background:url(../img/bu_6.gif) no-repeat 100% 50%; padding-right:10px}
 /* Menu */
-.cafeMenu{ position:relative; padding:15px; margin:0 0 6px 0; border:1px solid #e2e2e2; background:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; *zoom:1;}
+.cafeMenu{ position:relative; padding:15px; margin:6px 0; border:1px solid #e2e2e2; background:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; *zoom:1;}
 .cafeMenu h2{ position:absolute; left:-1000%; width:1px; height:1px; overflow:hidden; font-size:0; line-height:0;}
 .cafeMenu ul{ margin:0; padding:0; list-style:none;}
 .cafeMenu ul li{ margin:0 0 5px 0; padding:0;}
