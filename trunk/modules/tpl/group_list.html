@@ -1,91 +1,65 @@
-<!--%import("filter/insert_group.xml")-->
-<!--%import("filter/delete_group.xml")-->
-
-<!--#include("_header.html")-->
-
-<h3 class="title">{$lang->cmd_homepage_menus[$act]}</h3>
-<p class="infoText">{$lang->about_homepage_act[$act]}</p>
+<load target="filter/insert_group.xml" />
+<load target="filter/delete_group.xml" />
+<include target="_header.html" />
 
 <form id="fo_group">
-<input type="hidden" name="group_srl" value=""/>
+	<input type="hidden" name="group_srl" value=""/>
 </form>
 
-<table cellspacing="0" class="rowTable">
-<thead>
-    <tr>
-        <th scope="col" class="half_wide"><div>{$lang->group_title}</div></th>
-        <th scope="col" class="half_wide"><div>{$lang->description}</div></th>
-        <th scope="col"><div>{$lang->regdate}</div></th>
-        <th scope="col"><div>{$lang->is_default}</div></th>
-        <th scope="col" colspan="2"><div>&nbsp;</div></th>
-    </tr>
-</thead>
-<tbody>
-    <!--@if(!count($group_list))-->
-    <tr>
-        <td colspan="7">{$lang->msg_group_is_null}</td>
-    </tr>
-    <!--@end-->
-    <!--@foreach($group_list as $group_srl => $group_info)-->
-    <tr class="row{$cycle_idx}">
-        <td class="nowrap">{$group_info->title}</td>
-        <td>{nl2br($group_info->description)}&nbsp;</td>
-        <td class="date center nowrap">{zdate($group_info->regdate,"Y-m-d H:i:s")}</td>
-        <td class="center number"><!--@if($group_info->is_default=='Y')-->Y<!--@else-->&nbsp;<!--@end--></td>
-        <td class="modify"><a href="{getUrl('group_srl',$group_info->group_srl)}">{$lang->cmd_modify}</a></td>
-        <td class="delete">
-            <!--@if($group_info->is_default!='Y' && $group_info->is_admin !='Y')-->
-            <a href="#" onclick="doDeleteGroup({$group_info->group_srl});return false;">{$lang->cmd_delete}</a>
-            <!--@else-->
-            &nbsp;
-            <!--@end-->
-        </td>
-    </tr>
-    <!--@end-->
-</tbody>
+<table class="x_table x_table-striped x_table-hover">
+	<thead>
+		<tr>
+			<th scope="col">{$lang->group_title}</th>
+			<th scope="col">{$lang->description}</th>
+			<th scope="col">{$lang->regdate}</th>
+			<th scope="col">{$lang->is_default}</th>
+			<th scope="col">{$lang->cmd_edit}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr cond="!count($group_list)">
+			<td colspan="5">{$lang->msg_group_is_null}</td>
+		</tr>
+		<tr loop="$group_list => $group_srl,$group_info">
+			<td>{$group_info->title}</td>
+			<td>{nl2br($group_info->description)}&nbsp;</td>
+			<td>{zdate($group_info->regdate,"Y-m-d H:i:s")}</td>
+			<td><!--@if($group_info->is_default=='Y')-->Y<!--@else-->&nbsp;<!--@end--></td>
+			<td>
+				<a href="{getUrl('group_srl',$group_info->group_srl)}" class="x_icon-wrench">{$lang->cmd_modify}</a>
+				<button type="button" cond="$group_info->is_default!='Y' && $group_info->is_admin !='Y'" class="x_icon-remove" onclick="doDeleteGroup({$group_info->group_srl});return false;">{$lang->cmd_delete}</button>
+			</td>
+		</tr>
+	</tbody>
 </table>
 
-<br />
-
-
-<!-- 그룹 추가 -->
-<form action="./" method="get" onsubmit="return procFilter(this, insert_group)">
-<input type="hidden" name="module" value="homepage" />
-<input type="hidden" name="group_srl" value="{$selected_group->group_srl}" />
-<!--@if($selected_group->group_srl && $selected_group->is_default == 'Y')-->
-<input type="hidden" name="is_default" value="Y" />
-<!--@end-->
-	<div class="table">
-    <table cellspacing="0" class="rowTable">
-    <tr>
-        <th scope="row"><div>{$lang->group_title}</div></th>
-        <td class="wide">
-            <input type="text" name="title" value="{htmlspecialchars($selected_group->title)}" class="inputTypeText w400" id="groupTitle"/>
-            <a href="{getUrl('','module','module','act','dispModuleAdminLangcode','target','groupTitle')}" onclick="popopen(this.href);return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_find_langcode}</span></a>
-        </td>
-    </tr>
-    <!--@if(!$selected_group->group_srl || $selected_group->is_default != 'Y')-->
-    <tr class="row2">
-        <th scope="row"><div>{$lang->is_default}</div></th>
-        <td><input type="checkbox" name="is_default" value="Y" class="checkbox" <!--@if($selected_group->is_default=='Y')-->checked="checked"<!--@end--> /> {$lang->about_member_default}</td>
-    </tr>
-    <!--@end-->
-    <tr>
-        <th scope="row"><div>{$lang->description}</div></th>
-        <td><textarea name="description" class="inputTypeTextArea w400">{$selected_group->description}</textarea></td>
-    </tr>
-    </table>
+<form action="./" method="get" onsubmit="return procFilter(this, insert_group)" class="x_form-horizontal x_well">
+	<input type="hidden" name="module" value="homepage" />
+	<input type="hidden" name="group_srl" value="{$selected_group->group_srl}" />
+	<input type="hidden" name="is_default" value="Y" cond="$selected_group->group_srl && $selected_group->is_default == 'Y'" />
+	<div class="x_control-group">
+		<label for="groupTitle" class="x_control-label">{$lang->group_title}</label>
+		<div class="x_controls">
+			<input type="text" name="title" id="groupTitle" value="{htmlspecialchars($selected_group->title)}" class="lang_code" />
+		</div>
+	</div>
+	<div class="x_control-group" cond="!$selected_group->group_srl || $selected_group->is_default != 'Y'">
+		<label for="is_default" class="x_control-label">{$lang->is_default}</label>
+		<div class="x_controls">
+			<label><input type="checkbox" name="is_default" id="is_default" value="Y" checked="checked"|cond="$selected_group->is_default=='Y'" /> {$lang->about_member_default}</label>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label for="description" class="x_control-label">{$lang->description}</label>
+		<div class="x_controls">
+			<textarea name="description" id="description">{$selected_group->description}</textarea>
+		</div>
 	</div>
 	<div class="btnArea">
-        <!--@if($selected_group->group_srl)-->
-        <span class="btn"><input type="submit" value="{$lang->cmd_modify}" accesskey="s" /></span>
-        <span class="btn"><input type="button" value="{$lang->cmd_cancel}" onclick="location.href=current_url.setQuery('group_srl','');return false;"/></span>
-        <!--@else-->
-        <span class="btn"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
-        <!--@end-->
+        <a href="{getUrl('group_srl','')}" cond="$selected_group->group_srl" class="x_btn x_pull-left">{$lang->cmd_cancel}</a>
+        <input type="submit" value="{$lang->cmd_modify}" cond="$selected_group->group_srl" class="x_btn x_btn-inverse" />
+        <input type="submit" value="{$lang->cmd_registration}" cond="!$selected_group->group_srl" class="x_btn x_btn-primary" />
 	</div>
-
-
 </form>
 
-<!--#include("_footer.html")-->
+<include target="_footer.html" />
