@@ -1,6 +1,5 @@
 @charset "utf-8";
-/* NHN > UIT Center > Open UI Technology Team > Jeong Chan Myeong(dece24@nhncorp.com) */
-/* You'd better not fix : 이 파일 수정을 권장 안함 */
+body{margin:0}
 
 /* Skip To Content */
 a.skipToContent{ display:block; position:relative; top:0; clear:both; overflow:hidden; height:0; text-decoration:none;}
