@@ -1,6 +1,6 @@
-<!--#include("_header.html")-->
-<!--%import("filter/insert_group.xml")-->
-<!--%import("filter/delete_group.xml")-->
+<include target="_header.html" />
+<load target="filter/insert_group.xml" />
+<load target="filter/delete_group.xml" />
 <load target="js/member_admin_group.js" usecdn="true" />
 <script>
 	xe.lang.groupDeleteMessage = '{$lang->msg_group_delete}';
@@ -42,9 +42,9 @@
 				</td>
 				<td><input type="text" name="descriptions[]" value="{$group_info->description}" title="{$lang->description}" /></td>
 				<td><input type="radio" name="defaultGroup" value="{$group_info->group_srl}" title="Default" checked="checked"|cond="$group_info->is_default=='Y'" /></td>
-				<td><div class="_deleteTD" style="display:none"|cond="$group_info->is_default == 'Y'"><a href="#{$group_srl}" class="_deleteGroup">{$lang->cmd_delete}</a></div></td>
+				<td><div class="_deleteTD" style="display:none"|cond="$group_info->is_default == 'Y'"><a href="#{$group_srl}" class="_deleteGroup x_icon-remove">{$lang->cmd_delete}</a></div></td>
 			</tr>
-			<tr style="display:none" class="_template">
+			<tr hidden class="_template">
 				<td>
 					<div class="wrap">
 						<button type="button" class="dragBtn">Move to</button>
@@ -54,14 +54,12 @@
 				</td>
 				<td><input type="text" name="descriptions[]" value="" disabled="disabled" /></td>
 				<td><input type="radio" name="defaultGroup" value="" title="Default" disabled="disabled" /></td>
-				<td><div class="_deleteTD"><a href="#new" class="_deleteGroup">{$lang->cmd_delete}</a></div></td>
+				<td class="_deleteTD"><a href="#new" class="_deleteGroup x_icon-remove">{$lang->cmd_delete}</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<p>* {$lang->is_default} : {$lang->about_member_default}</p>
+	<p>* {$lang->is_default}: {$lang->about_member_default}</p>
 	<div class="x_clearfix">
-		<span class="x_pull-right"><input class="x_btn x_btn-primary" type="submit" value="{$lang->cmd_save}" /></span>
+		<input class="x_btn x_btn-primary x_pull-right" type="submit" value="{$lang->cmd_save}" />
 	</div>
 </form>
-
-<!--#include("_footer.html")-->

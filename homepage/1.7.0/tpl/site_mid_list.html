@@ -1,26 +1,22 @@
-<!--#include("_header.html")-->
-<p>{$lang->about_cafe_act[$act]}</p>
+<include target="_header.html" />
 <table class="x_table x_table-striped x_table-hover">
-<thead>
-    <tr>
-        <th scope="col"><div>{$lang->module}</div></th>
-        <th scope="col" class="half_wide"><div>{$lang->mid}</div></th>
-        <th scope="col" class="half_wide"><div>{$lang->browser_title}</div></th>
-        <th scope="col"><div>{$lang->regdate}</div></th>
-        <th scope="col"><div>{$lang->cmd_setup}</div></th>
-    </tr>
-</thead>
-<tbody>
-    <!--@foreach($mid_list as $no => $val)-->
-    <tr>
-        <td class="nowrap">{Context::getLang($val->module)}</td>
-        <td class="nowrap"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}" onclick="window.open(this.href); return false;">{htmlspecialchars($val->mid)}</a></td>
-        <td class="wide"><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}" onclick="window.open(this.href); return false;">{$val->browser_title}</a></td>
-        <td class="nowrap">{zdate($val->regdate,"Y-m-d")}</td>
-        <td><a href="{getUrl('','act',$val->setup_index_act,'mid',$val->mid)}" onclick="winopen(this.href,'cafeXEMidSetup');return false;" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a></td>
-    </tr>
-    <!--@end-->
-</tbody>
+	<caption>{$lang->about_cafe_act[$act]}</caption>
+	<thead>
+		<tr>
+			<th scope="col">{$lang->module}</th>
+			<th scope="col">{$lang->mid}</th>
+			<th scope="col">{$lang->browser_title}</th>
+			<th scope="col">{$lang->regdate}</th>
+			<th scope="col">{$lang->cmd_setup}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr loop="$mid_list => $no,$val">
+			<td>{Context::getLang($val->module)}</td>
+			<td>{htmlspecialchars($val->mid)}</td>
+			<td><a href="{getSiteUrl($site_module_info->domain,'','mid',$val->mid)}">{$val->browser_title}</a></td>
+			<td>{zdate($val->regdate,"Y-m-d")}</td>
+			<td><a href="{getUrl('','act',$val->setup_index_act,'mid',$val->mid)}" class="x_icon-cog">{$lang->cmd_setup}</a></td>
+		</tr>
+	</tbody>
 </table>
-</form>
-<!--#include("_footer.html")-->

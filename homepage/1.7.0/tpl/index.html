@@ -1,36 +1,33 @@
 <include target="header.html" />
-
 <div cond="$XE_VALIDATOR_MESSAGE" class="x_alert x_alert-{$XE_VALIDATOR_MESSAGE_TYPE}">
 	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>
-
 <table class="x_table x_table-striped x_table-hover">
-<caption>Total {number_format($total_count)}, Page {number_format($page)}/{number_format($total_page)}</caption>
-<thead>
-    <tr>
-        <th scope="col" class="nowr">{$lang->no}</th>
-        <th scope="col" class="title">{$lang->title}</th>
-        <th scope="col" class="nowr">{$lang->domain} / Site ID</th>
-        <th scope="col" class="nowr">{$lang->regdate}</th>
-        <th scope="col"></th>
-    </tr>
-</thead>
-<tbody>
-    <!--@foreach($homepage_list as $no => $val)-->
-    <tr class="row{$cycle_idx}">
-        <td>{$no}</td>
-        <td><a href="{getFullSiteUrl($val->domain,'module','','act','dispHomepageManage','site_srl',$val->site_srl)}">{htmlspecialchars($val->cafe_title)}</a></td>
-        <td><a href="{getFullSiteUrl($val->domain)}" onclick="window.open(this.href);return false;">{$val->domain}</a></td>
-        <td>{zdate($val->regdate,"Y-m-d")}</td>
-		<td>
-			<a href="{getUrl('act','dispHomepageAdminSetup','site_srl',$val->site_srl)}" title="{$lang->cmd_setup}">{$lang->cmd_setup}</a>
-			<a href="{getUrl('act','dispHomepageAdminDelete','site_srl',$val->site_srl)}" title="{$lang->cmd_delete}">{$lang->cmd_delete}</a>
-		</td>
-    </tr>
-    <!--@end-->
-</tbody>
+	<caption>
+		<strong>Total {number_format($total_count)}, Page {number_format($page)}/{number_format($total_page)}</strong>
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col">{$lang->no}</th>
+			<th scope="col">{$lang->title}</th>
+			<th scope="col">{$lang->domain} / Site ID</th>
+			<th scope="col">{$lang->regdate}</th>
+			<th scope="col">{$lang->cmd_edit}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr loop="$homepage_list => $no,$val">
+			<td>{$no}</td>
+			<td><a href="{getFullSiteUrl($val->domain,'module','','act','dispHomepageManage','site_srl',$val->site_srl)}">{htmlspecialchars($val->cafe_title)}</a></td>
+			<td><a href="{getFullSiteUrl($val->domain)}" target="_blank">{$val->domain}</a></td>
+			<td>{zdate($val->regdate,"Y-m-d")}</td>
+			<td>
+				<a href="{getUrl('act','dispHomepageAdminSetup','site_srl',$val->site_srl)}" class="x_icon-cog">{$lang->cmd_setup}</a>
+				<a href="{getUrl('act','dispHomepageAdminDelete','site_srl',$val->site_srl)}" class="x_icon-remove">{$lang->cmd_delete}</a>
+			</td>
+		</tr>
+	</tbody>
 </table>
-<!-- 페이지 네비게이션 -->
 <div class="x_clearfix">
 	<form cond="$page_navigation" action="./" class="x_pagination x_pull-left" no-error-return-url="true">
 		{@
