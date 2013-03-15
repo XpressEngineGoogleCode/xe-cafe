@@ -1,18 +1,17 @@
-<!--%import("./js/language_select.js")-->
-<!--@if($colorset == "black" || $colorset == "white")-->
-    <!--%import("./css/widget.css")-->
-<!--@end-->
-
+<load cond="$colorset == 'black' || $colorset == 'white'" target="./widget.css" />
 <div class="widgetContainer<!--@if($colorset=="black")--> black<!--@end-->">
     <div class="widgetLanguage">
-        <p><a href="#" class="cafeXeA language_selector">{$lang_supported[$lang_type]}</a></p>
-        <ul class="langList" style="right: 3px;">
-            <!-- class="" | class="open" -->
-            <!--@foreach($lang_supported as $key => $val)-->
-            <!--@if($key != $lang_type)-->
-            <li><a href="#" onclick="doChangeLangType('{$key}');return false;">{$val}</a></li>
-            <!--@end-->
-            <!--@end-->
+        <a href="#langList" class="language_selector">{$lang_supported[$lang_type]}</a>
+        <ul class="langList" id="langList" hidden>
+            <li loop="$lang_supported => $key,$val" cond="$key != $lang_type"><a href="{getUrl('l', $key)}">{$val}</a></li>
         </ul>
     </div>
 </div>
+<script>
+jQuery(function($){
+    $('.widgetLanguage .language_selector').click(function(){
+		$(this).parent().toggleClass('open');
+        return false;
+    });
+});
+</script>
