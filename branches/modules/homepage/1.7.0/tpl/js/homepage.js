@@ -138,32 +138,6 @@ function doCompleteRemoveMember(ret_obj) {
     location.reload(); 
 }
 
-function toggleAccessType(target) {
-    switch(target) {
-        case 'domain' :
-                xGetElementById('cafeFo').domain.value = '';
-                xGetElementById('accessDomain').style.display = 'block';
-                xGetElementById('accessVid').style.display = 'none';
-            break;
-        case 'vid' :
-                xGetElementById('cafeFo').vid.value = '';
-                xGetElementById('accessDomain').style.display = 'none';
-                xGetElementById('accessVid').style.display = 'block';
-            break;
-    }
-}
-
-function toggleCafeAccessType(target) {
-    switch(target) {
-        case 'domain' :
-                xGetElementById('accessCafeDomain').style.display = 'block';
-            break;
-        case 'vid' :
-                xGetElementById('accessCafeDomain').style.display = 'none';
-            break;
-    }
-}
-
 function importModule(id) {
     popopen( request_uri.setQuery('module','module').setQuery('act','dispModuleSelectList').setQuery('id',id).setQuery('type','single'), 'ModuleSelect');
 }
@@ -178,3 +152,22 @@ function insertSelectedModule(id, module_srl, mid, browser_title) {
 function doComplenteInsertSelectedModule(ret_obj) {
     location.reload();
 }
+
+jQuery(function($){
+	$('#chkDomain, #chkVid').change(function(){
+		if($('#chkDomain').is(':checked')){
+			$('#accessDomain').show();
+			$('#accessVid').hide();
+		}else if($('#chkVid').is(':checked')){
+			$('#accessDomain').hide();
+			$('#accessVid').show();
+		}
+	});
+	$('#chkCafeVid, #chkCafeDomain').change(function(){
+		if($('#chkCafeVid').is(':checked')){
+			$('#accessCafeDomain').hide();
+		}else if($('#chkCafeDomain').is(':checked')){
+			$('#accessCafeDomain').show();
+		}
+	});
+});
