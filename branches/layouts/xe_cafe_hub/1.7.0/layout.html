@@ -33,7 +33,7 @@
 					<p class="url"><a href="{getUrl('','mid',$mid)}">{getFullUrl('','mid',$mid)}</a></p>
 					<a href="{getUrl('','module','admin','act','dispHomepageAdminContent')}" class="admin" cond="$grant->is_admin">Admin</a>
 
-					<form action="{getUrl()}" method="post">
+					<form action="{getUrl()}" method="post" class="search">
 						<fieldset>
 							<input type="hidden" name="vid" value="{$vid}" />
 							<input type="hidden" name="mid" value="{$mid}" />
