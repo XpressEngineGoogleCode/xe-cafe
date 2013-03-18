@@ -30,10 +30,10 @@
 					<a href="{getUrl('','mid',$mid)}" class="cafe_logo"><img src="{$layout_info->logo_image}" title="{$layout_info->logo_text}" /></a>
 					<!--@end-->
 					<h1><a href="{getUrl('','mid',$mid)}">Cafe&nbsp;XE</a></h1>
-					<p class="url"><a href="{getUrl('','mid',$mid)}">{getFullSiteUrl('','mid',$mid)}</a></p>
-					<a href="{getUrl('','module','admin','act','dispHomepageAdminContent')}" class="admin">Admin</a>
+					<p class="url"><a href="{getUrl('','mid',$mid)}">{getFullUrl('','mid',$mid)}</a></p>
+					<a href="{getUrl('','module','admin','act','dispHomepageAdminContent')}" class="admin" cond="$grant->is_admin">Admin</a>
 
-					<form action="{getUrl()}" method="post" class="search">
+					<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
 						<fieldset>
 							<input type="hidden" name="vid" value="{$vid}" />
 							<input type="hidden" name="mid" value="{$mid}" />
@@ -73,9 +73,6 @@
 							<div class="userAccount">
 								<div class="userTop">
 									<h2>My&nbsp;list</h2>
-									<!--@if($logged_info->is_admin == 'Y')-->
-									<span class="list_manage"><a href="{getUrl('','module','admin','act','dispHomepageAdminContent')}"><span>{$lang->cmd_management}</span></a></span>
-									<!--@end-->
 								</div>
 								<!--@if($my_cafes && count($my_cafes))-->
 								<ul class="cafeList">
