@@ -18,7 +18,7 @@ body{ background:#e8e8e8 url(../img/bg_body.gif) repeat-x;}
 #content{ position:relative; text-align:justify; *zoom:1; background:url(../img/bg_content.gif) repeat-y -704px 0; }
 #content .main{padding:0 27px 0 24px;zoom:1}
 #content:after{ content:""; display:block; clear:both;}
-#content .end{ background:url(../img/bg_content.gif) no-repeat;height:42px; overflow:hidden; width:705px; display:inline-block; margin-left:1px;}
+#content .end{ background:url(../img/bg_content.gif) no-repeat;height:42px; overflow:hidden; width:705px; display:block; margin-left:1px;}
 #content .top{ background-position: 0 0;}
 #content .btm{ background-position: 0 -42px;}
 #footer{ position:relative; clear:both; *zoom:1;}
