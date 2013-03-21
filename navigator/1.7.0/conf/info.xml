@@ -42,7 +42,7 @@
             <name xml:lang="zh-CN">开始深度</name>
             <name xml:lang="zh-TW">階層數</name>
             <name xml:lang="jp">開始階層</name>
-            <description xml:lang="ko">출력될 메뉴의 시작 깊이(depth)를 지정할 수 있습니다. 1이 최상단이고 2부터는 선택된 상위 메뉴가 있으면 출력하게 됩니다</description>
+            <description xml:lang="ko">출력될 메뉴의 시작 깊이(depth)를 지정할 수 있습니다. 1 : 최상단 부터 출력 , 2 : 최상단 메뉴는 출력하지 않습니다. 최상단에서 선택된 메뉴의 하위메뉴들만 출력됩니다.</description>
 			<description xml:lang="en">You can set the depth of menu. 1 is the toppest.</description>
 	    	<description xml:lang="zh-CN">请指定要显示的菜单开始深度(1为完整菜单，2开始只显示该处一级菜单下的2级菜单)。</description>
             <description xml:lang="zh-TW">請設定要顯示的選單階層數。一層是最上層，選擇二層則會顯示子選單。</description>
