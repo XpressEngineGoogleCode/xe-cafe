@@ -4,6 +4,7 @@
 <!--@if($colorset == "black" || $colorset == "white")-->
 <!--%import("./css/widget.css")-->
 <!--@end-->
+{@ debugPrint($widget_info); }
 <div class="widgetContainer<!--@if($colorset=="black")-->black<!--@end-->">
 	<div class="widgetTree">
 		<ul>
@@ -24,7 +25,7 @@
 		<button type="button" class="menu_{$val->node_srl}">-</button>
 		<!--@end-->
 		<!--@end-->
-		<a href="{$val->href}" class="nav_tree_label <!--@if($val->selected)-->selected<!--@end-->" <!--@if($val->open_window =='Y')-->target="_blank" <!--@end-->>{$val->text}</a>
+		<a href="{$val->href}" class="nav_tree_label <!--@if($val->selected)-->selected<!--@end-->" <!--@if($val->open_window =='Y')-->target="_blank" <!--@end-->>{$val->link}</a>
 		<!--@if($val->child_count)-->
 		{@$_pDepth++}
 		<ul>
