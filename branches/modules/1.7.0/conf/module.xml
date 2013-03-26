@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions>
+        <permission action="dispHomepageAdminSiteManage" target="manager" />
+        <permission action="dispHomepageAdminSiteMemberGroupManage" target="manager" />
+        <permission action="dispHomepageAdminSiteMemberManage" target="manager" />
+        <permission action="dispHomepageAdminSiteTopMenu" target="manager" />
+        <permission action="dispHomepageAdminSiteComponent" target="manager" />
+        <permission action="dispHomepageAdminSiteCounter" target="manager" />
+        <permission action="dispHomepageAdminSiteMidSetup" target="manager" />
+
+        <permission action="dispHomepageCreate" target="member" />
+        
+		<permission action="getHomepageMenuTplInfo" target="manager" />
+
+        <permission action="procHomepageCafeCreation" target="member" />
+        <permission action="procHomepageChangeLayout" target="manager" />
+        <permission action="procHomepageInsertMenuItem" target="manager" />
+        <permission action="procHomepageDeleteMenuItem" target="manager" />
+        <permission action="procHomepageMenuItemMove" target="manager" />
+        <permission action="procHomepageDeleteButton" target="manager" />
+        <permission action="procHomepageDeleteGroup" target="manager" />
+        <permission action="procHomepageInsertGroup" target="manager" />
+        <permission action="procHomepageUpdateMemberGroup" target="manager" />
+        <permission action="procHomepageDeleteMember" target="manager" />
+        <permission action="procHomepageUpdateBoardSkin" target="manager" />
+        <permission action="procHomepageUpdateSiteConfig" target="manager" />
+        <permission action="procHomepageUpdateLayoutConfig" target="manager" />
+    </permissions>
+    <actions>
+        <action name="dispHomepageIndex" type="view" index="true" />
+        <action name="dispHomepageManage" type="view" />
+        <action name="dispHomepageCreate" type="view" />
+
+        <action name="dispHomepageAdminSiteManage" type="view" />
+        <action name="dispHomepageAdminSiteMemberGroupManage" type="view" />
+        <action name="dispHomepageAdminSiteMemberManage" type="view" />
+        <action name="dispHomepageAdminSiteTopMenu" type="view" />
+        <action name="dispHomepageAdminSiteComponent" type="view" />
+        <action name="dispHomepageAdminSiteCounter" type="view" />
+        <action name="dispHomepageAdminSiteMidSetup" type="view" />
+        <action name="dispHomepageIS" type="view" />
+
+        <action name="getHomepageMenuItem" type="model" />
+        <action name="getHomepageMenuTplInfo" type="model" />
+
+        <action name="procHomepageCafeCreation" type="controller" ruleset="cafeCreation" />
+        <action name="procHomepageChangeLayout" type="controller" />
+        <action name="procHomepageInsertMenuItem" type="controller" ruleset="insertMenuItem" />
+        <action name="procHomepageDeleteMenuItem" type="controller" />
+        <action name="procHomepageMenuItemMove" type="controller" />
+        <action name="procHomepageDeleteButton" type="controller" />
+        <action name="procHomepageDeleteGroup" type="controller" />
+        <action name="procHomepageInsertGroup" type="controller" />
+        <action name="procHomepageDeleteMember" type="controller" />
+        <action name="procHomepageUpdateMemberGroup" type="controller" />
+        <action name="procHomepageUpdateSiteConfig" type="controller" ruleset="updateSiteConfig" />
+        <action name="procHomepageUpdateLayoutConfig" type="controller" ruleset="updateLayout" />
+
+        <action name="dispHomepageAdminContent" type="view" admin_index="true" menu_name="cafexe" menu_index="true" />
+        <action name="dispHomepageAdminInsert" type="view" />
+        <action name="dispHomepageAdminManage" type="view" />
+        <action name="dispHomepageAdminSetup" type="view" />
+        <action name="dispHomepageAdminSkinSetup" type="view" />
+        <action name="dispHomepageAdminMobileSkinSetup" type="view" />
+        <action name="dispHomepageAdminDelete" type="view" />
+
+        <action name="procHomepageAdminInsertConfig" type="controller" />
+        <action name="procHomepageAdminInsertHomepage" type="controller" ruleset="insertHomepage" />
+        <action name="procHomepageAdminUpdateHomepage" type="controller" />
+        <action name="procHomepageAdminDeleteHomepage" type="controller" />
+        <action name="procHomepageAdminImportModule" type="controller" />
+        <action name="procHomepageAdminExportModule" type="controller" />
+
+		<!-- for mobile skins - 2012.05.31-->
+		<action name="dispHomepageMyCafe" type="view" />
+		<action name="dispHomepageNewestDoc" type="view" />
+		<action name="dispMobileCafeSite" type="view" />
+		<action name="dispSiteCafeItems" type="view" />
+		<action name="dispCafeSiteInfo" type="view" />
+		<action name="dispHomepageDocs" type="view" />
+
+    </actions>
+	<menus>
+		<menu name="cafexe" type="all">
+			<title xml:lang="en">cafeXE</title>
+			<title xml:lang="ko">cafeXE</title>
+			<title xml:lang="zh-CN">cafeXE</title>
+			<title xml:lang="jp">cafeXE</title>
+			<title xml:lang="es">cafeXE</title>
+			<title xml:lang="ru">cafeXE</title>
+			<title xml:lang="fr">cafeXE</title>
+			<title xml:lang="zh-TW">cafeXE</title>
+			<title xml:lang="vi">cafeXE</title>
+			<title xml:lang="mn">cafeXE</title>
+			<title xml:lang="tr">cafeXE</title>
+		</menu>
+	</menus>
+</module>
